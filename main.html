@@ -1,0 +1,3735 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 85%;">
+
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>TinkerHub AWC | Collaborative Community</title>
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link
+ href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Shadows+Into+Light&family=Lilita+One&family=Permanent+Marker&display=swap"
+ rel="stylesheet" />
+ <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+ rel="stylesheet" />
+ <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+ <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+ <!-- GSAP for premium animations -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+ <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+ <script id="tailwind-config">
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ background: "#FFFFFF", /* White */
+ ink: "#111111",
+ inkLighter: "#333333",
+ pastelYellow: "#FFF73A",
+ pastelPink: "#FFB5D8",
+ pastelBlue: "#B5E5F9",
+ pastelGreen: "#C3FF16",
+ },
+ fontFamily: {
+ sans: ["Inter", "sans-serif"],
+ display: ["Playfair Display", "serif"],
+ handwriting: ["Shadows Into Light", "cursive"],
+ lilita: ["Lilita One", "cursive"],
+ marker: ["Permanent Marker", "cursive"]
+ },
+ boxShadow: {
+ 'sticker': '4px 4px 0px #111111',
+ 'sticker-lg': '8px 8px 0px #111111',
+ 'polaroid': '0 10px 20px -5px rgba(0,0,0,0.15), 0 2px 5px rgba(0,0,0,0.05)'
+ }
+ },
+ },
+ }
+ </script>
+ <style>
+ .material-symbols-outlined {
+ font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+ }
+
+ /* 2026 Theme Poster Styles */
+ .text-outline-thick {
+ -webkit-text-stroke: 4px #111111;
+ paint-order: stroke fill;
+ }
+
+ .text-shadow-neubrutal-lg {
+ text-shadow: 6px 6px 0px #111111;
+ }
+
+ @media (min-width: 768px) {
+ .text-outline-thick {
+ -webkit-text-stroke: 8px #111111;
+ }
+
+ .text-shadow-neubrutal-lg {
+ text-shadow: 12px 12px 0px #111111;
+ }
+ }
+
+ body {
+ font-family: 'Inter', sans-serif;
+ background-color: #FFFFFF;
+ background-image:
+ linear-gradient(#e5e7eb 1px, transparent 1px),
+ linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+ background-size: 30px 30px;
+ color: #111111;
+ overflow-x: hidden;
+ line-height: 1.6;
+ -webkit-font-smoothing: antialiased;
+ }
+
+ ::-webkit-scrollbar {
+ width: 10px;
+ }
+
+ ::-webkit-scrollbar-track {
+ background: #FFFFFF;
+ }
+
+ ::-webkit-scrollbar-thumb {
+ background: #cbd5e1;
+ border-radius: 5px;
+ border: 2px solid #FFFFFF;
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+ background: #94a3b8;
+ }
+
+ /* Sticker Button Style */
+ .btn-nav,
+ .btn-primary,
+ .sticker-btn {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ padding: 0.5rem 1.5rem;
+ background: #FFF73A;
+ color: #111111;
+ font-family: 'Inter', sans-serif;
+ font-weight: 700;
+ font-size: 1rem;
+ border-radius: 999px;
+ border: 2px solid #111111;
+ box-shadow: 4px 4px 0px #111111;
+ transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ cursor: pointer;
+ text-transform: lowercase;
+ letter-spacing: -0.01em;
+ }
+
+ .btn-nav:hover,
+ .btn-primary:hover,
+ .sticker-btn:hover {
+ transform: translate(-2px, -2px);
+ box-shadow: 6px 6px 0px #111111;
+ }
+
+ .btn-nav:active,
+ .btn-primary:active,
+ .sticker-btn:active {
+ transform: translate(2px, 2px);
+ box-shadow: 2px 2px 0px #111111;
+ }
+
+ .btn-primary {
+ background: #FFB5D8;
+ padding: 1rem 2.5rem;
+ font-size: 1.25rem;
+ }
+
+ .hero-title-top {
+ font-family: 'Inter', sans-serif;
+ font-size: 1rem;
+ font-weight: 700;
+ letter-spacing: 0.3em;
+ text-transform: uppercase;
+ color: #111;
+ margin-bottom: 1rem;
+ display: block;
+ z-index: 60;
+ position: relative;
+ }
+
+ .pixel-3d-text {
+ font-family: 'Press Start 2P', cursive;
+ color: #1a4cd2;
+ /* Blue */
+ text-transform: uppercase;
+ line-height: 1.3;
+ text-align: center;
+ /* White outline */
+ -webkit-text-stroke: 2px #fff;
+ /* Stacked shadow for 3D extrusion */
+ text-shadow:
+ 0px 2px 0px #0c2074,
+ 0px 4px 0px #0c2074,
+ 0px 6px 0px #0c2074,
+ 0px 8px 0px #0c2074,
+ 0px 10px 0px #0c2074,
+ 0px 12px 0px #0c2074,
+ 0px 14px 0px #0c2074;
+ font-size: clamp(2rem, 5vw, 4rem);
+ margin: 0;
+ display: inline-block;
+ position: relative;
+ z-index: 60;
+ }
+
+ .serif-italic-text {
+ font-family: 'Playfair Display', serif;
+ font-style: italic;
+ font-weight: 900;
+ color: #111;
+ font-size: clamp(3.5rem, 9vw, 7rem);
+ line-height: 1.1;
+ display: block;
+ text-align: center;
+ }
+
+ .black-highlighter {
+ position: relative;
+ color: #111111;
+ display: inline-block !important;
+ transition: color 0.4s ease-in-out;
+ transition-delay: 1.2s;
+ padding: 0.25rem 1.5rem !important;
+ }
+
+ body.is-open .black-highlighter {
+ color: #FFFFFF !important;
+ }
+
+ .black-highlighter::after {
+ content: '';
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background-color: #111111;
+ z-index: -1;
+ transform: scaleX(0);
+ transform-origin: left;
+ transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+ transition-delay: 1.2s;
+ clip-path: polygon(1% 8%, 98% 3%, 99% 93%, 2% 98%);
+ }
+
+ body.is-open .black-highlighter::after {
+ transform: scaleX(1);
+ }
+
+ .hero-title-bottom {
+ font-family: 'Inter', sans-serif;
+ font-size: 0.9rem;
+ font-weight: 800;
+ text-transform: uppercase;
+ color: #111;
+ margin-top: 1.5rem;
+ display: block;
+ z-index: 60;
+ position: relative;
+ }
+
+ /* Top Banner Strip */
+ .top-banner-strip {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 50px;
+ display: flex;
+ align-items: center;
+ overflow: hidden;
+ z-index: 9000;
+ background-color: #111;
+ /* Black */
+ border-bottom: 2px solid #111;
+ }
+
+ .banner-track {
+ display: flex;
+ white-space: nowrap;
+ animation: bannerScroll 20s linear infinite;
+ }
+
+ .banner-item {
+ font-family: 'Inter', sans-serif;
+ font-size: 1.5rem;
+ font-weight: 500;
+ color: #fff;
+ padding: 0 1rem;
+ text-transform: uppercase;
+ display: flex;
+ align-items: center;
+ gap: 1rem;
+ }
+
+ .banner-item u {
+ text-decoration-thickness: 2px;
+ text-underline-offset: 4px;
+ }
+
+ @keyframes bannerScroll {
+ 0% {
+ transform: translateX(0);
+ }
+
+ 100% {
+ transform: translateX(-50%);
+ }
+ }
+
+ /* ── MARQUEE STRIP ─────────────────────────────────────── */
+ .marquee-strip {
+ width: 100%;
+ overflow: hidden;
+ background: #FFF73A;
+ border-top: 3px solid #111;
+ border-bottom: 3px solid #111;
+ padding: 14px 0;
+ position: relative;
+ z-index: 20;
+ }
+
+ .marquee-track {
+ display: flex;
+ gap: 0;
+ white-space: nowrap;
+ animation: marqueeScroll 22s linear infinite;
+ }
+
+ .marquee-track:hover {
+ animation-play-state: paused;
+ }
+
+ .marquee-item {
+ display: inline-flex;
+ align-items: center;
+ gap: 24px;
+ font-family: 'Playfair Display', serif;
+ font-size: 1.15rem;
+ font-weight: 700;
+ font-style: italic;
+ color: #111;
+ padding: 0 20px;
+ flex-shrink: 0;
+ }
+
+ .marquee-dot {
+ width: 8px;
+ height: 8px;
+ background: #111;
+ border-radius: 50%;
+ flex-shrink: 0;
+ }
+
+ @keyframes marqueeScroll {
+ 0% {
+ transform: translateX(0);
+ }
+
+ 100% {
+ transform: translateX(-50%);
+ }
+ }
+
+ /* Floating elements animation */
+ .float-animation {
+ animation: float 6s ease-in-out infinite;
+ }
+
+ .float-animation-alt {
+ animation: float-alt 7s ease-in-out infinite reverse;
+ }
+
+ @keyframes float {
+ 0% {
+ transform: translateY(0px) rotate(0deg);
+ }
+
+ 50% {
+ transform: translateY(-15px) rotate(2deg);
+ }
+
+ 100% {
+ transform: translateY(0px) rotate(0deg);
+ }
+ }
+
+ @keyframes float-alt {
+ 0% {
+ transform: translateY(0px) rotate(-2deg);
+ }
+
+ 50% {
+ transform: translateY(-20px) rotate(1deg);
+ }
+
+ 100% {
+ transform: translateY(0px) rotate(-2deg);
+ }
+ }
+
+ /* Opening Animations */
+ .stamp-in {
+ opacity: 0;
+ transform: scale(3) rotate(-10deg);
+ }
+
+ . {
+ opacity: 0;
+ transform: translateY(-100vh) rotate(20deg);
+ }
+
+ body.is-open .stamp-in {
+ animation: stampIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+ }
+
+ body.is-open . {
+ animation: dropIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+ }
+
+ @keyframes stampIn {
+ 100% {
+ opacity: 1;
+ transform: scale(1) rotate(0deg);
+ }
+ }
+
+ @keyframes dropIn {
+ 100% {
+ opacity: 1;
+ transform: translateY(0) rotate(0deg);
+ }
+ }
+
+ . {
+ opacity: 0;
+ transform: scale(0.8) translateY(30px);
+ }
+
+ body.is-open . {
+ animation: popIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+ }
+
+ @keyframes popIn {
+ 100% {
+ opacity: 1;
+ transform: scale(1) translateY(0);
+ }
+ }
+
+ . {
+ opacity: 0;
+ scale: 2.5;
+ rotate: 20deg;
+ }
+
+ body.is-open . {
+ animation: scrapIn 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+ }
+
+ @keyframes scrapIn {
+ 100% {
+ opacity: 1;
+ scale: 1;
+ rotate: 0deg;
+ }
+ }
+
+ /* Typewriter & Highlighter Effects */
+ .type-line {
+ clip-path: inset(-50% 100% -50% -50%);
+ }
+
+ body.is-open .type-line {
+ animation: typingReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+ }
+
+ .highlighter-bg {
+ clip-path: inset(-50% 100% -50% -50%);
+ }
+
+ body.is-open .highlighter-bg {
+ animation: typingReveal 0.4s ease-out forwards;
+ }
+
+ @keyframes typingReveal {
+ from {
+ clip-path: inset(-50% 100% -50% -50%);
+ }
+
+ to {
+ clip-path: inset(-50% -50% -50% -50%);
+ }
+ }
+
+ /* 🍩 Donut Walking Animation */
+ @keyframes donutWalkIn {
+ 0% {
+ left: -200px;
+ }
+
+ 100% {
+ left: 10px;
+ }
+ }
+
+ @keyframes donutBounce {
+
+ 0%,
+ 10% {
+ transform: translateY(0);
+ }
+
+ 50% {
+ transform: translateY(-8px);
+ }
+ }
+
+ .donut-walker-wrap {
+ position: relative;
+ width: 200%;
+ height: 60px;
+ overflow: visible;
+ pointer-events: none;
+ z-index: 50;
+ }
+
+ .donut-walker {
+ position: absolute;
+ bottom: 45px;
+ left: -200px;
+ width: 180px;
+ height: 170px;
+ animation: donutWalkIn 4s ease-out 2s forwards, donutBounce 0.5s ease-in-out 2s 8;
+ }
+
+ .donut-walker video {
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
+ mix-blend-mode: multiply;
+ display: block;
+ }
+
+ /* Sticker Label */
+ .sticker-label {
+ background: white;
+ border: 2px solid #111111;
+ border-radius: 999px;
+ padding: 0.5rem 1.25rem;
+ font-size: 0.875rem;
+ font-weight: 700;
+ box-shadow: 3px 3px 0px rgba(17, 17, 17, 0.2);
+ display: inline-flex;
+ align-items: center;
+ gap: 0.5rem;
+ }
+
+ /* Polaroid Photo Effect */
+ .polaroid-card {
+ background: white;
+ padding: 1rem 1rem 3rem 1rem;
+ border: 1px solid #e5e7eb;
+ box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(0, 0, 0, 0.05);
+ position: relative;
+ --tw-rotate: -2deg;
+ transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+ }
+
+ .polaroid-card:hover {
+ --tw-translate-y: -12px;
+ --tw-scale-x: 1.04;
+ --tw-scale-y: 1.04;
+ --tw-rotate: -0.5deg;
+ box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+ z-index: 50;
+ cursor: pointer;
+ }
+
+ /* Polaroid taped style */
+ .polaroid-taped {
+ position: relative;
+ width: 140px;
+ display: inline-block;
+ }
+
+ .polaroid-card-inner {
+ background: white;
+ padding: 0.5rem 0.5rem 1.8rem 0.5rem;
+ border: 2px solid #111111;
+ box-shadow: 4px 4px 0px #111111;
+ transition: transform 0.3s ease;
+ }
+
+ .polaroid-card-inner img {
+ width: 100%;
+ height: 95px;
+ object-fit: cover;
+ border: 2px solid #111111;
+ display: block;
+ }
+
+ .polaroid-card-inner .polaroid-caption {
+ display: block;
+ text-align: center;
+ font-family: 'Shadows Into Light', cursive;
+ font-size: 0.95rem;
+ font-weight: 700;
+ color: #111111;
+ margin-top: 0.4rem;
+ }
+
+ .tape-sticker {
+ position: absolute;
+ top: -12px;
+ left: 50%;
+ transform: translateX(-50%) rotate(-3deg);
+ width: 70px;
+ height: 22px;
+ background-color: rgba(255, 247, 58, 0.75);
+ /* yellow translucent tape */
+ border-left: 2px dashed rgba(0, 0, 0, 0.15);
+ border-right: 2px dashed rgba(0, 0, 0, 0.15);
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+ z-index: 10;
+ }
+
+ .tape-sticker-alt {
+ position: absolute;
+ top: -12px;
+ left: 50%;
+ transform: translateX(-50%) rotate(4deg);
+ width: 70px;
+ height: 22px;
+ background-color: rgba(255, 181, 216, 0.75);
+ /* pink translucent tape */
+ border-left: 2px dashed rgba(0, 0, 0, 0.15);
+ border-right: 2px dashed rgba(0, 0, 0, 0.15);
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+ z-index: 10;
+ }
+
+ .polaroid-taped:hover .polaroid-card-inner {
+ transform: scale(1.05) translateY(-5px);
+ }
+
+ .polaroid-pin {
+ position: absolute;
+ top: 10px;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 15px;
+ height: 15px;
+ background: #FFB5D8;
+ border-radius: 50%;
+ box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.3), 2px 4px 5px rgba(0, 0, 0, 0.2);
+ z-index: 10;
+ }
+
+ .polaroid-tape {
+ position: absolute;
+ top: -10px;
+ left: 50%;
+ transform: translateX(-50%) rotate(-3deg);
+ width: 100px;
+ height: 30px;
+ background: rgba(255, 255, 255, 0.4);
+ border: 1px solid rgba(0, 0, 0, 0.05);
+ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+ backdrop-filter: blur(2px);
+ z-index: 10;
+ }
+
+ /* Meet the Core Section - String/Pin layout */
+ .core-section {
+ position: relative;
+ padding-bottom: 8rem;
+ overflow: hidden;
+ z-index: 10;
+ }
+
+ .core-team-container {
+ position: relative;
+ z-index: 25;
+ max-width: 1200px;
+ margin-left: auto;
+ margin-right: auto;
+ height: 850px;
+ display: block;
+ }
+
+ .team-member {
+ position: absolute;
+ width: 180px;
+ transition: transform 0.3s;
+ }
+
+ .pushpin-red {
+ background: #ef4444 !important;
+ border-radius: 50%;
+ width: 18px;
+ height: 18px;
+ box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.5), 3px 3px 5px rgba(0, 0, 0, 0.4);
+ top: 10px;
+ position: absolute;
+ left: 50%;
+ transform: translateX(-50%);
+ z-index: 30;
+ }
+
+ .team-member:nth-child(1) {
+ top: 5%;
+ left: 5%;
+ transform: rotate(-3deg);
+ }
+
+ .team-member:nth-child(2) {
+ top: 35%;
+ left: 28%;
+ transform: rotate(4deg);
+ }
+
+ .team-member:nth-child(3) {
+ top: 10%;
+ left: 52%;
+ transform: rotate(-2deg);
+ }
+
+ .team-member:nth-child(4) {
+ top: 45%;
+ left: 75%;
+ transform: rotate(5deg);
+ }
+
+ .team-member:nth-child(5) {
+ top: 65%;
+ left: 50%;
+ transform: rotate(-4deg);
+ }
+
+ .team-img-wrapper {
+ width: 100%;
+ position: relative;
+ }
+
+ .team-img-wrapper img {
+ width: 100%;
+ height: auto;
+ aspect-ratio: 3/4;
+ object-fit: cover;
+ border: 2px solid #111111;
+ filter: grayscale(100%) contrast(1.2);
+ transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+ position: relative;
+ z-index: 10;
+ transform-origin: bottom center;
+ }
+
+ .team-img-wrapper:hover img {
+ filter: grayscale(0%);
+ transform: scale(1.15);
+ box-shadow: 8px 8px 0px #111111;
+ z-index: 20;
+ border-width: 3px;
+ }
+
+ /* Past Events Deck */
+ .past-events-deck {
+ position: relative;
+ width: 100%;
+ height: 100%;
+ min-height: 480px;
+ perspective: 1000px;
+ }
+
+ .past-event-card {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+ cursor: pointer;
+ }
+
+ .past-event-card:nth-last-child(1) {
+ transform: rotate(2deg) translateY(0) scale(1);
+ z-index: 30;
+ opacity: 1;
+ }
+
+ .past-event-card:nth-last-child(2) {
+ transform: rotate(-1deg) translateY(20px) scale(0.96);
+ z-index: 20;
+ opacity: 0.95;
+ }
+
+ .past-event-card:nth-last-child(3) {
+ transform: rotate(1deg) translateY(40px) scale(0.92);
+ z-index: 10;
+ opacity: 0.85;
+ }
+
+ .past-event-card:nth-last-child(n+4) {
+ transform: translateY(60px) scale(0.85);
+ z-index: 0;
+ opacity: 0;
+ pointer-events: none;
+ }
+
+ .past-event-card:nth-last-child(1):hover {
+ transform: rotate(0deg) translateY(-8px) scale(1.02);
+ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+ }
+
+ .past-event-card.fly-out {
+ transform: translateX(120%) rotate(15deg) scale(1.1) !important;
+ opacity: 0 !important;
+ pointer-events: none;
+ }
+
+ .paper-deck {
+ position: relative;
+ width: 80%;
+ max-width: 410px;
+ margin: 0 auto;
+ height: 400px;
+ perspective: 1000px;
+ margin-bottom: 80px;
+ }
+
+ .paper-sheet {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #FFFFFF;
+ border: 3px solid #111;
+ box-shadow: -5px 10px 0px rgba(0, 0, 0, 0.1);
+ transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+ cursor: pointer;
+ padding: 3rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ /* subtle paper texture */
+ background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+ }
+
+ .paper-sheet:nth-last-child(1) {
+ transform: rotate(-1.5deg);
+ z-index: 70;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(2) {
+ transform: rotate(2deg);
+ z-index: 60;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(3) {
+ transform: rotate(-1deg);
+ z-index: 50;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(4) {
+ transform: rotate(1.5deg);
+ z-index: 40;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(5) {
+ transform: rotate(-2deg);
+ z-index: 30;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(6) {
+ transform: rotate(1deg);
+ z-index: 20;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(7) {
+ transform: rotate(-1deg);
+ z-index: 10;
+ opacity: 1;
+ }
+
+ .paper-sheet:nth-last-child(n+8) {
+ opacity: 0;
+ pointer-events: none;
+ }
+
+ .paper-sheet:nth-last-child(1):hover {
+ transform: rotate(0deg) translateY(-8px);
+ box-shadow: -10px 15px 0px rgba(0, 0, 0, 0.15);
+ }
+
+ .paper-sheet.swipe-off {
+ transform: translateY(-120%) rotate(-20deg) scale(1.05) !important;
+ opacity: 0 !important;
+ pointer-events: none;
+ }
+
+ /* Retro TV Styles (if any specific ones are needed, else Tailwind handles most) */
+
+ /* Modal Styles */
+ .spotlight-modal {
+ position: fixed;
+ inset: 0;
+ background-color: rgba(0, 0, 0, 0.8);
+ z-index: 1000;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity 0.3s ease;
+ }
+
+ .spotlight-modal.active {
+ opacity: 1;
+ pointer-events: auto;
+ }
+
+ .spotlight-modal-content {
+ background-color: #FFFFFF;
+ border: 4px solid #111;
+ box-shadow: 15px 15px 0px rgba(0, 0, 0, 1);
+ max-width: 800px;
+ width: 90%;
+ max-height: 90vh;
+ overflow-y: auto;
+ transform: translateY(50px) rotate(2deg);
+ transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+ position: relative;
+ }
+
+ .spotlight-modal.active .spotlight-modal-content {
+ transform: translateY(0) rotate(-1deg);
+ }
+
+ .modal-close {
+ position: absolute;
+ top: 1rem;
+ right: 1rem;
+ background: #FFB5D8;
+ border: 2px solid #111;
+ width: 40px;
+ height: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: bold;
+ cursor: pointer;
+ transition: all 0.2s;
+ z-index: 10;
+ }
+
+ .modal-close:hover {
+ transform: scale(1.1) rotate(5deg);
+ }
+
+ /* Receipt Printout Modal & Animation */
+ .receipt-modal {
+ position: fixed;
+ inset: 0;
+ background-color: rgba(0, 0, 0, 0.85);
+ z-index: 2000;
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity 0.3s ease;
+ overflow-y: auto;
+ padding-top: 5vh;
+ padding-bottom: 5vh;
+ }
+
+ .receipt-modal.active {
+ opacity: 1;
+ pointer-events: auto;
+ }
+
+ .receipt-machine {
+ position: relative;
+ width: 100%;
+ max-width: 400px;
+ perspective: 1000px;
+ }
+
+ .receipt-paper {
+ background-color: #F4F1EA;
+ width: 100%;
+ position: relative;
+ padding: 3rem 2rem;
+ color: #111;
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+ /* Zig-zag top and bottom via CSS mask */
+ -webkit-mask:
+ conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% 100%/16px 10px repeat-x,
+ conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) 50% 0/16px 10px repeat-x,
+ linear-gradient(#000 0 0) 50% 50%/100% calc(100% - 20px) no-repeat;
+ mask:
+ conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% 100%/16px 10px repeat-x,
+ conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) 50% 0/16px 10px repeat-x,
+ linear-gradient(#000 0 0) 50% 50%/100% calc(100% - 20px) no-repeat;
+
+ transform-origin: top;
+ transform: scaleY(0);
+ }
+
+ .receipt-modal.active .receipt-paper {
+ animation: printOut 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+ animation-delay: 0.2s;
+ }
+
+ @keyframes printOut {
+ 0% {
+ transform: scaleY(0) translateY(-20px);
+ opacity: 0.5;
+ }
+
+ 60% {
+ transform: scaleY(1.02) translateY(5px);
+ opacity: 1;
+ }
+
+ 80% {
+ transform: scaleY(0.99) translateY(-2px);
+ }
+
+ 100% {
+ transform: scaleY(1) translateY(0);
+ opacity: 1;
+ }
+ }
+
+ .receipt-barcode {
+ height: 60px;
+ width: 100%;
+ background: repeating-linear-gradient(90deg, #111, #111 2px, transparent 2px, transparent 4px, #111 4px, #111 7px, transparent 7px, transparent 10px, #111 10px, #111 15px, transparent 15px, transparent 18px);
+ }
+
+ /* SVG Connecting String lines (mocked via SVG background) */
+ .string-lines {
+ position: absolute;
+ top: 200px;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ pointer-events: none;
+ z-index: 20;
+ opacity: 0.7;
+ }
+
+ @keyframes slideDownIntro {
+ 0% {
+ transform: translateY(-100%);
+ }
+
+ 100% {
+ transform: translateY(0);
+ }
+ }
+
+ @keyframes slideUpIntro {
+ 0% {
+ transform: translateY(0);
+ }
+
+ 100% {
+ transform: translateY(-100%);
+ }
+ }
+
+ .torn-edges-x {
+ -webkit-mask:
+ conic-gradient(from -45deg at left 10px, #0000, #000 1deg 89deg, #0000 90deg) left/100% 20px repeat-y,
+ conic-gradient(from 135deg at right 10px, #0000, #000 1deg 89deg, #0000 90deg) right/100% 20px repeat-y,
+ linear-gradient(#000 0 0) center/calc(100% - 20px) 100% no-repeat;
+ mask:
+ conic-gradient(from -45deg at left 10px, #0000, #000 1deg 89deg, #0000 90deg) left/100% 20px repeat-y,
+ conic-gradient(from 135deg at right 10px, #0000, #000 1deg 89deg, #0000 90deg) right/100% 20px repeat-y,
+ linear-gradient(#000 0 0) center/calc(100% - 20px) 100% no-repeat;
+ }
+
+ @keyframes paperUnfold {
+ 0% {
+ transform: perspective(1000px) rotateX(90deg) scale(0.8) translateY(-50px);
+ opacity: 0;
+ transform-origin: top center;
+ }
+
+ 40% {
+ transform: perspective(1000px) rotateX(-10deg) scale(0.95) translateY(10px);
+ opacity: 1;
+ }
+
+ 70% {
+ transform: perspective(1000px) rotateX(5deg) scale(1.02) translateY(-5px);
+ }
+
+ 100% {
+ transform: perspective(1000px) rotateX(0deg) scale(1) translateY(0);
+ opacity: 1;
+ transform-origin: top center;
+ }
+ }
+
+ .paper-unfold-active {
+ animation: paperUnfold 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+ }
+
+ .carousel-slide {
+ display: none;
+ width: 100%;
+ }
+
+ .carousel-slide.active {
+ display: flex;
+ }
+
+ .carousel-slide.animating {
+ display: flex;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 10;
+ }
+
+ /* Scrapbook Transition Effects */
+ @keyframes scrapTurnNextOut {
+ 0% {
+ transform: rotate(0deg) scale(1);
+ opacity: 1;
+ }
+
+ 100% {
+ transform: rotate(-10deg) translateX(-100%) scale(0.9);
+ opacity: 0;
+ }
+ }
+
+ @keyframes scrapTurnNextIn {
+ 0% {
+ transform: rotate(10deg) translateX(100%) scale(0.9);
+ opacity: 0;
+ }
+
+ 100% {
+ transform: rotate(0deg) scale(1);
+ opacity: 1;
+ }
+ }
+
+ @keyframes scrapTurnPrevOut {
+ 0% {
+ transform: rotate(0deg) scale(1);
+ opacity: 1;
+ }
+
+ 100% {
+ transform: rotate(10deg) translateX(100%) scale(0.9);
+ opacity: 0;
+ }
+ }
+
+ @keyframes scrapTurnPrevIn {
+ 0% {
+ transform: rotate(-10deg) translateX(-100%) scale(0.9);
+ opacity: 0;
+ }
+
+ 100% {
+ transform: rotate(0deg) scale(1);
+ opacity: 1;
+ }
+ }
+
+ .scrap-next-out {
+ animation: scrapTurnNextOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+ }
+
+ .scrap-next-in {
+ animation: scrapTurnNextIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+ }
+
+ .scrap-prev-out {
+ animation: scrapTurnPrevOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+ }
+
+ .scrap-prev-in {
+ animation: scrapTurnPrevIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+ }
+
+ /* Red Pushpin */
+ .pushpin-red {
+ position: absolute;
+ top: -12px;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 24px;
+ height: 24px;
+ background-color: #EF4444;
+ /* Tailwind red-500 */
+ border-radius: 50%;
+ border: 2px solid #111;
+ /* ink */
+ box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2), 2px 4px 6px rgba(0, 0, 0, 0.3);
+ z-index: 50;
+ }
+
+ .pushpin-red::after {
+ content: '';
+ position: absolute;
+ top: 4px;
+ left: 4px;
+ width: 6px;
+ height: 6px;
+ background-color: rgba(255, 255, 255, 0.6);
+ border-radius: 50%;
+ }
+
+ /* =============================================
+ GALLERY HUNG PHOTO — clipped right-side teaser
+ ============================================= */
+
+ @keyframes polaroid-float {
+
+ 0%,
+ 100% {
+ transform: translateY(-50%);
+ }
+
+ 50% {
+ transform: translateY(calc(-50% - 15px));
+ }
+ }
+
+ /* Absolute to right edge of viewport, top-right area */
+ .gallery-hung-wrap {
+ position: absolute;
+ right: 0;
+ top: 38%;
+ transform: translateY(-50%);
+ z-index: 50;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ pointer-events: auto;
+ animation: polaroid-float 6s ease-in-out infinite;
+ }
+
+ /* Polaroid card — partially hanging off right edge */
+ .gallery-photo-card {
+ display: block;
+ width: 220px;
+ background: white;
+ border: 2.5px solid #111;
+ padding: 10px 10px 50px 10px;
+ box-shadow: -5px 8px 20px rgba(0, 0, 0, 0.18), 4px 4px 0 #111;
+ /* Angle: top leans right, body hangs left = clip at top-right */
+ transform: rotate(8deg) translateX(40px);
+ transform-origin: top center;
+ cursor: pointer;
+ transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+ box-shadow 0.35s ease;
+ text-decoration: none;
+ position: relative;
+ }
+
+ .gallery-photo-card:hover {
+ transform: rotate(3deg) translateX(20px) scale(1.06);
+ box-shadow: -8px 12px 28px rgba(0, 0, 0, 0.22), 6px 6px 0 #111;
+ }
+
+ .gallery-photo-card img {
+ width: 100%;
+ aspect-ratio: 1;
+ object-fit: cover;
+ display: block;
+ filter: grayscale(15%) brightness(1.02);
+ transition: filter 0.35s;
+ }
+
+ .gallery-photo-card:hover img {
+ filter: grayscale(0%) brightness(1);
+ }
+
+ /* Handwriting caption */
+ .gallery-photo-card .caption {
+ position: absolute;
+ bottom: 12px;
+ left: 0;
+ right: 0;
+ text-align: center;
+ font-family: 'Shadows Into Light', cursive;
+ font-size: 1.1rem;
+ font-weight: 700;
+ color: #444;
+ }
+
+ /* View Gallery hover badge */
+ .gallery-photo-card .view-label {
+ position: absolute;
+ bottom: -44px;
+ left: 50%;
+ transform: translateX(-50%) translateY(6px);
+ font-family: 'Inter', sans-serif;
+ font-size: 0.7rem;
+ font-weight: 900;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ background: #111;
+ color: #FFF73A;
+ padding: 5px 12px;
+ white-space: nowrap;
+ opacity: 0;
+ transition: opacity 0.2s, transform 0.2s;
+ pointer-events: none;
+ }
+
+ .gallery-photo-card:hover .view-label {
+ opacity: 1;
+ transform: translateX(-50%) translateY(0);
+ }
+
+ @media (max-width: 768px) {
+ .gallery-hung-wrap {
+ top: 42%;
+ }
+
+ .gallery-photo-card {
+ width: 160px;
+ transform: rotate(8deg) translateX(30px);
+ }
+ }
+
+ /* Retro OS Desktop Styles */
+ .bg-retro-desktop {
+ background-color: #6b9ad3;
+ background-image:
+ linear-gradient(rgba(255, 255, 255, 0.45) 1.5px, transparent 1.5px),
+ linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1.5px, transparent 1.5px);
+ background-size: 32px 32px;
+ }
+
+ .retro-window {
+ border: 4px solid #111111;
+ box-shadow: 10px 10px 0px #111111;
+ border-radius: 12px;
+ overflow: hidden;
+ background-color: #FFFFFF;
+ position: relative;
+ }
+
+        .smooth-reveal-1 {
+            display: inline-block;
+            white-space: nowrap;
+            margin: 0 auto;
+            clip-path: inset(-50% 100% -50% -50%);
+        }
+        body.is-open .smooth-reveal-1 {
+            animation: typingReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 1.5s;
+        }
+        .smooth-reveal-2 {
+            display: inline-block;
+            white-space: nowrap;
+            margin: 0 auto;
+            clip-path: inset(-50% 100% -50% -50%);
+        }
+        body.is-open .smooth-reveal-2 {
+            animation: typingReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 2.4s;
+        }
+    </style>
+
+</head>
+
+<body class="antialiased selection:bg-accent selection:text-white overflow-hidden" id="body">
+
+ <!-- Custom Cursor -->
+ <div class="custom-cursor hidden md:block" id="customCursor"></div>
+
+ <!-- Intro Paper Overlay -->
+ <div id="introOverlay"
+ class="fixed inset-0 z-[9999] bg-white border-b-[16px] border-ink shadow-[0_30px_60px_rgba(0,0,0,0.6)] flex items-center justify-center cursor-pointer bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgNDBoNDBWMHgtNDB2NDB6IiBmaWxsPSIjRkZGRkZGIi8+PHBhdGggZD0iTTAgMzlWMzhoNDB2MmgtNDB6IiBmaWxsPSIjRTVEQ0MyIi8+PC9zdmc+')] animate-[slideDownIntro_1s_ease-out_forwards] torn-edges-x">
+
+ <!-- Tape Scraps -->
+ <div class="absolute top-10 -left-4 w-32 h-10 bg-white opacity-80 transform rotate-[15deg] border border-ink shadow-sm pointer-events-none"
+ style="backdrop-filter: blur(2px);"></div>
+ <div class="absolute bottom-32 -right-6 w-40 h-12 bg-pastelYellow opacity-70 transform -rotate-12 border border-ink shadow-sm pointer-events-none"
+ style="backdrop-filter: blur(2px);"></div>
+
+ <!-- Pencil Doodles -->
+ <svg class="absolute top-[20%] left-[15%] w-24 h-24 text-pastelPink float-animation opacity-80 pointer-events-none hidden md:block"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path d="M 50 10 L 60 40 L 90 40 L 65 60 L 75 90 L 50 70 L 25 90 L 35 60 L 10 40 L 40 40 Z"
+ stroke-dasharray="300" stroke-dashoffset="0" />
+ <path d="M 50 5 L 62 42 L 95 42 L 67 62 L 78 95 L 50 73 L 22 95 L 33 62 L 5 42 L 38 42 Z"
+ stroke="rgba(255,181,216,0.5)" stroke-width="2" />
+ </svg>
+
+ <svg class="absolute bottom-[25%] left-[20%] w-32 h-12 text-pastelBlue float-animation-alt opacity-70 transform rotate-12 pointer-events-none hidden md:block"
+ viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+ <path d="M 0 15 Q 10 0 20 15 T 40 15 T 60 15 T 80 15 T 100 15" />
+ <path d="M 2 17 Q 12 2 22 17 T 42 17 T 62 17 T 82 17 T 102 17" stroke="rgba(181,216,255,0.5)"
+ stroke-width="2" />
+ </svg>
+
+ <svg class="absolute top-[30%] right-[15%] w-24 h-24 text-pastelGreen float-animation transform rotate-12 pointer-events-none hidden md:block"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+ stroke-linejoin="round">
+ <!-- Retro Sparkle -->
+ <path d="M 50 10 Q 50 50 90 50 Q 50 50 50 90 Q 50 50 10 50 Q 50 50 50 10" />
+ <circle cx="50" cy="50" r="5" fill="currentColor" />
+ </svg>
+
+ <!-- Text -->
+ <div
+ class="absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none transform -rotate-2">
+ <h1
+ class="font-display italic font-black text-6xl md:text-[8rem] text-ink leading-[0.9] text-center tracking-tighter drop-shadow-sm">
+ Your<br />TinkerHub<br />Campus Community
+ </h1>
+ </div>
+
+ <!-- <div id="introHint"
+ class="absolute bottom-16 font-handwriting text-3xl font-bold text-ink animate-bounce transition-opacity duration-300 transform rotate-3 bg-pastelYellow px-6 py-2 border-2 border-ink shadow-sticker">
+ Click to unroll!
+ </div> -->
+
+ <!-- Binder holes or tape for paper effect -->
+ <div class="absolute top-0 left-0 w-full h-12 border-b-4 border-ink border-dashed opacity-30"></div>
+ </div>
+ <!-- Navbar -->
+ <div class="sticky top-6 z-50 px-4 w-full flex justify-center">
+ <nav
+ class="bg-white/70 backdrop-blur-md border border-white/40 shadow-sm rounded-full h-[64px] w-full max-w-[960px] flex items-center justify-between px-6 transition-all duration-300">
+ <a href="#" class="flex items-center" style="animation-delay: 0.1s;">
+ <img src="images/awc tinkerhub logo-og.png" alt="AWC TinkerHub Logo"
+ class="h-9 md:h-10 w-auto object-contain">
+ </a>
+ <div class="hidden md:flex items-center gap-4 font-sans text-[11px] font-bold text-ink"
+ style="animation-delay: 0.2s;">
+ <a href="#hero-section"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">Home</a>
+ <a href="#theme-section"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">2026
+ Theme</a>
+ <a href="#community"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">Community</a>
+ <a href="#core"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">Meet
+ the Core</a>
+ <a href="#tinkertimes"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">Tinker
+ Times</a>
+ <a href="#spotlight"
+ class="px-4 py-2 rounded-full border border-transparent hover:bg-white hover:shadow-sm transition-all hover:-translate-y-0.5">Maker
+ Spotlight</a>
+ 
+ </div>
+ <div class="flex items-center gap-4" style="animation-delay: 0.3s;">
+ <a href="join.html" id="navbar-join-btn" class="bg-ink hover:bg-inkLighter text-white font-bold rounded-full flex items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]">Join Us <span
+ class="material-symbols-outlined text-sm ml-1">add</span></a>
+ <a href="profile.html" id="navbar-profile-btn" style="display: none;" class="bg-ink hover:bg-inkLighter text-white font-bold rounded-full flex items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]"><span id="navbar-profile-name">Profile</span> <span
+ class="material-symbols-outlined text-sm ml-1">person</span></a>
+ </div>
+ </nav>
+ </div>
+
+
+
+ <!-- Hero Section -->
+ <section class="min-h-[90vh] relative flex items-center justify-center overflow-hidden py-20" id="hero-section" >
+
+ <!-- Subtle Coffee Stain -->
+ <svg class="absolute bottom-5 right-[15%] w-64 h-64 opacity-[0.04] pointer-events-none z-0 transform -rotate-12"
+ viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path
+ d="M48.5 12C31.5 12 18 25.5 18 42.5C18 59.5 30.5 73.5 47 74.5C64.5 75.5 81 60 81 42.5C81 25.5 67 12 48.5 12ZM48.5 16C64 16 77 28 77 42.5C77 57 62.5 71 47.5 70.5C33 70 22 57 22 42.5C22 28 34 16 48.5 16Z"
+ fill="#3B2F2F" />
+ <path
+ d="M52 20C40 20 30 30 30 42C30 54 39 64 51 64C63 64 73 54 73 42C73 30 64 20 52 20ZM52 24C62 24 70 32 70 42C70 52 62 60 52 60C42 60 34 52 34 42C34 32 42 24 52 24Z"
+ fill="#3B2F2F" opacity="0.5" />
+ <!-- Inner splotches -->
+ <circle cx="65" cy="65" r="3" fill="#3B2F2F" opacity="0.6" />
+ <circle cx="35" cy="55" r="2" fill="#3B2F2F" opacity="0.4" />
+ <circle cx="45" cy="25" r="1.5" fill="#3B2F2F" opacity="0.5" />
+ </svg>
+
+ <div id="hero-content"
+ class="relative z-10 w-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center text-center gs-parallax">
+
+ <!-- Central 3D Graphic Removed as requested -->
+
+ <!-- Top Banner Strip -->
+ <!-- <div class="top-banner-strip shadow-sm">
+ <div class="banner-track">
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ Duplicate for infinite scroll -->
+ <!-- <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ <span class="banner-item">ANTICIPATE ✧ THE BIGGEST TECH EVENT ✧</span>
+ </div>
+ </div> -->
+
+ <!-- New Floating Pixel Doodles & Brutalist Shapes -->
+ <!-- <svg class="absolute top-10 left-[15%] w-16 h-16 float-animation z-0"
+ style="animation-delay: 1s; filter: drop-shadow(4px 4px 0 rgba(0,0,0,1));" viewBox="0 0 24 24"
+ fill="none" stroke="black" stroke-width="2">
+ <path d="M4 4l16 6-7 2-2 7-7-15z" fill="white" stroke-linejoin="round" />
+ </svg>
+ <svg class="absolute top-[25%] right-[12%] w-20 h-20 text-blue-600 float-animation-alt z-0"
+ style="animation-delay: 1.2s; filter: drop-shadow(4px 4px 0 rgba(0,0,0,1));" viewBox="0 0 24 24"
+ fill="currentColor">
+ <-- A blocky smile -->
+ <!-- <rect x="5" y="7" width="2" height="4" />
+ <rect x="17" y="7" width="2" height="4" />
+ <rect x="7" y="14" width="2" height="2" />
+ <rect x="15" y="14" width="2" height="2" />
+ <rect x="9" y="16" width="6" height="2" />
+ </svg>
+ <svg class="absolute bottom-[20%] left-[10%] w-24 h-24 text-[#C3FF16] float-animation z-0"
+ style="animation-delay: 1.5s; filter: drop-shadow(4px 4px 0 rgba(0,0,0,1));" viewBox="0 0 100 100"
+ fill="currentColor" stroke="black" stroke-width="4"> -->
+ <!-- 4-point Star -->
+ <!-- <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
+ </svg>
+ <svg class="absolute bottom-[25%] right-[18%] w-16 h-16 text-[#00FFFF] float-animation-alt z-0"
+ style="animation-delay: 1.8s; filter: drop-shadow(4px 4px 0 rgba(0,0,0,1)); transform: rotate(15deg);"
+ viewBox="0 0 100 100" fill="currentColor" stroke="black" stroke-width="4"> -->
+ <!-- Triangle -->
+ <!-- <polygon points="50,10 90,90 10,90" />
+ </svg>
+ <svg class="absolute top-[15%] right-[30%] w-12 h-12 text-[#FF007F] float-animation z-0"
+ style="animation-delay: 1.4s; filter: drop-shadow(3px 3px 0 rgba(0,0,0,1));" viewBox="0 0 100 100"
+ fill="currentColor" stroke="black" stroke-width="4"> -->
+ <!-- Circle -->
+ <circle cx="50" cy="50" r="45" />
+ <!-- </svg>
+ <svg class="absolute bottom-[10%] right-[5%] w-20 h-20 text-[#FF007F] float-animation-alt z-0 transform rotate-12"
+ style="animation-delay: 1.7s; filter: drop-shadow(4px 4px 0 rgba(0,0,0,1));" viewBox="0 0 24 24"
+ fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"> -->
+ <!-- Code Brackets </> for Tech Community -->
+ <!-- <path d="M7 8l-4 4 4 4M14 4l-4 16M17 8l4 4-4 4" stroke="black" stroke-width="4" />
+ <path d="M7 8l-4 4 4 4M14 4l-4 16M17 8l4 4-4 4" stroke="#FF007F" stroke-width="2" /> 
+ </svg> -->
+ <!-- Floating Handwritten Text Elements -->
+ <div class="absolute top-[10%] -left-16 md:-left-12 font-handwriting text-3xl md:text-4xl text-ink transform -rotate-12 z-50 float-animation cursor-pointer"
+ style="animation-delay: 1.3s;">
+ Learn. Build. Share.
+ </div>
+ <!-- Ducktive Sticker -->
+ <div class="absolute top-[16%] -left-14 md:-left-10 z-50 float-animation-alt"
+ style="animation-delay: 1.5s;">
+ <div class="hover:scale-110 transition-transform duration-200 transform -rotate-6 cursor-pointer">
+ <img src="images/ducktive.png" alt="Be proDUCKtive Sticker"
+ class="w-40 md:w-52 drop-shadow-[5px_5px_0px_rgba(0,0,0,0.15)]" />
+ </div>
+ </div>
+ <div class="absolute bottom-[10%] left-[10%] font-handwriting text-2xl md:text-3xl text-[#1a4cd2] transform rotate-6 z-50 float-animation-alt cursor-pointer"
+ style="animation-delay: 1.6s;">
+ Build together!
+ </div>
+ <div class="absolute top-[80%] -right-2 md:-right-6 font-handwriting text-3xl md:text-4xl text-[#FF007F] transform rotate-12 z-50 float-animation cursor-pointer"
+ style="animation-delay: 1.9s;">
+ Stay Curious
+ </div>
+
+ <!-- Giant Typography (Mixed Styles) -->
+ <div class="relative w-full flex flex-col items-center justify-center min-h-[70vh] mt-10">
+ <span class="hero-title-top"
+ style="animation-delay:0.2s; letter-spacing: 0em; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.5rem; text-transform: uppercase;">TINKERHUB
+ AWC PRESENTS</span>
+
+ <h1 class="relative z-50 text-center flex flex-col items-center gap-0 mt-4 mb-4 leading-none">
+ <span class="serif-italic-text black-highlighter relative z-20"
+ style="font-size: clamp(1.5rem, 4vw, 2.5rem); animation-delay: 0.4s; transform: translateY(15px) rotate(-2deg);">The Community Of</span>
+                    <div class="flex flex-col items-center mt-2">
+                        <span class="pixel-3d-text relative z-10 smooth-reveal-1" style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1;">AWESOME</span>
+                        <span class="pixel-3d-text relative z-10 smooth-reveal-2" style="font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1;">MAKERS</span>
+                    </div>
+
+ <!-- 👈 Pointing Character Doodle pointing to AWESOME MAKERS -->
+ <img src="images/pointing_character.png" alt="Cool Character Pointing"
+ class="absolute -bottom-10 -right-20 md:-right-48 w-28 md:w-44 z-40 float-animation pointer-events-none"
+ style="animation-delay: 1s; mix-blend-mode: multiply;" />
+ </h1>
+
+ <span class="hero-title-bottom"
+ style="font-weight: 500; font-size: 1rem; color: #555; max-width: 600px; text-transform: uppercase; animation-delay:1.4s;">THE
+ BIGGEST TECH EVENT IN OUR CAMPUS</span>
+
+ <a href="whats-a-maker.html" class="mt-8 bg-ink text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-pastelPink hover:text-ink transition-colors shadow-[4px_4px_0_#111] hover:translate-y-1 hover:translate-x-1 hover:shadow-[0_0_0_#111] duration-200" style="animation-delay:1.6s;">What's a Maker?</a>
+ </div>
+ </div>
+
+
+ </section>
+
+ <!-- 🍩 Donut Walk-in Animation (left edge, below hero) -->
+ <div class="donut-walker-wrap">
+ <div class="donut-walker">
+ <video src="images/donut-dance.webm" autoplay loop muted playsinline></video>
+ </div>
+ </div>
+
+ <!-- ═══════════════════════════════════════════════════
+ GALLERY HUNG PHOTO — fixed to right, always visible
+ Clips over viewport edge like a pinned photo
+ ═══════════════════════════════════════════════════ -->
+ <div class="gallery-hung-wrap">
+ <!-- Polaroid that hangs off right edge, tilted, link to gallery -->
+ <a href="gallery.html" class="gallery-photo-card" aria-label="View our photo gallery" id="galleryHungPhoto">
+ <img src="images/tinkerhub-community.png" alt="TinkerHub community moments" />
+ <span class="caption">our memories 📸</span>
+ <span class="view-label">View Gallery →</span>
+ </a>
+ </div>
+
+
+ <!-- ══════════════════════════════════════════════════════
+ SCROLLING MARQUEE STRIP — after hero
+ ══════════════════════════════════════════════════════ -->
+ <div class="marquee-strip" aria-hidden="true">
+ <div class="marquee-track">
+ <!-- First copy -->
+ <span class="marquee-item">coding is a superpower <span class="marquee-dot"></span></span>
+ <span class="marquee-item">don't fly solo <span class="marquee-dot"></span></span>
+ <span class="marquee-item">be kind <span class="marquee-dot"></span></span>
+ <span class="marquee-item">skills pay the bills <span class="marquee-dot"></span></span>
+ <span class="marquee-item">build things that matter <span class="marquee-dot"></span></span>
+ <span class="marquee-item">learn. share. repeat <span class="marquee-dot"></span></span>
+ <span class="marquee-item">community over competition <span class="marquee-dot"></span></span>
+ <span class="marquee-item">stay curious <span class="marquee-dot"></span></span>
+ <!-- Duplicate for seamless loop -->
+ <span class="marquee-item">coding is a superpower <span class="marquee-dot"></span></span>
+ <span class="marquee-item">don't fly solo <span class="marquee-dot"></span></span>
+ <span class="marquee-item">be kind <span class="marquee-dot"></span></span>
+ <span class="marquee-item">skills pay the bills <span class="marquee-dot"></span></span>
+ <span class="marquee-item">build things that matter <span class="marquee-dot"></span></span>
+ <span class="marquee-item">learn. share. repeat <span class="marquee-dot"></span></span>
+ <span class="marquee-item">community over competition <span class="marquee-dot"></span></span>
+ <span class="marquee-item">stay curious <span class="marquee-dot"></span></span>
+ </div>
+ </div>
+
+
+ <!-- Page Turn Element (used by GSAP) -->
+ <div id="pageTurn"
+ class="fixed top-0 right-0 w-full h-full bg-[#F8F5EE] z-[8000] pointer-events-none border-l-4 border-ink shadow-[-20px_0_40px_rgba(0,0,0,0.15)] origin-right"
+ style="transform: scaleX(0); display: none;">
+ <!-- Page texture overlay -->
+ <div class="absolute inset-0 opacity-[0.05]"
+ style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');">
+ </div>
+ </div>
+
+ <!-- 2026 Theme: Never Give Up Section -->
+ <section class="py-20 relative overflow-hidden bg-[#FFE200] border-t-4 border-b-4 border-ink" id="theme-section">
+ <!-- Grid overlay pattern -->
+ <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+ style="background-image: url('data:image/svg+xml,%3Csvg width=\'30\' height=\'30\' viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h30v30H0z\' fill=\'none\'/%3E%3Cpath d=\'M0 0h1v30H0zM0 0v1h30V0z\' fill=\'currentColor\'/%3E%3C/svg%3E'); background-size: 30px 30px;">
+ </div>
+
+ <!-- Flame/Spark Floating Doodles -->
+ <!-- Flame 1 (Top Left) -->
+ <svg class="absolute top-[8%] left-[8%] w-16 h-16 md:w-24 md:h-24 z-10 float-animation pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M20,70 Q5,40 30,25 Q45,20 38,45 Q55,35 70,50 Q45,75 20,70 Z" fill="#E1251B" stroke="#111111" stroke-width="5" stroke-linejoin="round" />
+ <path d="M28,62 Q18,45 34,35 Q40,32 36,44" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" />
+ </svg>
+
+ <!-- Flame 2 (Middle Left) -->
+ <svg class="absolute bottom-[20%] left-[5%] w-14 h-14 md:w-20 md:h-20 z-10 float-animation-alt pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M15,85 Q30,65 18,35 Q35,48 52,30 Q40,70 28,90 Q18,95 15,85 Z" fill="#E1251B" stroke="#111111" stroke-width="5" stroke-linejoin="round" />
+ <path d="M22,78 Q30,65 24,46" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" />
+ </svg>
+
+ <!-- Flame 3 (Middle Right) -->
+ <svg class="absolute top-[25%] right-[5%] w-16 h-16 md:w-24 md:h-24 z-10 float-animation pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M50,85 Q68,68 85,80 Q72,50 88,32 Q62,45 52,18 Q45,55 50,85 Z" fill="#E1251B" stroke="#111111" stroke-width="5" stroke-linejoin="round" />
+ <path d="M54,75 Q68,62 76,71 Q67,48 77,38" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" />
+ </svg>
+
+ <!-- Flame 4 (Bottom Right) -->
+ <svg class="absolute bottom-[8%] right-[8%] w-16 h-16 md:w-20 md:h-20 z-10 float-animation-alt pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M25,80 Q45,75 50,55 Q55,40 38,20 Q65,42 75,32 Q60,70 45,88 Q35,92 25,80 Z" fill="#E1251B" stroke="#111111" stroke-width="5" stroke-linejoin="round" />
+ <path d="M36,75 Q48,70 50,58" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" />
+ </svg>
+
+ <div class="max-w-[1200px] mx-auto px-6 relative z-20 flex flex-col items-center text-center">
+ <!-- Header Badges Row -->
+ <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-6 mb-12 select-none">
+ <!-- Theme of the Year Sticker -->
+ <div
+ class="bg-white border-4 border-ink px-5 py-2.5 shadow-sticker transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+ <div class="font-sans font-black text-xs tracking-wider text-ink/70">THEME OF THE YEAR</div>
+ <div class="font-lilita text-2xl text-ink mt-0.5">2026-2027</div>
+ </div>
+
+ <!-- TinkerHub Middle Brand -->
+ <div
+ class="font-lilita text-3xl text-ink tracking-tight hover:scale-105 transition-transform duration-300">
+ TinkerHub
+ </div>
+
+ <!-- Campus Community Badge -->
+ <div
+ class="w-24 h-24 rounded-full bg-white border-4 border-ink flex flex-col items-center justify-center p-2 shadow-sticker transform rotate-6 hover:rotate-0 transition-transform duration-300">
+ <div
+ class="font-sans font-black text-[10px] tracking-tight text-ink border-b-2 border-ink pb-0.5 leading-none w-full text-center">
+ CAMPUS</div>
+ <div class="font-lilita text-[11px] tracking-wide text-ink pt-0.5 leading-none text-center">
+ COMMUNITY</div>
+ </div>
+ </div>
+
+ <!-- Giant Bubble Heading -->
+ <div class="relative mb-12 select-none group">
+ <h2
+ class="font-lilita text-6xl sm:text-8xl md:text-[10rem] text-[#E1251B] text-outline-thick text-shadow-neubrutal-lg tracking-wider uppercase leading-none transform -rotate-1 transition-transform group-hover:scale-105 duration-300">
+ NEVER<br>GIVE UP!!
+ </h2>
+ </div>
+
+ <!-- Sticker Text Cards Stack -->
+ <div class="flex flex-col gap-6 max-w-xl w-full select-none">
+ <!-- Sticker 1 -->
+ <div
+ class="bg-white border-4 border-ink p-5 shadow-sticker transform -rotate-1 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 w-full text-center relative">
+ <div
+ class="absolute -top-3 -left-3 w-6 h-6 bg-[#E1251B] border-2 border-ink transform rotate-12 flex items-center justify-center shadow-sm">
+ <span class="text-white text-[8px] font-black">★</span>
+ </div>
+ <p class="font-marker text-lg sm:text-xl md:text-2xl text-ink uppercase tracking-wide">
+ Building something real is hard.
+ </p>
+ </div>
+
+ <!-- Sticker 2 -->
+ <div
+ class="bg-white border-4 border-ink p-5 shadow-sticker-lg transform rotate-1 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 w-full text-center relative">
+ <div
+ class="absolute -bottom-3 -right-3 w-6 h-6 bg-[#E1251B] border-2 border-ink transform -rotate-12 flex items-center justify-center shadow-sm">
+ <span class="text-white text-[8px] font-black">★</span>
+ </div>
+ <p class="font-marker text-lg sm:text-xl md:text-2xl text-ink uppercase tracking-wide">
+ Energy dips, rooms feel empty, plans fall apart.
+ </p>
+ </div>
+
+ <!-- Sticker 3 -->
+ <div
+ class="bg-white border-4 border-ink p-5 shadow-sticker transform -rotate-1 hover:rotate-0 hover:scale-[1.02] transition-all duration-300 w-full text-center relative">
+ <div
+ class="absolute -top-3 -right-4 w-6 h-6 bg-[#E1251B] border-2 border-ink transform rotate-45 flex items-center justify-center shadow-sm">
+ <span class="text-white text-[8px] font-black">★</span>
+ </div>
+ <p class="font-marker text-lg sm:text-xl md:text-2xl text-ink uppercase tracking-wide">
+ Push through anyway.
+ </p>
+ </div>
+ </div>
+
+ <!-- Bottom Marker Accent -->
+ <div
+ class="font-marker text-2xl md:text-3xl text-inkLighter uppercase tracking-widest mt-16 transform rotate-2 select-none hover:-rotate-2 transition-transform duration-300">
+ Not Done Yet
+ </div>
+ </div>
+ </section>
+
+ <!-- Our Community Section -->
+ <section class="py-16 px-3 max-w-[1200px] mx-auto relative z-10" id="community">
+ <div class="text-center mb-16 relative">
+ <h2 class="font-display text-5xl md:text-6xl text-ink font-bold mb-4" >Our Community</h2>
+ <div class="inline-block bg-pastelYellow border-2 border-ink shadow-sticker px-6 py-2 transform -rotate-1" >
+ <p class="font-handwriting text-xl font-bold">Join the movement.</p>
+ </div>
+ </div>
+
+ <!-- Static Side-by-Side Layout -->
+ <div class="relative w-full flex flex-col md:flex-row items-center justify-between gap-12 mt-8">
+
+ <!-- Left Side: Community Image -->
+ <div class="w-full md:w-[40%] md:translate-x-6" >
+ <div
+ class="relative border-4 border-ink rounded-2xl shadow-[12px_12px_0px_#111] bg-[#F8F5EE] overflow-hidden transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+ <img src="images/tinkerhub-community.png" alt="TinkerHub Community"
+ class="w-full h-auto object-cover block">
+ </div>
+ </div>
+
+ <!-- Right Side: Detailed Information & Taped Images -->
+ <div class="w-full md:w-[52%] flex flex-col gap-6 text-left" >
+ <h3 class="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
+ A Space to <span class="bg-pastelYellow px-2">Build</span>, <span
+ class="bg-pastelPink px-2">Learn</span>, & <span class="bg-pastelBlue px-2">Share</span>
+ </h3>
+ <p class="font-sans text-sm md:text-base text-inkLighter leading-relaxed">
+ Our community is more than just a group of students—it's a vibrant space for peer-to-peer
+ collaboration, curiosity, and hacking. We run sprints, build projects, and help each other level up.
+ </p>
+ <ul class="flex flex-col gap-3 font-sans text-xs md:text-sm font-semibold text-ink">
+ <li class="flex items-center gap-2">
+ <span class="material-symbols-outlined text-[#C3FF16] font-bold">check_circle</span>
+ Weekly hands-on coding and maker hackathons
+ </li>
+ <li class="flex items-center gap-2">
+ <span class="material-symbols-outlined text-pastelPink font-bold">check_circle</span>
+ Dedicated mentorship from senior campus developers
+ </li>
+ <li class="flex items-center gap-2">
+ <span class="material-symbols-outlined text-pastelBlue font-bold">check_circle</span>
+ Open-source contribution sprints and support
+ </li>
+ </ul>
+
+ <!-- Taped Images Container -->
+ <div class="flex gap-6 mt-2 overflow-visible">
+ <!-- Polaroid 1 -->
+ <div class="polaroid-taped polaroid-taped-1" style="transform: rotate(-3deg);">
+ <div class="tape-sticker"></div>
+ <div class="polaroid-card-inner">
+ <img src="images/tinkerhub-community.png" alt="Community Coding" />
+ <span class="polaroid-caption">hackday 2026 💻</span>
+ </div>
+ </div>
+ <!-- Polaroid 2 -->
+ <div class="polaroid-taped polaroid-taped-2" style="transform: rotate(5deg);">
+ <div class="tape-sticker-alt"></div>
+ <div class="polaroid-card-inner">
+ <img src="images/team_group.png" alt="Team Building" />
+ <span class="polaroid-caption">AWC lead meetup 🤝</span>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </section>
+ <!-- Meet the Core Section -->
+ <section class="core-section" id="core">
+
+ <!-- Background decorative grid string -->
+ <svg class="string-lines absolute inset-0 w-full h-full pointer-events-none z-10"
+ style="left: 50%; transform: translateX(-50%); max-width: 1200px;" viewBox="0 0 1200 850"
+ preserveAspectRatio="xMidYMid slice">
+ <!-- Detective tracing path -->
+ <path id="detective-path" d="M 185 190 L 461 430 L 749 230 L 1025 510 L 665 750" fill="none"
+ stroke="#ef4444" stroke-width="4" stroke-dasharray="2500" stroke-dashoffset="2500" opacity="0.8" />
+ <!-- Secondary paths (hidden initially, fade in later) -->
+ <path class="secondary-path" d="M 461 430 L 1025 510" fill="none" stroke="#3b82f6"
+ stroke-width="3" />
+ <path class="secondary-path" d="M 185 190 L 665 750" fill="none" stroke="#10b981"
+ stroke-width="3" />
+ </svg>
+
+ <div class="text-center mt-24 md:mt-32 mb-16 relative z-30">
+ <h2 class="font-display text-5xl md:text-6xl text-ink font-bold mb-4" >Meet the Core</h2>
+ <div class="inline-block bg-pastelYellow border-2 border-ink shadow-sticker px-6 py-2 transform rotate-2" >
+ <p class="font-handwriting text-xl font-bold">The people behind the magic.</p>
+ </div>
+ </div>
+
+ <div class="core-team-container" id="coreTeamBoard">
+ <!-- Fidha Nawal -->
+ <div class="team-member z-10 cursor-pointer gs-polaroid" onclick="selectMakerFromBoard('fidha')">
+ <div class="float-animation w-full">
+ <div class="polaroid-card detective-node">
+ <div class="pushpin-red"></div>
+ <!-- Paper Clip -->
+ <svg class="absolute -top-4 -left-4 w-12 h-12 text-gray-400 transform -rotate-12 z-20"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+ stroke-linecap="round">
+ <path
+ d="M 40 80 L 40 30 Q 40 15 50 15 Q 60 15 60 30 L 60 70 Q 60 90 40 90 Q 20 90 20 70 L 20 40" />
+ </svg>
+ <div class="team-img-wrapper peer mb-4">
+ <a href="fidha.html"></a>
+ <img src="images/fidha-core-Photoroom.png" alt="Fidha Nawal" />
+ </div>
+ <h3
+ class="font-display text-2xl font-bold text-center peer-hover:text-pink-500 transition-colors duration-300">
+ Fidha</h3>
+ <p class="font-handwriting text-center text-lg text-inkLighter">Faculty Coordinator</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Aysha -->
+ <div class="team-member z-10 cursor-pointer gs-polaroid" onclick="selectMakerFromBoard('aysha')">
+ <div class="float-animation-alt w-full">
+ <div class="polaroid-card detective-node">
+ <div class="pushpin-red"></div>
+ <svg class="absolute -top-4 -left-4 w-12 h-12 text-gray-400 transform -rotate-12 z-20"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+ stroke-linecap="round">
+ <path
+ d="M 40 80 L 40 30 Q 40 15 50 15 Q 60 15 60 30 L 60 70 Q 60 90 40 90 Q 20 90 20 70 L 20 40" />
+ </svg>
+ <div class="team-img-wrapper peer mb-4">
+ <a href="aysha.html">
+ <img src="images/aysha-corre-Photoroom.png" alt="Aysha" />
+ </a>
+ </div>
+ <h3
+ class="font-display text-2xl font-bold text-center peer-hover:text-blue-500 transition-colors duration-300">
+ Aysha</h3>
+ <p class="font-handwriting text-center text-lg text-inkLighter">Learning Coordinator</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Farsana -->
+ <div class="team-member z-10 cursor-pointer gs-polaroid" onclick="selectMakerFromBoard('farsana')">
+ <div class="float-animation w-full">
+ <div class="polaroid-card detective-node">
+ <div class="pushpin-red"></div>
+ <svg class="absolute -top-4 -left-4 w-12 h-12 text-gray-400 transform -rotate-12 z-20"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+ stroke-linecap="round">
+ <path
+ d="M 40 80 L 40 30 Q 40 15 50 15 Q 60 15 60 30 L 60 70 Q 60 90 40 90 Q 20 90 20 70 L 20 40" />
+ </svg>
+ <div class="team-img-wrapper peer mb-4 relative group">
+ <a href="Farsana.html">
+ <img src="images/farsana-core-Photoroom.png" alt="Farsana" class="relative z-10" />
+ </a>
+ </div>
+ <h3
+ class="font-display text-2xl font-bold text-center peer-hover:text-yellow-500 transition-colors duration-300">
+ Farsana</h3>
+ <p class="font-handwriting text-center text-lg text-inkLighter">Campus Lead</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Hiba -->
+ <div class="team-member z-10 cursor-pointer gs-polaroid" onclick="selectMakerFromBoard('hiba')">
+ <div class="float-animation-alt w-full">
+ <div class="polaroid-card detective-node">
+ <div class="pushpin-red"></div>
+ <!-- Paper Clip -->
+ <svg class="absolute -top-3 -right-3 w-10 h-10 text-gray-500 transform rotate-45 z-20"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+ stroke-linecap="round">
+ <path
+ d="M 40 80 L 40 30 Q 40 15 50 15 Q 60 15 60 30 L 60 70 Q 60 90 40 90 Q 20 90 20 70 L 20 40" />
+ </svg>
+ <div class="team-img-wrapper peer mb-4">
+ <a href="hiba.html">
+ <img src="images/hina-core-Photoroom.png" alt="Hiba" />
+ </a>
+ </div>
+ <h3
+ class="font-display text-2xl font-bold text-center peer-hover:text-green-500 transition-colors duration-300">
+ Hiba</h3>
+ <p class="font-handwriting text-center text-lg text-inkLighter">WIT Fellow</p>
+ </div>
+ </div>
+ </div>
+
+
+ <!-- Anusree -->
+ <div class="team-member z-10 cursor-pointer gs-polaroid" onclick="selectMakerFromBoard('anusree')">
+ <div class="float-animation w-full">
+ <div class="polaroid-card detective-node">
+ <svg class="absolute -top-4 -left-4 w-12 h-12 text-gray-400 transform -rotate-12 z-20"
+ viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+ stroke-linecap="round">
+ <path
+ d="M 40 80 L 40 30 Q 40 15 50 15 Q 60 15 60 30 L 60 70 Q 60 90 40 90 Q 20 90 20 70 L 20 40" />
+ </svg>
+ <div class="pushpin-red"></div>
+ <div class="team-img-wrapper peer mb-4 relative group">
+ <a href="anusree.html">
+ <img src="images/anusree-core-Photoroom.png" alt="Anusree" class="relative z-10" />
+ </a>
+ </div>
+ <h3
+ class="font-display text-2xl font-bold text-center peer-hover:text-purple-500 transition-colors duration-300">
+ Anusree</h3>
+ <p class="font-handwriting text-center text-lg text-inkLighter">Outreach Lead</p>
+ </div>
+ </div>
+ </div>
+
+ </section>
+    <script>
+        // Detective board tracing animation logic with GSAP
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined') {
+                const path = document.getElementById('detective-path');
+                const polaroids = document.querySelectorAll('.gs-polaroid');
+
+                // Initial state
+                gsap.set(polaroids, { opacity: 0, scale: 0.5, y: 50, rotation: () => Math.random() * 20 - 10 });
+
+                if (path) {
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: "#coreTeamBoard",
+                            start: "top 70%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    });
+
+                    tl.to(path, {
+                        strokeDashoffset: 0,
+                        duration: 4.5,
+                        ease: "none"
+                    })
+                    .to(polaroids, {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        rotation: 0,
+                        duration: 0.8,
+                        stagger: 1.125,
+                        ease: "back.out(1.7)",
+                        clearProps: "transform"
+                    }, "<")
+                    .to('.secondary-path', {
+                        opacity: 0.6,
+                        duration: 2,
+                        ease: "power1.in"
+                    }, "-=1.5");
+                }
+            }
+        });
+    </script>
+
+ <!-- Tinker Times Section -->
+ <section class="py-24 relative z-10 bg-[#F8F5EE]" id="tinkertimes">
+ <div class="max-w-[1400px] mx-auto px-4 md:px-8">
+
+ <!-- Newspaper Header -->
+ <div class="text-center mb-12 border-b-8 border-ink pb-8 relative" >
+ <h2 class="font-display text-6xl md:text-8xl text-ink font-black uppercase tracking-tighter">Tinker
+ Times</h2>
+ <div
+ class="flex justify-between items-center border-t-2 border-b-2 border-ink py-2 mt-6 text-xs md:text-sm font-bold uppercase tracking-widest font-sans">
+ <span>Vol. 1, Issue 42</span>
+ <span class="hidden md:inline">Ansar Women's College</span>
+ <span>Free Edition</span>
+ </div>
+ </div>
+
+ <!-- 3-Column Grid -->
+ <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
+ <!-- LEFT COLUMN: Upcoming Events (1 span) -->
+ <div id="upcomingEvents" class="lg:col-span-1 flex flex-col gap-8 lg:border-r-4 border-ink lg:pr-8" 
+ >
+
+ <h3 class="font-display text-4xl font-black uppercase border-b-4 border-ink pb-2 mb-2">Upcoming</h3>
+ <div id="upcomingEventsList"></div>
+ </div>
+ <!-- Upcoming 1 -->
+ <!-- <a href="event-details.html"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-6">
+ <span
+ class="bg-ink text-white text-xs font-bold px-2 py-1 uppercase mb-3 inline-block">Tomorrow</span>
+ <h4
+ class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4">
+ Build Sprint</h4>
+ <p class="font-sans text-sm mt-3 text-gray-800 font-medium leading-relaxed">12 hours of non-stop
+ coding. Prepare your laptops and coffee.</p>
+ <p
+ class="font-sans text-xs font-bold mt-4 uppercase tracking-wide bg-pastelYellow inline-block px-1">
+ Campus, Lab 1</p>
+ </a> -->
+
+ <!-- Upcoming 2 -->
+ <!-- <a href="event-details.html" class="block group cursor-pointer pb-6">
+ <span
+ class="bg-pastelPink border-2 border-ink text-ink text-xs font-bold px-2 py-1 uppercase mb-3 inline-block shadow-sticker transform -rotate-2">Next
+ Week</span>
+ <h4
+ class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4">
+ Web3 Intro</h4>
+ <p class="font-sans text-sm mt-3 text-gray-800 font-medium leading-relaxed">Demystifying
+ blockchain technology for beginners.</p>
+ <p
+ class="font-sans text-xs font-bold mt-4 uppercase tracking-wide bg-pastelBlue inline-block px-1">
+ Seminar Hall</p>
+ </a> -->
+ 
+
+ <!-- CENTER COLUMN: Main Event (2 spans) -->
+ <div id="liveEvent" class="lg:col-span-2 flex flex-col gap-6 lg:border-r-4 border-ink lg:pr-8" >
+ <div id="liveEventContent">
+ <div class="text-center py-12">
+ <p class="font-display text-2xl font-bold uppercase">
+ No live event right now.
+ </p>
+ </div>
+ </div>
+ <!-- <a href="event-details.html" class="block group cursor-pointer">
+ <div class="text-center mb-8">
+ <span class="bg-pastelGreen border-2 border-ink text-ink text-sm font-bold px-3 py-1 uppercase mb-6 inline-block shadow-sticker transform rotate-2">Current Headline</span>
+ <h3 class="font-display text-6xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
+ Everybody Hates Marketing.</h3>
+ <p class="font-display text-2xl md:text-3xl italic text-gray-800 mb-6 font-medium">A day for tech makers who are done pretending everything is fine.</p>
+ </div>
+
+ <div class="border-4 border-ink p-2 shadow-sticker mb-8 transform -rotate-1 group-hover:rotate-0 transition-transform duration-300 bg-white">
+ <img src="images/team_group.png" alt="Main Event" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500 max-h-[350px]" />
+ <p class="text-xs text-right font-sans font-bold uppercase mt-2">Captured at the Hub</p>
+ </div>
+
+ <div class="columns-1 md:columns-2 gap-8 font-sans text-base text-gray-900 font-medium leading-relaxed">
+ <p class="mb-4"><span class="float-left font-display text-7xl leading-[0.8] pr-3 pt-2 font-black">T</span>he world of tech is filled with innovators, builders, and makers. We create algorithms that shape the future, build interfaces that delight users, and architect systems that scale globally. Yet, when it comes to talking about our work, we freeze.</p>
+ <p>This event is a panel for tech makers who want to master the art of storytelling without selling their soul. Join us for a full day of insightful talks and hands-on workshops designed specifically for developers, designers, and engineers.</p>
+ </div>
+ </a> -->
+ </div>
+
+ <!-- RIGHT COLUMN: Past Events (1 span) -->
+ <div id="pastEvents" class="lg:col-span-1 flex flex-col gap-6" >
+ <h3 class="font-display text-4xl font-black uppercase border-b-4 border-ink pb-2 mb-2">Archives</h3>
+ <div id="pastEventsList"></div>
+ <!-- Past 1 -->
+ <!-- <a href="event-details.html"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-4">
+ <h4
+ class="font-display text-2xl font-black leading-tight group-hover:underline decoration-2 underline-offset-2">
+ Zero to One Hackathon</h4>
+ <div class="flex justify-between items-center mt-3">
+ <span class="font-sans text-xs text-gray-600 font-bold uppercase">Aug 12, 2026</span>
+ <span
+ class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
+ </div>
+ </a> -->
+
+ <!-- Past 2 -->
+ <!-- <a href="event-details.html"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-4">
+ <h4
+ class="font-display text-2xl font-black leading-tight group-hover:underline decoration-2 underline-offset-2">
+ Design Masterclass</h4>
+ <div class="flex justify-between items-center mt-3">
+ <span class="font-sans text-xs text-gray-600 font-bold uppercase">Jul 22, 2026</span>
+ <span
+ class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
+ </div>
+ </a> -->
+
+ <!-- Past 3 -->
+ <!-- <a href="event-details.html"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-4">
+ <h4
+ class="font-display text-2xl font-black leading-tight group-hover:underline decoration-2 underline-offset-2">
+ Git & GitHub Workshop</h4>
+ <div class="flex justify-between items-center mt-3">
+ <span class="font-sans text-xs text-gray-600 font-bold uppercase">Jul 05, 2026</span>
+ <span
+ class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
+ </div>
+ </a> -->
+
+ <!-- See More Button -->
+ <button id="openHistoryBtn"
+ class="mt-6 block w-full text-center bg-white border-4 border-ink shadow-sticker py-4 font-sans font-black uppercase hover:bg-pastelYellow hover:-translate-y-1 transition-all group">
+ See More History <span
+ class="inline-block transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+ </button>
+ </div>
+
+ </div>
+
+ <!-- Newspaper Footer / Ending -->
+ <div class="mt-16 border-t-8 border-b-4 border-ink py-6 flex flex-col md:flex-row justify-between items-center gap-6 relative"
+ >
+ <div class="flex items-center gap-4">
+ <img src="images/awc tinkerhub logo-og.png" alt="AWC Logo"
+ class="h-10 w-auto filter grayscale opacity-80" />
+ <span class="font-display font-bold text-xl uppercase tracking-widest text-ink">The Tinker
+ Times</span>
+ </div>
+
+ <div class="font-sans text-sm font-bold uppercase tracking-widest text-center text-gray-700">
+ &copy; 2026 TinkerHub AWC • End of Issue
+ </div>
+
+ <div class="bg-pastelPink border-2 border-ink shadow-sticker px-4 py-2 transform rotate-2">
+ <span class="font-handwriting font-bold text-lg">Stay tuned for the next issue!</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- History Modal -->
+ <div class="spotlight-modal" id="historyModal">
+ <div
+ class="spotlight-modal-content p-8 md:p-12 max-w-2xl bg-white border-4 border-ink shadow-sticker-lg overflow-y-auto max-h-[90vh]">
+ <button class="modal-close material-symbols-outlined" id="closeHistoryBtn">close</button>
+ <h2
+ class="font-display text-4xl text-ink font-black tracking-tighter uppercase border-b-4 border-ink pb-4 mb-6">
+ Archives</h2>
+
+ <div class="flex flex-col gap-4">
+ <!-- Archive Event 1 -->
+ <a href="event-details.html"
+ class="flex flex-col sm:flex-row gap-4 border-2 border-ink p-4 hover:-translate-y-1 hover:shadow-sticker transition-all bg-pastelYellow group">
+ <img src="images/team_group.png" alt="Event"
+ class="w-full sm:w-32 h-24 object-cover border-2 border-ink filter grayscale group-hover:grayscale-0 transition-all" />
+ <div class="flex flex-col justify-center">
+ <span class="text-xs font-bold uppercase mb-1 border border-ink inline-block px-1 bg-white">June
+ 2026</span>
+ <h4 class="font-display font-black text-2xl leading-none group-hover:underline">Code In The Dark
+ </h4>
+ <p class="font-sans text-sm mt-2 text-gray-800">UI building competition without previews.</p>
+ </div>
+ </a>
+
+ <!-- Archive Event 2 -->
+ <a href="event-details.html"
+ class="flex flex-col sm:flex-row gap-4 border-2 border-ink p-4 hover:-translate-y-1 hover:shadow-sticker transition-all bg-pastelBlue group">
+ <img src="images/Hero section card.png" alt="Event"
+ class="w-full sm:w-32 h-24 object-cover border-2 border-ink filter grayscale group-hover:grayscale-0 transition-all" />
+ <div class="flex flex-col justify-center">
+ <span class="text-xs font-bold uppercase mb-1 border border-ink inline-block px-1 bg-white">May
+ 2026</span>
+ <h4 class="font-display font-black text-2xl leading-none group-hover:underline">Open Source Day
+ </h4>
+ <p class="font-sans text-sm mt-2 text-gray-800">Introduction to contributing to OSS.</p>
+ </div>
+ </a>
+
+ <!-- Archive Event 3 -->
+ <a href="event-details.html"
+ class="flex flex-col sm:flex-row gap-4 border-2 border-ink p-4 hover:-translate-y-1 hover:shadow-sticker transition-all bg-pastelPink group">
+ <img src="images/id-card-1.png" alt="Event"
+ class="w-full sm:w-32 h-24 object-cover border-2 border-ink filter grayscale group-hover:grayscale-0 transition-all" />
+ <div class="flex flex-col justify-center">
+ <span
+ class="text-xs font-bold uppercase mb-1 border border-ink inline-block px-1 bg-white">April
+ 2026</span>
+ <h4 class="font-display font-black text-2xl leading-none group-hover:underline">Women in Tech
+ Panel</h4>
+ <p class="font-sans text-sm mt-2 text-gray-800">Insights from industry leaders.</p>
+ </div>
+ </a>
+ </div>
+
+ <a href="gallery.html" class="mt-8 block text-center font-sans font-bold uppercase hover:underline">View
+ Full Photo Gallery &rarr;</a>
+ </div>
+ </div>
+
+ <!-- Maker Spotlight Section -->
+ <section class="py-24 relative overflow-hidden" id="spotlight">
+ <!-- Floating Tinker Sticker on the right side of the page -->
+ <img src="images/tinker-sticker.png" class="hidden md:block absolute right-4 md:right-8 lg:right-16 top-[28%] w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 z-20 float-animation pointer-events-none transform rotate-12" alt="Tinker Sticker">
+
+ <!-- Floating Sticker on the left side of the page, slightly down -->
+ <img src="images/sticker.png" class="hidden md:block absolute left-4 md:left-8 lg:left-16 bottom-[15%] w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 z-20 float-animation-alt pointer-events-none transform -rotate-12" alt="Decorative Left Sticker">
+
+ <div class="max-w-[1200px] mx-auto px-4 relative z-30 flex flex-col items-center gap-10">
+
+ <!-- Section Title -->
+ <div class="text-center mb-4 relative z-30">
+ <h2 class="font-display text-5xl md:text-6xl text-ink font-bold mb-3 drop-shadow-sm uppercase tracking-tight" >Makers Spotlight</h2>
+ <div class="inline-block bg-pastelYellow border-2 border-ink shadow-sticker px-6 py-2 transform -rotate-1" >
+ <p class="font-handwriting text-xl font-bold text-ink">Campus creators, builders, and designers at work.</p>
+ </div>
+ </div>
+
+ <!-- Large Featured Photo Card -->
+ 
+ <!-- Main Featured Photo Frame Wrapper -->
+ <div class="mx-auto relative w-full max-w-2xl flex flex-col items-end gap-4">
+ <!-- Main Featured Photo Frame -->
+ <div class="relative w-full overflow-hidden border-2 border-ink rounded-2xl aspect-[3/3] sm:aspect-[18/10]">
+ <img src="images/makers1.png" alt="Featured Maker" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+ <div class="absolute top-4 left-4 bg-pastelPink border-2 border-ink px-3 py-1.5 text-xs font-black uppercase tracking-wider shadow-sticker" >Featured Maker</div>
+ </div>
+ <!-- Floating Maker Sticker (Left Side near the box) -->
+ <img src="images/maker-sticker.png" class="absolute -top-10 -left-20 w-36 h-36 z-40 float-animation pointer-events-none transform -rotate-12" alt="Maker Sticker" >
+
+ <!-- Action Button Align Right Below the Image -->
+ <a href="project_details.html?maker=nandana" class="inline-flex items-center justify-center gap-2 bg-pastelGreen border-2 border-ink px-5 py-2.5 font-mono text-xs font-black uppercase tracking-wider shadow-[4px_4px_0px_#111] hover:shadow-[6px_6px_0px_#111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all rounded-xl select-none mt-2 mr-2" >
+ Know About Project <span class="material-symbols-outlined font-bold text-sm">arrow_forward</span>
+ </a>
+ </div>
+ </div>
+ <!-- Hidden placeholder elements to satisfy JS dependencies and prevent exceptions -->
+ <div id="makersDirectory" class="hidden"></div>
+ <div id="spotlightSidebarBtn" class="hidden"></div>
+ <div id="prevMakersBtn" class="hidden"></div>
+ <div id="makerCardInner" class="hidden"></div>
+ <img id="makerAvatar" class="hidden" src="" alt="">
+ <div id="makerName" class="hidden"></div>
+ <div id="makerEmail" class="hidden"></div>
+ <div id="makerBio" class="hidden"></div>
+ <div id="statExperience" class="hidden"></div>
+ <div id="statOnPlatform" class="hidden"></div>
+ <div id="statOfHacking" class="hidden"></div>
+ <div id="statCourses" class="hidden"></div>
+ <a id="makerGithub" class="hidden" href="#"></a>
+ <div id="winProjectTitle" class="hidden"></div>
+ <div id="projName" class="hidden"></div>
+ <div id="projSubtitle" class="hidden"></div>
+ <div id="projDesc" class="hidden"></div>
+ <div id="makerWorkExp" class="hidden"></div>
+ <div id="makerRatingVal" class="hidden"></div>
+ <div id="makerRatesCount" class="hidden"></div>
+ <svg class="hidden"><path id="makerGraphPath" d=""></path></svg>
+ <div class="maker-review-card hidden"></div>
+ <div class="maker-review-card hidden"></div>
+ <div class="maker-review-card hidden"></div>
+ </div>
+ </section>
+
+ <!-- Upcoming Event Modal -->
+ <div class="spotlight-modal" id="upcomingModal">
+ <div class="spotlight-modal-content p-8 md:p-12">
+ <button class="modal-close material-symbols-outlined">close</button>
+ <div class="polaroid-tape" style="top: -15px; left: 50%; transform: translateX(-50%);"></div>
+
+ <div class="flex flex-col gap-6 items-start mt-4">
+ <div class="w-full">
+ <h2 class="font-display font-black text-5xl mb-3 text-ink leading-none">everybody hates marketing.
+ </h2>
+ <p
+ class="font-sans font-bold text-sm uppercase text-ink mb-6 bg-pastelYellow inline-block px-2 border border-ink transform rotate-1 shadow-sm">
+ Upcoming • Sep 18th</p>
+
+ <p class="font-sans font-medium text-lg leading-relaxed mb-4 text-gray-800">
+ A day for tech makers who are done pretending everything is fine: talks, panels, experts, and
+ 200 people who get it. We're diving deep into authentic community building without the corporate
+ fluff.
+ </p>
+ <p class="font-sans font-medium text-lg leading-relaxed mb-6 text-gray-800">
+ Join us at Campus Block A. Limited to 200 spots, so don't miss out on securing your ticket!
+ </p>
+
+ <a href="#" class="btn-primary !py-3 !px-6 inline-block transform hover:-translate-y-1">Join the
+ Waitlist</a>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Spotlight Modal -->
+ <div class="spotlight-modal" id="makerModal">
+ <div
+ class="spotlight-modal-content p-6 md:p-8 max-w-4xl bg-white border-4 border-ink shadow-sticker-lg overflow-y-auto max-h-[90vh]">
+ <button class="modal-close material-symbols-outlined">close</button>
+ <div class="polaroid-tape" style="top: -15px; left: 50%; transform: translateX(-50%);"></div>
+
+ <div class="mt-6 flex flex-col lg:flex-row gap-8 items-start">
+ <!-- Left: Profile Summary -->
+ <div class="w-full lg:w-1/3 flex flex-col items-center bg-[#FAF8F5] border-4 border-ink p-6 relative">
+ <h3 class="font-display font-black text-2xl mb-4 text-ink">Maker Profile</h3>
+
+ <!-- Bio & Details -->
+ <p id="makerBio"
+ class="font-sans text-xs font-bold text-inkLighter leading-relaxed text-center mb-4">
+ I'm a Mobile App builder with over 2 years of experience at TinkerHub AWC. Built EcoTrack
+ application to classify campus waste and promote active recycling programs.
+ </p>
+
+ <!-- Stats Dashboard Grid -->
+ <div class="grid grid-cols-2 gap-2.5 w-full text-center mt-2 mb-4 select-none">
+ <div class="bg-white border-2 border-ink p-2 shadow-[2px_2px_0px_#111]">
+ <div id="statExperience" class="font-display font-black text-base text-ink">2+</div>
+ <div class="text-[8px] uppercase font-mono font-black text-gray-400">Experience</div>
+ </div>
+ <div class="bg-white border-2 border-ink p-2 shadow-[2px_2px_0px_#111]">
+ <div id="statOnPlatform" class="font-display font-black text-base text-ink">#1</div>
+ <div class="text-[8px] uppercase font-mono font-black text-gray-400">Rank</div>
+ </div>
+ <div class="bg-white border-2 border-ink p-2 shadow-[2px_2px_0px_#111]">
+ <div id="statOfHacking" class="font-display font-black text-base text-ink">12 ya</div>
+ <div class="text-[8px] uppercase font-mono font-black text-gray-400">Hackathons</div>
+ </div>
+ <div class="bg-white border-2 border-ink p-2 shadow-[2px_2px_0px_#111]">
+ <div id="statCourses" class="font-display font-black text-base text-ink">4</div>
+ <div class="text-[8px] uppercase font-mono font-black text-gray-400">Classes</div>
+ </div>
+ </div>
+
+ <!-- Ratings -->
+ <div class="border-t border-dashed border-ink/20 pt-4 w-full flex flex-col items-center">
+ <div id="makerRatingVal" class="font-display font-black text-base text-ink">★ 4.9 / 5.0</div>
+ <div class="flex gap-1 text-[#ffcc33] text-xs mt-1 select-none">
+ <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+ </div>
+ <div class="text-[9px] font-mono font-black text-ink/60 mt-1 uppercase"><span
+ id="makerRatesCount">127</span> verified ratings</div>
+ </div>
+
+ <a id="makerGithub" href="#"
+ class="btn-nav w-full mt-6 text-xs !py-2.5 flex items-center justify-center gap-2">
+ View GitHub <span class="material-symbols-outlined text-sm">code</span>
+ </a>
+
+ <!-- Hidden graph path as required by selectMaker JS -->
+ <svg class="hidden" viewBox="0 0 120 30">
+ <path id="makerGraphPath" d="" />
+ </svg>
+ </div>
+
+ <!-- Right: Experience Timeline & Reviews -->
+ <div class="w-full lg:w-2/3 flex flex-col gap-6">
+ <!-- Section: Experience Timeline -->
+ <div>
+ <h4
+ class="font-display font-black text-lg uppercase tracking-tight text-ink mb-3 border-b-2 border-ink pb-1">
+ Workspace Timeline</h4>
+ <div id="makerWorkExp" class="flex flex-col gap-3">
+ <!-- Dynamic Content Injected Here -->
+ </div>
+ </div>
+
+ <!-- Section: Peer Reviews -->
+ <div>
+ <h4
+ class="font-display font-black text-lg uppercase tracking-tight text-ink mb-3 border-b-2 border-ink pb-1">
+ Peer Reviews</h4>
+ <div class="flex flex-col gap-3">
+ <div class="maker-review-card bg-white border-2 border-ink p-3 rounded-lg shadow-sm">
+ <!-- Dynamic Content Injected Here -->
+ </div>
+ <div class="maker-review-card bg-white border-2 border-ink p-3 rounded-lg shadow-sm">
+ <!-- Dynamic Content Injected Here -->
+ </div>
+ <div class="maker-review-card bg-white border-2 border-ink p-3 rounded-lg shadow-sm">
+ <!-- Dynamic Content Injected Here -->
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div> <!-- Close spotlight-modal-content -->
+ </div> <!-- Close spotlight-modal -->
+
+ <!-- Why Join Us Deck Section -->
+ <section class="py-24 px-8 max-w-[1240px] mx-auto relative z-10" id="join">
+ <!-- Floating Build Sticker on the left side of the section -->
+ <img src="images/build-Photoroom.png" class="hidden md:block absolute left-4 lg:left-12 top-[20%] w-52 h-52 md:w-60 md:h-60 lg:w-68 lg:h-68 z-20 float-animation pointer-events-none transform -rotate-12" alt="Build Sticker">
+
+ <!-- Floating Ditch Your Comfort Sticker on the right side of the section -->
+ <img src="images/ditchyourcomfort-Photoroom.png" class="hidden md:block absolute right-4 lg:right-12 bottom-[10%] w-52 h-52 md:w-60 md:h-60 lg:w-68 lg:h-68 z-20 float-animation-alt pointer-events-none transform rotate-12" alt="Ditch Your Comfort Sticker">
+
+ <div class="text-center mb-16 relative">
+ <h2 class="font-display text-5xl md:text-6xl text-ink font-bold mb-4" >Join Our Community</h2>
+ <div class="inline-block bg-pastelYellow border-2 border-ink shadow-sticker px-6 py-2 transform -rotate-1" >
+ <p class="font-handwriting text-xl font-bold">Lets join the team!</p>
+ </div>
+ </div>
+ <div class="relative w-full flex justify-center" >
+ <div class="paper-deck">
+
+ <!-- Sheet 7 (Bottom of deck, revealed last) -->
+ <div class="paper-sheet bg-[#F8F5EE]">
+ <svg class="absolute -top-6 left-12 w-16 h-24 transform rotate-12 z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-display text-6xl font-black text-ink mb-6">If yes...</h3>
+ <p class="font-handwriting text-4xl mb-12 leading-relaxed text-inkLighter">What are you waiting
+ for,<br />come in ladies! ✨</p>
+ <button class="btn-primary !py-4 !px-10 !text-xl transform hover:scale-105 pointer-events-auto"
+ id="printReceiptBtn">Join the Community</button>
+ </div>
+
+ <!-- Sheet 6 (Question 5) -->
+ <div class="paper-sheet">
+ <svg class="absolute -top-8 right-16 w-16 h-24 transform -rotate-[20deg] z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 5</h3>
+ <p
+ class="font-display text-5xl font-black leading-tight bg-pastelYellow px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform rotate-2">
+ Ready to build<br />something<br />awesome?</p>
+ </div>
+
+ <!-- Sheet 5 (Question 4) -->
+ <div class="paper-sheet">
+ <svg class="absolute -top-7 left-24 w-16 h-24 transform rotate-[5deg] z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 4</h3>
+ <p
+ class="font-display text-5xl font-black leading-tight bg-pastelBlue px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform -rotate-1">
+ Love solving<br />complex<br />problems?</p>
+ </div>
+
+ <!-- Sheet 4 (Question 3) -->
+ <div class="paper-sheet">
+ <svg class="absolute -top-9 right-20 w-16 h-24 transform -rotate-[10deg] z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 3</h3>
+ <p
+ class="font-display text-5xl font-black leading-tight bg-pastelGreen px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform rotate-1">
+ Want to meet<br />crazy tech<br />makers?</p>
+ </div>
+
+ <!-- Sheet 3 (Question 2) -->
+ <div class="paper-sheet">
+ <svg class="absolute -top-6 left-16 w-16 h-24 transform rotate-12 z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 2</h3>
+ <p
+ class="font-display text-5xl font-black leading-tight bg-pastelYellow px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform -rotate-2">
+ Don't know<br />where to<br />start from?</p>
+ </div>
+
+ <!-- Sheet 2 (Question 1) -->
+ <div class="paper-sheet">
+ <svg class="absolute -top-10 left-32 w-16 h-24 transform rotate-[3deg] z-50 text-gray-700 opacity-80"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+ <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 1</h3>
+ <p
+ class="font-display text-6xl font-black leading-tight bg-pastelPink px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform rotate-2">
+ Are you<br />curious?</p>
+ </div>
+
+ <!-- Sheet 1 (Top of deck, first to see) -->
+ <div class="paper-sheet">
+ <!-- Wax Seal -->
+ <div
+ class="absolute -top-12 -right-8 -w-50 -h-50 z-5 transform rotate-12 scale-75 hover:scale-90 transition-transform cursor-pointer">
+ <svg width="50" height="50" viewBox="0 0 100 100" fill="none"
+ xmlns="http://www.w3.org/2000/svg">
+ <circle cx="50" cy="50" r="48" fill="#DC2626" />
+ <circle cx="50" cy="50" r="40" fill="#B91C1C" />
+ <circle cx="50" cy="50" r="32" fill="#991B1B" />
+ <text x="50" y="58" font-family="'Playfair Display', serif" font-style="italic"
+ font-size="32" font-weight="900" fill="#FCA5A5" text-anchor="middle">th</text>
+ </svg>
+ </div>
+ <svg class="absolute -top-8 left-10 w-20 h-28 transform -rotate-[15deg] z-50 text-gray-700 opacity-90 filter drop-shadow-md"
+ viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+ stroke-linejoin="round">
+ <path
+ d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+ </svg>
+
+ <h2 class="font-display text-[5rem] font-black text-ink leading-[1] mb-12">
+ <span class="inline-block transform -rotate-2">I ask</span><br />
+ <span
+ class="inline-block transform rotate-2 bg-[#E2E8F0] px-4 py-1 border-2 border-ink shadow-[4px_4px_0px_#111] my-2 text-[#475569]">these
+ Five</span><br />
+ <span class="inline-block transform -rotate-1 text-pastelGreen"
+ style="-webkit-text-stroke: 2px #111;">questions</span>
+ </h2>
+ <p class="font-sans font-bold text-xl uppercase tracking-widest text-ink mb-12">Before you join our
+ community...</p>
+ <div
+ class="bg-[#d1d5db] text-[#4b5563] px-6 py-2 border-2 border-[#9ca3af] shadow-sticker text-lg font-bold transform rotate-2 pointer-events-none border-dashed">
+ Let's find out ➔
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </section>
+
+ <!-- Receipt Modal -->
+ <div class="receipt-modal" id="receiptModal">
+ <div class="receipt-machine mt-10 relative">
+ <button class="modal-close material-symbols-outlined absolute" id="closeReceiptBtn"
+ style="right: -20px; top: -40px;">close</button>
+
+ <!-- Stickers attached to the paper -->
+ <svg class="absolute -top-6 -left-6 w-16 h-16 text-pastelPink z-50 float-animation origin-center transform -rotate-12"
+ viewBox="0 0 100 100" fill="currentColor" stroke="#111" stroke-width="2">
+ <!-- Cute Phone Sticker -->
+ <rect x="25" y="15" width="50" height="70" rx="10" />
+ <circle cx="50" cy="80" r="5" fill="#111" />
+ <rect x="35" y="25" width="30" height="40" rx="2" fill="#fff" />
+ </svg>
+
+ <svg class="absolute bottom-16 -right-8 w-20 h-20 text-pastelGreen z-50 float-animation-alt origin-center transform rotate-12"
+ viewBox="0 0 100 100" fill="currentColor" stroke="#111" stroke-width="2">
+ <!-- Cherry Sticker -->
+ <path d="M 50 15 Q 70 5 80 30" fill="none" stroke-width="4" />
+ <path d="M 50 15 Q 30 5 20 30" fill="none" stroke-width="4" />
+ <circle cx="20" cy="40" r="15" />
+ <circle cx="80" cy="40" r="15" />
+ </svg>
+
+ <div class="receipt-paper font-mono flex flex-col items-center">
+ <h2 class="text-3xl font-bold tracking-[0.2em] mb-2 uppercase">Receipt</h2>
+ <p class="text-[10px] tracking-widest uppercase mb-1 text-gray-500 text-center">Prices increasing
+ starting October!</p>
+ <p class="text-xs font-bold uppercase mb-4 tracking-widest">tinkerhub awc</p>
+
+ <div class="w-full text-center tracking-widest mb-2 overflow-hidden text-sm">
+ *********************************</div>
+ <p class="text-sm font-bold uppercase tracking-widest mb-2">Date: <span id="currentDate"></span></p>
+ <div class="w-full text-center tracking-widest mb-6 overflow-hidden text-sm">
+ *********************************</div>
+
+ <div class="w-full flex justify-between text-xs sm:text-sm mb-3">
+ <span class="lowercase">curiosity package</span>
+ <span>$1,500</span>
+ </div>
+ <div class="w-full flex justify-between text-xs sm:text-sm mb-3">
+ <span class="lowercase">crazy tech makers</span>
+ <span>$1,300</span>
+ </div>
+ <div class="w-full flex justify-between text-xs sm:text-sm mb-3">
+ <span class="lowercase">problem solving kit</span>
+ <span>$2,000</span>
+ </div>
+ <div class="w-full flex justify-between text-xs sm:text-sm mb-3">
+ <span class="lowercase">peer-to-peer premium</span>
+ <span>$2,600</span>
+ </div>
+ <div class="w-full flex justify-between text-xs sm:text-sm mb-6">
+ <span class="lowercase">community + building</span>
+ <span>$4,200</span>
+ </div>
+
+ <div class="w-full border-t-2 border-dashed border-gray-400 mb-1"></div>
+ <div class="w-full border-t-2 border-dashed border-gray-400 mb-4"></div>
+
+ <div class="w-full flex justify-between items-center mb-6">
+ <span class="text-lg font-bold tracking-widest">TOTAL:</span>
+ <span class="text-lg font-bold tracking-widest">PRICELESS</span>
+ </div>
+
+ <div class="w-full h-3 bg-black mb-1"></div>
+ <div class="w-full h-1 bg-black mb-6"></div>
+
+ <!-- Barcode -->
+ <div class="receipt-barcode"></div>
+ </div>
+ </div>
+
+ </div>
+
+ <!-- Team Group Photo at Bottom -->
+ <section class="relative w-full mt-24 overflow-hidden bg-background">
+ <img src="images/leads-Photoroom.png" class="absolute left-4 lg:left-16 bottom-21 top-21 w-[400px] md:w-[450px] lg:w-[340px] h-auto object-contain z-20" alt="Leads Sticker">
+
+ <div class="relative w-full max-w-4xl ml-auto mr-0 px-4 md:pr-12 lg:pr-24">
+ <!-- The uploaded group image -->
+ <img src="images/team_group.png" alt="TinkerHub Team"
+ class="w-full h-auto object-contain object-bottom pointer-events-none drop-shadow-lg" />
+
+ <!-- Paper Cutouts with Arrows -->
+
+ <!-- Aysha -->
+ <div
+ class="absolute top-[10%] left-[15%] md:left-[10%] transform -rotate-6 z-10 flex flex-col items-center">
+ <div
+ class="bg-pastelGreen border-2 border-ink px-3 py-1 font-handwriting font-bold text-lg md:text-xl shadow-sticker">
+ Aysha</div>
+ <svg class="w-6 h-10 text-ink mt-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+
+ </svg>
+ </div>
+
+ <!-- Hiba -->
+ <div class="absolute top-[5%] left-[32%] md:left-[28%] transform rotate-3 z-10 flex flex-col items-center">
+ <div
+ class="bg-pastelPink border-2 border-ink px-3 py-1 font-handwriting font-bold text-lg md:text-xl shadow-sticker">
+ Hiba</div>
+ <svg class="w-6 h-10 text-ink mt-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+
+ </svg>
+ </div>
+
+ <!-- Farsana -->
+ <div class="absolute top-[15%] left-[40%] transform -rotate-2 z-10 flex flex-col items-center">
+ <div
+ class="bg-pastelYellow border-2 border-ink px-3 py-1 font-handwriting font-bold text-lg md:text-xl shadow-sticker">
+ Farsana</div>
+ <svg class="w-6 h-10 text-ink mt-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+
+ </svg>
+ </div>
+
+ <!-- Anusree -->
+ <div class="absolute top-[10%] left-[60%] transform rotate-6 z-10 flex flex-col items-center">
+ <div
+ class="bg-white border-2 border-ink px-3 py-1 font-handwriting font-bold text-lg md:text-xl shadow-sticker">
+ Anusree</div>
+ <svg class="w-6 h-10 text-ink mt-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+
+ </svg>
+ </div>
+
+ <!-- Fidha -->
+ <div class="absolute top-[7%] left-[78%] transform -rotate-3 z-10 flex flex-col items-center">
+ <div
+ class="bg-pastelBlue border-2 border-ink px-3 py-1 font-handwriting font-bold text-lg md:text-xl shadow-sticker">
+ Fidha</div>
+ <svg class="w-6 h-10 text-ink mt-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+ stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+
+ </svg>
+ </div>
+ </div>
+ </section>
+
+ <!-- Dynamic "Currently Building" Marquee -->
+ <div
+ class="w-full bg-pastelYellow border-y-4 border-ink py-4 overflow-hidden relative z-20 transform -rotate-1 shadow-[0_10px_20px_rgba(0,0,0,0.1)] -mt-12 mb-20">
+ <div
+ class="whitespace-nowrap flex font-display text-2xl md:text-3xl font-black uppercase tracking-widest text-ink">
+ <!-- Inline style animation since we don't have this keyframe yet, but we'll use simple GSAP later if needed, or CSS -->
+ <style>
+ @keyframes scrollX {
+ 0% {
+ transform: translateX(0);
+ }
+
+ 100% {
+ transform: translateX(-50%);
+ }
+ }
+ </style>
+ <span class="inline-block px-4" style="animation: scrollX 20s linear infinite;">
+ 🚀 Currently building: EcoTrack ➔ 💻 Next Hackathon: Oct 15 ➔ ✨ New Member Orientation: Friday ➔ 🚀
+ Currently building: EcoTrack ➔ 💻 Next Hackathon: Oct 15 ➔ ✨ New Member Orientation: Friday ➔
+ </span>
+ </div>
+ </div>
+
+ <!-- Footer -->
+ <footer class="bg-ink text-white py-16 px-8 mt-12 border-t-8 border-pastelPink relative z-10">
+ <div class="max-w-[1240px] mx-auto" >
+ <div
+ class="flex flex-col md:flex-row justify-between items-center mb-12 pb-12 border-b-2 border-white/20 border-dashed">
+ <div class="text-center md:text-left mb-8 md:mb-0">
+ <div class="font-display text-5xl font-black italic tracking-tight mb-4 text-pastelYellow">
+ TinkerHub.awc</div>
+ <p class="font-sans text-sm font-medium max-w-sm text-gray-300">
+
+ a community of awesome makers who believe theres still time out there to give it a "Start".
+ Whether you're just starting out or already building amazing things,
+ there's a place for you here. <br>
+ Turn "What if?" into "Why Not?"
+ </p>
+ </div>
+
+ <div class="flex gap-16 font-sans font-medium text-sm">
+ <div class="flex flex-col gap-4">
+ <span class="text-pastelGreen font-bold uppercase tracking-wider text-xs mb-2">Links</span>
+ <a href="#community"
+ class="hover:text-pastelPink hover:translate-x-1 transition-all">Community</a>
+ <a href="#core" class="hover:text-pastelPink hover:translate-x-1 transition-all">Team</a>
+ <a href="#tinkertimes" class="hover:text-pastelPink hover:translate-x-1 transition-all">News</a>
+ </div>
+ <div class="flex flex-col gap-4">
+ <span class="text-pastelGreen font-bold uppercase tracking-wider text-xs mb-2">Connect</span>
+ <a href="#" class="hover:text-pastelBlue hover:translate-x-1 transition-all">Instagram</a>
+ <a href="#" class="hover:text-pastelBlue hover:translate-x-1 transition-all">LinkedIn</a>
+ <a href="#" class="hover:text-pastelBlue hover:translate-x-1 transition-all">GitHub</a>
+ </div>
+ </div>
+ </div>
+
+ <div class="text-center font-handwriting text-gray-400 text-lg">
+ © 2026 TinkerHub Ansar Women's College. All rights reserved.
+ </div>
+ </div>
+ </footer>
+
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script>
+ try {
+ AOS.init({
+ once: false,
+ offset: 50,
+ duration: 600,
+ });
+ } catch (e) {
+ console.error('AOS init failed:', e);
+ }
+
+ document.addEventListener('DOMContentLoaded', () => {
+ // Custom Cursor Logic
+ const cursor = document.getElementById('customCursor');
+ if (cursor && typeof gsap !== 'undefined' && window.innerWidth >= 768) {
+ gsap.registerPlugin(ScrollTrigger);
+ document.body.classList.add('has-custom-cursor');
+
+ let xTo = gsap.quickTo(cursor, "x", { duration: 0.2, ease: "power3" }),
+ yTo = gsap.quickTo(cursor, "y", { duration: 0.2, ease: "power3" });
+
+ window.addEventListener("mousemove", e => {
+ xTo(e.clientX);
+ yTo(e.clientY);
+ });
+
+ const interactables = document.querySelectorAll('a, button, .cursor-pointer, .sticker-btn, .btn-primary, .btn-nav');
+
+ interactables.forEach(el => {
+ el.addEventListener('mouseenter', () => {
+ cursor.classList.add('hovering');
+ });
+
+ el.addEventListener('mouseleave', () => {
+ cursor.classList.remove('hovering');
+ if (el.classList.contains('btn-primary') || el.classList.contains('sticker-btn') || el.classList.contains('btn-nav')) {
+ gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
+ }
+ });
+ });
+ }
+
+ // Simple scroll parallax for background grid
+ window.addEventListener('scroll', () => {
+ const scrollY = window.scrollY;
+ document.body.style.backgroundPositionY = `${scrollY * -0.1}px`;
+ });
+
+ // Setup deck swiping logic
+ function setupDeck(deckSelector, cardSelector, animationClass) {
+ const deck = document.querySelector(deckSelector);
+ if (deck) {
+ deck.addEventListener('click', (e) => {
+ const cards = deck.querySelectorAll(cardSelector);
+ if (cards.length === 0) return;
+
+ const topCard = cards[cards.length - 1];
+
+ if (topCard.contains(e.target)) {
+ if (e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'button') {
+ return;
+ }
+ topCard.classList.add(animationClass);
+ setTimeout(() => {
+ topCard.classList.remove(animationClass);
+ deck.insertBefore(topCard, deck.firstChild);
+ }, 500);
+ }
+ });
+ }
+ }
+
+ // Intro Paper Logic
+ const introOverlay = document.getElementById('introOverlay');
+ const introHint = document.getElementById('introHint');
+
+ if (introOverlay) {
+ introOverlay.addEventListener('click', () => {
+ // Hide hint immediately
+ if (introHint) introHint.style.opacity = '0';
+
+ // Reset animation and force reflow
+ introOverlay.style.animation = 'none';
+ void introOverlay.offsetWidth;
+ // Slide up the paper overlay
+ introOverlay.style.animation = 'slideUpIntro 1s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+
+ // Add is-open class to start hero animations as the paper slides up
+ setTimeout(() => {
+ document.body.classList.add('is-open');
+
+ // Setup observer to loop hero animations when scrolled in/out
+ const heroSection = document.getElementById('hero-content');
+ if (heroSection) {
+ const heroObserver = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ document.body.classList.add('is-open');
+ } else {
+ document.body.classList.remove('is-open');
+ }
+ });
+ }, { threshold: 0.1 });
+ heroObserver.observe(heroSection);
+ }
+ }, 500);
+
+ // Enable scrolling after animation completes
+ setTimeout(() => {
+ document.body.classList.remove('overflow-hidden');
+ introOverlay.style.display = 'none'; // Hide completely
+ }, 1000);
+ });
+ }
+
+ setupDeck('.paper-deck', '.paper-sheet', 'swipe-off');
+
+
+
+ // TV Auto-Power On Scroll Logic
+ const tvScreen = document.getElementById('tvScreen');
+ const tvContent = document.getElementById('tvContent');
+ const tvStatic = document.getElementById('tvStatic');
+ const tvFlash = document.getElementById('tvFlash');
+ const spotlightSection = document.getElementById('spotlight');
+
+ if (spotlightSection && tvScreen) {
+ const tvObserver = new IntersectionObserver((entries) => {
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ // Flash animation (Lightning)
+ tvFlash.style.transition = 'opacity 0.1s ease-out';
+ tvFlash.style.opacity = '1';
+
+ setTimeout(() => {
+ tvFlash.style.transition = 'opacity 0.8s ease-in';
+ tvFlash.style.opacity = '0';
+
+                        // Turn on TV content
+                        tvScreen.classList.replace('bg-[#111]', 'bg-[#F8F5EE]');
+                        tvStatic.classList.add('');
+                        tvContent.classList.replace('', 'opacity-100');
+                        tvContent.classList.remove('pointer-events-none');
+                    }, 150);
+                } else {
+                    // Reset when out of view for loop
+                    tvScreen.classList.replace('bg-[#F8F5EE]', 'bg-[#111]');
+                    tvStatic.classList.remove('');
+                    tvContent.classList.replace('opacity-100', '');
+                    tvContent.classList.add('pointer-events-none');
+                }
+            });
+ }, { threshold: 0.5 });
+
+ tvObserver.observe(spotlightSection);
+ }
+
+ // Upcoming Event Modal Logic
+ const upcomingModal = document.getElementById('upcomingModal');
+ const upcomingBtn = document.getElementById('upcomingEventBtn');
+
+ if (upcomingBtn) {
+ upcomingBtn.addEventListener('click', (e) => {
+ e.preventDefault();
+ if (upcomingModal) upcomingModal.classList.add('active');
+ });
+ }
+ if (upcomingModal) {
+ upcomingModal.querySelector('.modal-close').addEventListener('click', () => {
+ upcomingModal.classList.remove('active');
+ });
+ upcomingModal.addEventListener('click', (e) => {
+ if (e.target === upcomingModal) {
+ upcomingModal.classList.remove('active');
+ }
+ });
+ }
+
+ // History / Archives Redirection Logic
+ const openHistoryBtn = document.getElementById('openHistoryBtn');
+ if (openHistoryBtn) {
+ openHistoryBtn.addEventListener('click', (e) => {
+ e.preventDefault();
+ window.location.href = "history.html";
+ });
+ }
+
+ // Spotlight Modal Logic
+ const modal = document.getElementById('makerModal');
+ const modalClose = document.querySelector('.modal-close');
+ const modalBtns = document.querySelectorAll('.openSpotlightModalBtn');
+
+ modalBtns.forEach(btn => {
+ btn.addEventListener('click', (e) => {
+ e.preventDefault();
+ if (modal) modal.classList.add('active');
+ });
+ });
+
+ if (modalClose) {
+ modalClose.addEventListener('click', () => {
+ if (modal) modal.classList.remove('active');
+ });
+ }
+
+ // Spotlight Carousel Logic
+ const slides = document.querySelectorAll('.carousel-slide');
+ const nextBtn = document.querySelector('.next-btn');
+ const prevBtn = document.querySelector('.prev-btn');
+ const dots = document.querySelectorAll('.nav-dot');
+ let currentSlide = 0;
+ let isAnimating = false;
+
+ function showSlide(index, direction = 'next') {
+ if (isAnimating || index === currentSlide) return;
+ isAnimating = true;
+
+ const current = slides[currentSlide];
+ const next = slides[index];
+
+ if (dots[currentSlide]) {
+ dots[currentSlide].classList.remove('bg-ink');
+ dots[currentSlide].classList.add('bg-gray-300');
+ }
+ if (dots[index]) {
+ dots[index].classList.remove('bg-gray-300');
+ dots[index].classList.add('bg-ink');
+ }
+
+ const outClass = direction === 'next' ? 'scrap-next-out' : 'scrap-prev-out';
+ const inClass = direction === 'next' ? 'scrap-next-in' : 'scrap-prev-in';
+
+ current.classList.add('animating', outClass);
+ next.classList.add('active', inClass);
+ next.classList.remove('paper-unfold-active');
+
+ setTimeout(() => {
+ current.classList.remove('active', 'animating', outClass, 'paper-unfold-active');
+ next.classList.remove(inClass);
+ currentSlide = index;
+ isAnimating = false;
+ }, 600);
+ }
+
+ if (nextBtn && prevBtn && slides.length > 0) {
+ nextBtn.addEventListener('click', () => {
+ const nextIndex = (currentSlide + 1) % slides.length;
+ showSlide(nextIndex, 'next');
+ });
+
+ prevBtn.addEventListener('click', () => {
+ const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+ showSlide(prevIndex, 'prev');
+ });
+ }
+
+ dots.forEach((dot, idx) => {
+ dot.addEventListener('click', () => {
+ if (idx > currentSlide) {
+ showSlide(idx, 'next');
+ } else if (idx < currentSlide) {
+ showSlide(idx, 'prev');
+ }
+ });
+ });
+
+ if (modalClose) {
+ modalClose.addEventListener('click', () => {
+ if (modal) modal.classList.remove('active');
+ });
+ }
+
+ // Close modal on outside click
+ if (modal) {
+ modal.addEventListener('click', (e) => {
+ if (e.target === modal) {
+ modal.classList.remove('active');
+ }
+ });
+ }
+
+ // Receipt Modal Logic
+ const receiptModal = document.getElementById('receiptModal');
+ const receiptBtn = document.getElementById('printReceiptBtn');
+ const closeReceiptBtn = document.getElementById('closeReceiptBtn');
+ const dateSpan = document.getElementById('currentDate');
+
+ if (dateSpan) {
+ const today = new Date();
+ dateSpan.textContent = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+ }
+
+ if (receiptBtn) {
+ receiptBtn.addEventListener('click', (e) => {
+ e.preventDefault();
+ e.stopPropagation();
+ if (receiptModal) receiptModal.classList.add('active');
+ });
+ }
+
+ if (closeReceiptBtn) {
+ closeReceiptBtn.addEventListener('click', () => {
+ if (receiptModal) receiptModal.classList.remove('active');
+ });
+ }
+
+ if (receiptModal) {
+ receiptModal.addEventListener('click', (e) => {
+ if (e.target === receiptModal) {
+ receiptModal.classList.remove('active');
+ }
+ });
+ }
+
+ // In-Window Maker Switching Logic (JEDI Spotlight Desktop)
+ const makersData = {
+ nandana: {
+ name: "Aysha, Amritha, Farzana",
+ class: "S5 CS",
+ email: "nandana.awc@gmail.com",
+ subtitle: "MINEHACK 2026 | HACKATHON",
+ image: "images/makers1.png",
+ cardBg: "#F9D949",
+ stats: ["2+", "#1", "12 ya", "4"],
+ bio: "Loopit is a student-to-student campus marketplace designed to make buying and selling second-hand academic essentials simple, affordable, and sustainable.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "LOOPIT",
+ projectName: "LOOPIT WEB-APP",
+ projectSubtitle: "Built during Hackathon 2026",
+ projectDesc: "Many students have items like textbooks, lab coats, calculators, stationery, and other college essentials that they no longer need. At the same time, junior students often have to buy these items at full price. Loopit bridges this gap by providing a dedicated platform where students within the same college can buy and sell items safely.",
+ projectdetails: " Problem:No Platform to Earn Textbooks Money Junior students search for Students own unused textbooks, labaffordable textbooks from seniors.coats, calculators, and electronics.Without a centralized platform,Without a dedicated marketplace,they message multiple people, relythese items remain unused andon word of mouth, and waste time. Students lose the opportunity to earn extra income and save money. Solution: Loopit is a student-to-student campus marketplace designed to make buying and selling second-hand academic essentials simple, affordable, and sustainable. It allows students to list items they no longer need and connect with other students looking for those items, creating a circular economy within the college community.",
+ reviews: [
+ { text: "Super helpful in solving backend API bugs during the 48-hour sprint. Amazing developer!", author: "Nicol W.", role: "Junior Dev", rating: "★ 4.9" },
+ { text: "I felt like I learned months of React Native in a single week. Highly recommended team lead!", author: "Stephanie N.", role: "Middle Dev", rating: "★ 5.0" },
+ { text: "Brilliant execution of mobile UI flows. Truly set high standards for our entire community.", author: "Fidha Nawal", role: "Campus Lead", rating: "★ 4.8" }
+ ],
+ rating: "★ 4.9 / 5.0",
+ ratesCount: "127",
+ graphPath: "M 0 22 Q 25 15, 45 25 T 90 8 T 120 20"
+ },
+ fidha: {
+ name: "Fidha Nawal",
+ email: "fidha.nawal@gmail.com",
+ subtitle: "campus lead | full stack dev",
+ image: "images/fidha-core-Photoroom.png",
+ cardBg: "#A5D7C7",
+ stats: ["3+", "#2", "18 ya", "8"],
+ bio: "Lead organizer and full-stack maker at TinkerHub AWC. Built various campus dashboard tools and mentored 100+ students in web development sprints.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "Admin_Dashboard.exe",
+ projectName: "TinkerHub Campus Dashboard",
+ projectSubtitle: "Built for Campus Operations",
+ projectDesc: "A comprehensive admin dashboard to track student attendance, coordinate learning paths, and automate certificate generation for workshops.",
+ experience: [
+ { role: "Campus Lead Organizer", company: "TinkerHub AWC Exec", period: "Jun 2024 - Present" },
+ { role: "Full Stack Mentor", company: "TinkerHub AWC Tech", period: "Jan 2023 - Jun 2024" },
+ { role: "Open Source Contributor", company: "GitHub Campus", period: "Jun 2022 - Present" }
+ ],
+ reviews: [
+ { text: "Fidha's leadership is what keeps the TinkerHub campus community alive and kicking!", author: "Aysha", role: "Co-Lead", rating: "★ 5.0" },
+ { text: "Helped me setup my local dev environment and push my first PR to the main repository.", author: "Anusree", role: "Media Lead", rating: "★ 4.8" },
+ { text: "Incredibly organized and focused on students learning real-world tools.", author: "Farsana", role: "Tech Lead", rating: "★ 4.9" }
+ ],
+ rating: "★ 4.9 / 5.0",
+ ratesCount: "184",
+ graphPath: "M 0 15 Q 30 5, 60 20 T 120 5"
+ },
+ aysha: {
+ name: "Aysha",
+ email: "aysha.awc@gmail.com",
+ subtitle: "co-lead | ui ux designer",
+ image: "images/aysha-corre-Photoroom.png",
+ cardBg: "#FFB5D8",
+ stats: ["2+", "#3", "8 ya", "3"],
+ bio: "UI/UX enthusiast and co-lead at TinkerHub AWC. Passionate about wireframing, typography, and building user-centric interfaces.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "Design_System.exe",
+ projectName: "AWC Brand UI Kit",
+ projectSubtitle: "Official Brand Guidelines",
+ projectDesc: "A complete neubrutalist UI kit and pattern library designed for TinkerHub workshops, hackathons, and web application UI consistency.",
+ experience: [
+ { role: "Campus Co-Lead", company: "TinkerHub AWC Exec", period: "Jun 2024 - Present" },
+ { role: "Design Intern", company: "Pixel Craft Studio", period: "Feb 2023 - Aug 2023" },
+ { role: "UI Design Lead", company: "AWC Tech Fest", period: "Jan 2023 - Feb 2023" }
+ ],
+ reviews: [
+ { text: "Aysha has an amazing eye for detail. The design system she built is clean and beautiful.", author: "Hiba", role: "Design Lead", rating: "★ 5.0" },
+ { text: "Great communicator and co-lead. Always steps up to coordinate events.", author: "Fidha Nawal", role: "Campus Lead", rating: "★ 4.9" },
+ { text: "Designs beautiful slides and UI layouts for all our workshop presentations.", author: "Anusree", role: "Media Lead", rating: "★ 4.7" }
+ ],
+ rating: "★ 4.8 / 5.0",
+ ratesCount: "98",
+ graphPath: "M 0 25 Q 20 10, 50 15 T 100 12 T 120 8"
+ },
+ farsana: {
+ name: "Farsana",
+ email: "farsana.awc@gmail.com",
+ subtitle: "tech lead | software engineer",
+ image: "images/farsana-core-Photoroom.png",
+ cardBg: "#C3FF16",
+ stats: ["3+", "#1", "16 ya", "6"],
+ bio: "Technical lead at TinkerHub AWC. Specializes in building web applications, database management, and conducting hands-on programming bootcamps.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "Bootcamp_Portal.exe",
+ projectName: "AWC Coding Sandbox",
+ projectSubtitle: "Coding Sandbox & Sprints",
+ projectDesc: "An interactive web compiler and coding platform where bootcamp participants can write code, run test suites, and submit their assignments.",
+ experience: [
+ { role: "Technical Lead", company: "TinkerHub AWC Exec", period: "Jun 2024 - Present" },
+ { role: "Software Architect Intern", company: "CodeLabs India", period: "May 2023 - Nov 2023" },
+ { role: "Full Stack Developer", company: "Freelance", period: "Jul 2022 - Apr 2023" }
+ ],
+ reviews: [
+ { text: "Farsana is a debugging wizard. She fixed our React build errors in under 10 minutes!", author: "Nandana", role: "Eco-Hack Lead", rating: "★ 5.0" },
+ { text: "Her bootcamps are clear, comprehensive, and very beginner-friendly.", author: "Hiba", role: "Design Lead", rating: "★ 4.9" },
+ { text: "Excellent coding standards and repository management skills.", author: "Fidha Nawal", role: "Campus Lead", rating: "★ 4.8" }
+ ],
+ rating: "★ 4.9 / 5.0",
+ ratesCount: "112",
+ graphPath: "M 0 20 Q 20 5, 45 15 T 85 22 T 120 12"
+ },
+ hiba: {
+ name: "Hiba",
+ email: "hiba.awc@gmail.com",
+ subtitle: "design lead | graphic designer",
+ image: "images/hina-core-Photoroom.png",
+ cardBg: "#ffffff",
+ stats: ["2+", "#4", "10 ya", "5"],
+ bio: "Design Lead at TinkerHub AWC. Focuses on visual identity, layout design, branding assets, and mentoring design tracks on Figma.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "HackFest_Brand.exe",
+ projectName: "HackFest Brand Kit",
+ projectSubtitle: "Visual Assets & Illustrations",
+ projectDesc: "Designed a vector asset repository containing customized stickers, certificates, and presentation slides for the national AWC HackFest.",
+ experience: [
+ { role: "Design Lead", company: "TinkerHub AWC Exec", period: "Jun 2024 - Present" },
+ { role: "Creative Intern", company: "Vibrant Ads", period: "Jun 2023 - Dec 2023" },
+ { role: "Freelance Designer", company: "Behance Profile", period: "Aug 2022 - May 2023" }
+ ],
+ reviews: [
+ { text: "The entire branding kit Hiba built for the national hackathon was stunning!", author: "Fidha Nawal", role: "Campus Lead", rating: "★ 5.0" },
+ { text: "Super talented illustrator. Always delivers clean and scalable SVG assets.", author: "Aysha", role: "Co-Lead", rating: "★ 4.9" },
+ { text: "Figma workshops led by Hiba are absolute goldmines for junior designers.", author: "Nicol W.", role: "Junior Dev", rating: "★ 4.8" }
+ ],
+ rating: "★ 4.9 / 5.0",
+ ratesCount: "86",
+ graphPath: "M 0 10 Q 30 20, 60 5 T 90 25 T 120 15"
+ },
+ anusree: {
+ name: "Anusree",
+ email: "anusree.awc@gmail.com",
+ subtitle: "media lead | photographer",
+ image: "images/anusree-core-Photoroom.png",
+ cardBg: "#B5E5F9",
+ stats: ["2+", "#5", "9 ya", "4"],
+ bio: "Media Lead at TinkerHub AWC. Manages and coordinates documentation, photography, visual narratives, and handles all public relations content.",
+ github: "https://github.com/tinkerhub-awc",
+ projectTitle: "Tinker_Times_CMS.exe",
+ projectName: "Tinker Times Media CMS",
+ projectSubtitle: "Digital Newsletter Platform",
+ projectDesc: "Created the online publishing framework for Tinker Times, integrating an easy markdown manager for student journalists to draft and host articles.",
+ experience: [
+ { role: "Lead Content Creator", company: "AWC Media Team", period: "Jun 2024 - Present" },
+ { role: "Design Associate", company: "TinkerHub Tech Fest", period: "Jan 2023 - Mar 2023" },
+ { role: "Photography Head", company: "College Union Office", period: "Oct 2022 - Jun 2023" }
+ ],
+ reviews: [
+ { text: "Her designs and documentation make every event look professional and exciting!", author: "Fidha Nawal", role: "Campus Lead", rating: "★ 4.9" },
+ { text: "Super reliable and creative. Brings a unique visual flair to all our campus media outlets.", author: "Aysha", role: "Co-Lead", rating: "★ 5.0" },
+ { text: "Excellent photography coverage for all our collaborative hackathons.", author: "Hiba", role: "Design Lead", rating: "★ 4.8" }
+ ],
+ rating: "★ 4.9 / 5.0",
+ ratesCount: "74",
+ graphPath: "M 0 18 Q 20 28, 50 10 T 100 20 T 120 10"
+ }
+ };
+
+ window.selectMakerFromBoard = function (makerId) {
+ // Redirect directly to the dedicated details page for the selected maker
+ window.location.href = `fidha.html?maker=${makerId}`;
+ };
+
+window.selectMaker = function (makerId) {
+ const maker = makersData[makerId];
+ if (!maker) return;
+
+ // Update card background
+ const card = document.getElementById('makerCardInner');
+ if (card) {
+ card.style.backgroundColor = maker.cardBg;
+ }
+
+ // Update profile details
+ document.getElementById('makerAvatar').src = maker.image;
+ document.getElementById('makerName').innerHTML = maker.name;
+ document.getElementById('makerEmail').innerHTML = maker.email;
+ document.getElementById('makerBio').innerHTML = maker.bio;
+
+ // Update stats
+ document.getElementById('statExperience').innerHTML = maker.stats[0];
+ document.getElementById('statOnPlatform').innerHTML = maker.stats[1];
+ document.getElementById('statOfHacking').innerHTML = maker.stats[2];
+ document.getElementById('statCourses').innerHTML = maker.stats[3];
+
+ // Update Github Link
+ document.getElementById('makerGithub').href = maker.github;
+
+ // Update Project Window Details
+ document.getElementById('winProjectTitle').innerHTML = "Project: " + maker.projectTitle;
+ document.getElementById('projName').innerHTML = maker.projectName;
+ document.getElementById('projSubtitle').innerHTML = maker.projectSubtitle;
+ document.getElementById('projDesc').innerHTML = maker.projectDesc;
+
+ // Update Work Experience Log
+ const workExpContainer = document.getElementById('makerWorkExp');
+ if (workExpContainer) {
+ workExpContainer.innerHTML = maker.experience.map(exp => `
+ <div class="bg-white border border-ink p-2 shadow-[2px_2px_0px_#111] flex items-center gap-2 text-xs">
+ <span>💼</span>
+ <div>
+ <div class="font-bold text-[11px]">${exp.role}</div>
+ <div class="text-[9px] text-gray-400">${exp.company} • ${exp.period}</div>
+ </div>
+ </div>
+ `).join('');
+ }
+
+ // Update Rating details
+ document.getElementById('makerRatingVal').innerHTML = maker.rating;
+ document.getElementById('makerRatesCount').innerHTML = maker.ratesCount;
+ document.getElementById('makerGraphPath').setAttribute('d', maker.graphPath);
+
+ // Update Reviews
+ const reviewCards = document.querySelectorAll('.maker-review-card');
+ maker.reviews.forEach((review, i) => {
+ if (reviewCards[i]) {
+ reviewCards[i].innerHTML = `
+ <div class="text-xs font-semibold leading-relaxed text-inkLighter">
+ "${review.text}"
+ </div>
+ <div class="flex justify-between items-center mt-3 pt-3 border-t border-dashed border-ink/10">
+ <div>
+ <div class="font-sans font-black text-xs">${review.author}</div>
+ <div class="text-[9px] font-mono text-gray-400">${review.role}</div>
+ </div>
+ <span class="text-[10px] font-mono font-bold text-[#FFBD2E]">${review.rating}</span>
+ </div>
+ `;
+ }
+ });
+
+ // Hide makers folder directory when a maker is selected to reveal desktop
+ document.getElementById('makersDirectory').classList.add('hidden');
+
+ // Adjust active highlights in sidebar
+ const spotlightBtn = document.getElementById('spotlightSidebarBtn');
+ const prevMakersBtn = document.getElementById('prevMakersBtn');
+ if (spotlightBtn && prevMakersBtn) {
+ spotlightBtn.classList.add('bg-ink', 'text-white', 'border-2', 'border-ink', 'shadow-[3px_3px_0px_#111]');
+ spotlightBtn.classList.remove('hover:bg-white/40');
+ prevMakersBtn.classList.remove('bg-ink', 'text-white', 'border-2', 'border-ink', 'shadow-[3px_3px_0px_#111]');
+ prevMakersBtn.classList.add('hover:bg-white/40');
+ }
+ };
+
+ window.openMakersDirectory = function () {
+ const makersDirectory = document.getElementById('makersDirectory');
+ if (makersDirectory) {
+ makersDirectory.classList.remove('hidden');
+ }
+
+ // Adjust active highlights in sidebar
+ const spotlightBtn = document.getElementById('spotlightSidebarBtn');
+ const prevMakersBtn = document.getElementById('prevMakersBtn');
+ if (spotlightBtn && prevMakersBtn) {
+ prevMakersBtn.classList.add('bg-ink', 'text-white', 'border-2', 'border-ink', 'shadow-[3px_3px_0px_#111]');
+ prevMakersBtn.classList.remove('hover:bg-white/40');
+ spotlightBtn.classList.remove('bg-ink', 'text-white', 'border-2', 'border-ink', 'shadow-[3px_3px_0px_#111]');
+ spotlightBtn.classList.add('hover:bg-white/40');
+ }
+
+ // Smooth scroll to spotlight desktop container
+ const spotlightSection = document.getElementById('spotlight');
+ if (spotlightSection) {
+ spotlightSection.scrollIntoView({ behavior: 'smooth' });
+ }
+ };
+
+ const prevMakersBtn = document.getElementById('prevMakersBtn');
+ const spotlightSidebarBtn = document.getElementById('spotlightSidebarBtn');
+
+ if (prevMakersBtn) {
+ prevMakersBtn.addEventListener('click', () => {
+ window.openMakersDirectory();
+ });
+ }
+
+ if (spotlightSidebarBtn) {
+ spotlightSidebarBtn.addEventListener('click', () => {
+ selectMaker('nandana');
+ });
+ }
+ });
+ </script>
+
+ <!-- Anusree Flip Modal -->
+ <style>
+ @keyframes flipIn {
+ 0% {
+ transform: perspective(1000px) rotateY(-90deg) scale(0.9);
+ opacity: 0;
+ }
+
+ 100% {
+ transform: perspective(1000px) rotateY(0) scale(1);
+ opacity: 1;
+ }
+ }
+
+ #anusreeModal.active .flip-container {
+ animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+ }
+
+ #anusreeModal.active {
+ opacity: 1;
+ pointer-events: auto !important;
+ }
+ </style>
+ <div class="fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-300 pointer-events-none opacity-0"
+ id="anusreeModal">
+ <div class="absolute inset-0 bg-ink/80 backdrop-blur-sm modal-bg pointer-events-none"
+ onclick="document.getElementById('anusreeModal').classList.remove('active'); document.getElementById('anusreeModal').querySelector('.modal-bg').classList.remove('pointer-events-auto');">
+ </div>
+ <div class="relative z-10 w-[95%] max-w-[700px] flip-container opacity-0 flex flex-col items-center gap-6">
+
+ <!-- Close Button -->
+ <button
+ class="absolute -top-6 -right-6 md:-right-10 w-12 h-12 bg-white border-2 border-ink rounded-full flex items-center justify-center font-bold text-2xl hover:bg-pastelPink transition-colors z-50 shadow-sticker cursor-pointer"
+ onclick="document.getElementById('anusreeModal').classList.remove('active'); document.getElementById('anusreeModal').querySelector('.modal-bg').classList.remove('pointer-events-auto');">×</button>
+
+ <!-- Card Image Removed -->
+ <a href="anusree.html"
+ class="inline-block px-10 py-4 bg-[#4169E1] text-white font-sans font-bold uppercase tracking-widest text-lg border-2 border-ink shadow-[4px_4px_0_#111] hover:translate-y-1 hover:translate-x-1 hover:shadow-[0_0_0_#111] transition-all duration-200 w-auto min-w-[100px] text-center rounded-xl">
+ Visit Her Profile
+ </a>
+ </div>
+ </div>
+
+<script type="module">
+ import { db, auth } from "./firebase.js";
+
+ import {
+ collection,
+ getDocs,
+ doc,
+ getDoc,
+ query,
+ where,
+ setDoc
+ } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+ // Dynamic Navbar Auth State
+ const joinBtn = document.getElementById("navbar-join-btn");
+ const profileBtn = document.getElementById("navbar-profile-btn");
+ const profileNameSpan = document.getElementById("navbar-profile-name");
+
+ onAuthStateChanged(auth, async (user) => {
+ if (user) {
+ // User is authenticated
+ if (joinBtn) joinBtn.style.display = "none";
+ if (profileBtn) profileBtn.style.display = "flex";
+ 
+ try {
+ let memberData = null;
+ const memberDocRef = doc(db, "members", user.uid);
+ const memberSnap = await getDoc(memberDocRef);
+ 
+ if (memberSnap.exists()) {
+ memberData = memberSnap.data();
+ } else if (user.email) {
+ // Safe migration fallback by exact email match
+ const membersQuery = query(collection(db, "members"), where("email", "==", user.email));
+ const querySnapshot = await getDocs(membersQuery);
+ 
+ if (!querySnapshot.empty) {
+ const oldDoc = querySnapshot.docs[0];
+ memberData = oldDoc.data();
+ memberData.uid = user.uid;
+ 
+ // Migrate to the correct user.uid document
+ await setDoc(memberDocRef, memberData);
+ }
+ }
+
+ if (memberData && profileNameSpan && memberData.name) {
+ profileNameSpan.textContent = memberData.name.split(' ')[0]; // Show first name
+ }
+ } catch (error) {
+ console.error("Error fetching member data:", error);
+ }
+ } else {
+ // User is not authenticated
+ if (joinBtn) joinBtn.style.display = "flex";
+ if (profileBtn) profileBtn.style.display = "none";
+ if (profileNameSpan) profileNameSpan.textContent = "Profile";
+ }
+ });
+
+
+
+
+ const upcomingList = document.getElementById("upcomingEventsList");
+ const pastList = document.getElementById("pastEventsList");
+ const liveContent = document.getElementById("liveEventContent");
+
+
+ async function loadEvents() {
+
+ try {
+
+ const snapshot = await getDocs(
+ collection(db, "events")
+ );
+
+ const events = [];
+
+ snapshot.forEach((doc) => {
+
+ events.push({
+ id: doc.id,
+ ...doc.data()
+ });
+
+ });
+
+
+ console.log("Tinker Times events:", events);
+
+ displayEvents(events);
+
+
+ } catch (error) {
+
+ console.error(
+ "Error loading events:",
+ error
+ );
+
+ }
+
+ }
+
+
+ function displayEvents(events) {
+
+ upcomingList.innerHTML = "";
+ pastList.innerHTML = "";
+ 
+ const today = new Date();
+ today.setHours(0, 0, 0, 0);
+ 
+ let upcomingEvents = [];
+ let completedEvents = [];
+ let liveEvents = [];
+
+ events.forEach((event) => {
+ let eventDate = new Date();
+ if (event.date) {
+ const parsed = new Date(event.date);
+ if (!isNaN(parsed.getTime())) {
+ eventDate = parsed;
+ }
+ }
+ eventDate.setHours(0, 0, 0, 0);
+ 
+ // Explicit check: only show an event if the admin set it to one of the active statuses
+ const status = (event.status || "").toLowerCase();
+
+ if (status === "live") {
+ liveEvents.push(event);
+ } else if (status === "upcoming") {
+ upcomingEvents.push(event);
+ } else if (status === "completed") {
+ completedEvents.push(event);
+ }
+ });
+
+ // -------------------------
+ // LIVE EVENT (Max 1)
+ // -------------------------
+ if (liveEvents.length > 0) {
+ liveContent.innerHTML = ""; // Clear "No live event" state
+ renderLiveEvent(liveEvents[0]);
+ } else {
+ liveContent.innerHTML = `
+ <div class="text-center py-12">
+ <p class="font-display text-2xl font-bold uppercase">
+ No live event right now.
+ </p>
+ </div>
+ `;
+ }
+
+ // -------------------------
+ // UPCOMING EVENT (Max 3, nearest first -> date ASCENDING)
+ // -------------------------
+ upcomingEvents.sort((a, b) => {
+ const dateA = a.date ? new Date(a.date).getTime() : 0;
+ const dateB = b.date ? new Date(b.date).getTime() : 0;
+ return dateA - dateB;
+ });
+ 
+ upcomingEvents.slice(0, 3).forEach((event) => {
+ renderUpcomingEvent(event);
+ });
+
+ // -------------------------
+ // PAST/COMPLETED EVENT (Max 3, newest first -> date DESCENDING)
+ // -------------------------
+ completedEvents.sort((a, b) => {
+ const dateA = a.date ? new Date(a.date).getTime() : 0;
+ const dateB = b.date ? new Date(b.date).getTime() : 0;
+ return dateB - dateA; // Descending
+ });
+
+ completedEvents.slice(0, 3).forEach((event) => {
+ renderPastEvent(event);
+ });
+
+ // Conditionally show "See More History" button
+ const openHistoryBtn = document.getElementById('openHistoryBtn');
+ if (openHistoryBtn) {
+ if (completedEvents.length > 3) {
+ openHistoryBtn.classList.remove('hidden');
+ openHistoryBtn.classList.add('block');
+ } else {
+ openHistoryBtn.classList.remove('block');
+ openHistoryBtn.classList.add('hidden');
+ }
+ }
+
+ }
+
+
+ function renderUpcomingEvent(event) {
+ let dateStr = "TBA";
+ if (event.date) {
+ const d = new Date(event.date);
+ dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+ }
+
+ const html = `
+ <a href="event-details.html?id=${event.id}"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-6">
+ <span
+ class="bg-ink text-white text-xs font-bold px-2 py-1 uppercase mb-3 inline-block">Upcoming</span>
+ <h4
+ class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4">
+ ${event.title}</h4>
+ <p class="font-sans text-sm mt-3 text-gray-800 font-medium leading-relaxed">${event.description || ""}</p>
+ <p
+ class="font-sans text-xs font-bold mt-4 uppercase tracking-wide bg-pastelYellow inline-block px-1">
+ ${event.location || "TBA"}</p>
+ <p class="font-sans text-xs font-bold mt-2 uppercase text-gray-600">
+ ${dateStr} • ${event.time || "TBA"}
+ </p>
+ </a>
+ `;
+ upcomingList.insertAdjacentHTML('beforeend', html);
+ }
+
+
+ function renderPastEvent(event) {
+ let dateStr = "TBA";
+ if (event.date) {
+ const d = new Date(event.date);
+ dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+ }
+
+ const html = `
+ <a href="event-details.html?id=${event.id}"
+ class="block group cursor-pointer border-b-2 border-ink border-dashed pb-4">
+ <h4
+ class="font-display text-2xl font-black leading-tight group-hover:underline decoration-2 underline-offset-2">
+ ${event.title}</h4>
+ <div class="flex justify-between items-center mt-3">
+ <span class="font-sans text-xs text-gray-600 font-bold uppercase">${dateStr}</span>
+ <span
+ class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
+ </div>
+ </a>
+ `;
+ pastList.insertAdjacentHTML('beforeend', html);
+ }
+
+
+ function renderLiveEvent(event) {
+ const desc = event.description || "";
+ const dropCap = desc.length > 0 ? desc.charAt(0) : "T";
+ const bodyText = desc.length > 0 ? desc.substring(1) : "";
+
+ const imgHtml = event.imageUrl ? `
+ <div
+ class="border-4 border-ink p-2 shadow-sticker mb-8 transform -rotate-1 group-hover:rotate-0 transition-transform duration-300 bg-white">
+ <img src="${event.imageUrl}" alt="${event.title}"
+ class="w-full h-auto object-cover hover:scale-105 transition-all duration-500 max-h-[350px]" />
+ <p class="text-xs text-right font-sans font-bold uppercase mt-2">Captured at the Hub</p>
+ </div>
+ ` : '';
+
+ const html = `
+ <a href="event-details.html?id=${event.id}" class="block group cursor-pointer">
+ <div class="text-center mb-8">
+ <span
+ class="bg-pastelGreen border-2 border-ink text-ink text-sm font-bold px-3 py-1 uppercase mb-6 inline-block shadow-sticker transform rotate-2">Live Now</span>
+ <h3
+ class="font-display text-6xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
+ ${event.title}</h3>
+ <p class="font-display text-2xl md:text-3xl italic text-gray-800 mb-6 font-medium">${event.location || ""} • ${event.time || ""}</p>
+ </div>
+
+ ${imgHtml}
+
+ <div
+ class="columns-1 md:columns-2 gap-8 font-sans text-base text-gray-900 font-medium leading-relaxed">
+ <p class="mb-4"><span
+ class="float-left font-display text-7xl leading-[0.8] pr-3 pt-2 font-black">${dropCap}</span>${bodyText}</p>
+ </div>
+ </a>
+ `;
+ liveContent.insertAdjacentHTML('beforeend', html);
+ }
+
+
+ loadEvents();
+
+</script>
+
+
+</body>
+
+</html>

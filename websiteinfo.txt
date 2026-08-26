@@ -1,0 +1,86 @@
+WEBSITE INFO — IEDC MASC EXECOM PROFILE
+Source reference: https://iedc.masc.edu.in/execom/mohamed-jabir
+(Note: original page is JavaScript-rendered; only meta/header data could be
+extracted directly. Structure below follows the site's typical profile-page
+layout, with the requested data changes applied.)
+
+=========================================
+1. NAME
+=========================================
+Fathimathul Farsana
+
+=========================================
+2. ROLE
+=========================================
+Campus Lead
+
+=========================================
+3. SMALL INTRODUCTION
+=========================================
+Fathimathul Farsana serves as Campus Lead at TinkerHub AWC.
+Department: Computer Science.
+[Full bio/description text was not retrievable from the live page — the
+original site loads profile descriptions via JavaScript. Add a short
+personal intro here if available.]
+
+=========================================
+4. SOCIAL LINK SECTION
+=========================================
+- LinkedIn: [not retrievable from page — add link]
+- Twitter/X: [not retrievable from page — add link]
+- Instagram: [not retrievable from page — add link]
+- GitHub: [not retrievable from page — add link]
+- Email: [not retrievable from page — add link]
+
+=========================================
+5. HERO SECTION
+=========================================
+Name: Fathimathul Farsana
+Title/Role: Campus Lead
+Organization: TinkerHub AWC
+Department: Computer Science
+Profile Image: [original: hm3a7fbrwipty29izvfs.png — replace with
+Fathimathul Farsana's photo]
+Tagline: "Campus Lead | Computer Science | TinkerHub AWC"
+
+=========================================
+6. BACKGROUND
+=========================================
+Organization: TinkerHub AWC
+Department: Computer Science
+Role Context: Executive Committee Member
+[Additional background/education/experience details not available from
+the fetched page — add manually if needed.]
+
+=========================================
+7. SCROLL AREA
+=========================================
+[This section on the original site likely contains extended bio content,
+achievements, or activity highlights that load dynamically via JavaScript
+and were not present in the static fetch. Placeholder for:
+- Activities/Events involvement
+- Achievements
+- Contributions to TinkerHub AWC]
+
+=========================================
+8. CALLS TO ACTION
+=========================================
+- "Connect with Fathimathul Farsana"
+- "View more Execom Members"
+- "Join TinkerHub AWC"
+
+=========================================
+9. FOOTER
+=========================================
+Logo: TinkerHub AWC / IEDC Logo
+Copyright: © 2026 TinkerHub AWC. All rights reserved.
+Quick Links: Home | Execom | Events | Contact
+Powered by: IEDC MASC (original site reference)
+
+=========================================
+METADATA (from original page, for reference)
+=========================================
+Canonical URL: https://iedc.masc.edu.in/execom/mohamed-jabir
+Original Title Tag: MOHAMED JABIR | NODAL OFFICER | IEDC MASC
+Original OG Image: https://res.cloudinary.com/dowavgmb8/image/upload/v1782877261/TeamImages/hm3a7fbrwipty29izvfs.png
+Robots: index, follow

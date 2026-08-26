@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Details — Tinker Times</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/80 px-6 py-4 flex items-center justify-between">
+        <a href="main.html#tinkertimes" class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors duration-200">
+            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to Times
+        </a>
+        <span class="text-lg font-bold tracking-tight text-slate-900">Tinker Times</span>
+        <div class="w-24"></div> <!-- visual balance offset -->
+    </header>
+
+    <!-- Main Container -->
+    <main id="mainContainer" class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 hidden">
+        <!-- Title Section -->
+        <div class="mb-10 text-center max-w-2xl mx-auto">
+            <h1 id="eventTitle" class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">Loading...</h1>
+            <p class="text-lg text-slate-500 font-medium">In-depth look at what's happening at the hub.</p>
+            
+            <div class="flex flex-wrap items-center justify-center gap-6 mt-6 text-sm font-semibold text-slate-500 border-t border-b border-slate-200/60 py-3.5">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span id="headerStatus">Loading</span>
+                </span>
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span id="headerDate">Loading</span>
+                </span>
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span id="headerLocation">Loading</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Featured Banner Image -->
+        <div id="imageContainer" class="mb-12 relative rounded-2xl overflow-hidden shadow-md border border-slate-100 bg-white hidden">
+            <div id="livestreamBadge" class="absolute top-4 right-4 bg-indigo-600 text-white px-3.5 py-1.5 font-bold tracking-wide uppercase text-[10px] rounded-full shadow-sm hidden">
+                Live Now
+            </div>
+            <img id="eventImage" src="" alt="Event Banner" class="w-full h-auto object-cover max-h-[440px] hover:scale-[1.005] transition-transform duration-500 ease-in-out" />
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 text-sm font-semibold text-slate-500 flex flex-wrap justify-between items-center gap-2">
+                <span>Photography by TinkerHub AWC</span>
+            </div>
+        </div>
+
+        <!-- Grid Content Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start pb-12">
+            
+            <!-- Left: Description and Expectations -->
+            <div class="lg:col-span-2 space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-slate-150 shadow-sm">
+                <div id="eventDescription" class="prose prose-slate max-w-none text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
+                    Loading description...
+                </div>
+            </div>
+
+            <!-- Right: Info Panel & Action CTA -->
+            <div class="space-y-6">
+                <!-- Info Card -->
+                <div class="bg-white border border-slate-150 shadow-sm rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-slate-900 mb-5 pb-3 border-b border-slate-100">Event Info</h3>
+                    <div class="space-y-5 text-slate-700">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Date</p>
+                                <p id="infoDate" class="font-semibold text-slate-800">Loading</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Time</p>
+                                <p id="infoTime" class="font-semibold text-slate-800">Loading</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Location</p>
+                                <p id="infoLocation" class="font-semibold text-slate-800 text-sm">Loading</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="registrationContainer" class="bg-white border border-slate-150 shadow-sm rounded-2xl p-6 text-center hidden">
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Ready to join?</h4>
+                    <p class="text-sm text-slate-500 mb-5 font-medium">Secure your spot before tickets run out.</p>
+                    <button id="registerBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 shadow-sm shadow-indigo-100 hover:shadow-md">
+                        REGISTER NOW
+                    </button>
+                    <p id="registrationCountText" class="text-xs text-slate-500 font-bold mt-4 hidden"></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <div id="loadingState" class="flex-grow flex items-center justify-center py-24">
+        <p class="text-lg font-bold text-slate-500 animate-pulse">Loading Event Details...</p>
+    </div>
+
+    <div id="errorState" class="flex-grow flex items-center justify-center py-24 hidden">
+        <p class="text-lg font-bold text-red-500">Event not found.</p>
+    </div>
+
+    <script type="module">
+        import { db, auth } from "./firebase.js";
+        import { doc, getDoc, collection, getCountFromServer, query, where, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        let currentUser = null;
+        let currentEvent = null;
+        let eventDateStr = "TBA";
+        let isChecking = false;
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+        });
+        async function loadEventDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const eventId = params.get("id");
+
+            const mainContainer = document.getElementById("mainContainer");
+            const loadingState = document.getElementById("loadingState");
+            const errorState = document.getElementById("errorState");
+
+            if (!eventId) {
+                loadingState.classList.add("hidden");
+                errorState.classList.remove("hidden");
+                errorState.innerHTML = `<p class="text-lg font-bold text-red-500">No event ID provided.</p>`;
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "events", eventId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const event = docSnap.data();
+
+                    // Elements
+                    document.getElementById("eventTitle").textContent = event.title || "Untitled Event";
+                    
+                    document.getElementById("headerLocation").textContent = event.location || "TBA";
+                    document.getElementById("infoLocation").textContent = event.location || "TBA";
+                    document.getElementById("infoTime").textContent = event.time || "TBA";
+                    
+                    document.getElementById("eventDescription").textContent = event.description || "";
+
+                    const status = (event.status || "").toLowerCase();
+                    document.getElementById("headerStatus").textContent = status ? status.charAt(0).toUpperCase() + status.slice(1) : "Unknown";
+
+                    // Date Parsing
+                    let dateStr = "TBA";
+                    if (event.date) {
+                        const d = new Date(event.date);
+                        if (!isNaN(d.getTime())) {
+                            dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+                            document.getElementById("infoDate").textContent = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                        }
+                    }
+                    document.getElementById("headerDate").textContent = dateStr;
+
+                    // Image
+                    if (event.imageUrl) {
+                        const imgEl = document.getElementById("eventImage");
+                        imgEl.src = event.imageUrl;
+                        document.getElementById("imageContainer").classList.remove("hidden");
+                    }
+
+                    if (status === "live") {
+                        document.getElementById("livestreamBadge").classList.remove("hidden");
+                    }
+
+                    currentEvent = event;
+                    eventDateStr = dateStr;
+                    // Registration Logic
+                    document.getElementById("registrationContainer").classList.remove("hidden");
+                    const registerBtn = document.getElementById("registerBtn");
+                    const countText = document.getElementById("registrationCountText");
+                    
+                    const maxParticipants = event.maxParticipants || 50;
+                    
+                    const countSnap = await getCountFromServer(query(collection(db, "registrations"), where("eventId", "==", eventId)));
+                    const currentCount = countSnap.data().count;
+                    
+                    countText.textContent = `${currentCount} / ${maxParticipants} Spots Filled`;
+                    countText.classList.remove("hidden");
+
+                    if (status === "completed") {
+                        registerBtn.textContent = "EVENT COMPLETED";
+                        registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                        registerBtn.disabled = true;
+                    } else if (status === "live") {
+                        registerBtn.textContent = "EVENT LIVE";
+                        registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                        registerBtn.disabled = true;
+                    } else if (status === "cancelled") {
+                        registerBtn.textContent = "EVENT CANCELLED";
+                        registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                        registerBtn.disabled = true;
+                    } else if (event.registrationOpen === false) {
+                        registerBtn.textContent = "REGISTRATION CLOSED";
+                        registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                        registerBtn.disabled = true;
+                    } else if (currentCount >= maxParticipants) {
+                        registerBtn.textContent = "EVENT FULL";
+                        registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                        registerBtn.disabled = true;
+                    } else {
+                        registerBtn.addEventListener("click", () => handleRegistration(eventId));
+                        
+                        const checkExisting = async (user) => {
+                            if (!user) return;
+                            const regRef = doc(db, "registrations", `${eventId}_${user.uid}`);
+                            const regSnap = await getDoc(regRef);
+                            if (regSnap.exists()) {
+                                showSuccessMessage(event.title, eventDateStr);
+                            }
+                        };
+                        
+                        if (currentUser) {
+                            checkExisting(currentUser);
+                        } else {
+                            onAuthStateChanged(auth, (user) => {
+                                checkExisting(user);
+                            });
+                        }
+                    }
+
+                    // Reveal Content
+                    loadingState.classList.add("hidden");
+                    mainContainer.classList.remove("hidden");
+
+                } else {
+                    loadingState.classList.add("hidden");
+                    errorState.classList.remove("hidden");
+                }
+            } catch (error) {
+                console.error("Error fetching event details:", error);
+                loadingState.classList.add("hidden");
+                errorState.classList.remove("hidden");
+                errorState.innerHTML = `<p class="text-lg font-bold text-red-500">Error loading event details.</p>`;
+            }
+        }
+
+        loadEventDetails();
+
+        async function handleRegistration(eventId) {
+            if (isChecking) return;
+            
+            if (!auth.currentUser) {
+                window.location.href = `join.html?redirect=${encodeURIComponent(window.location.href)}`;
+                return;
+            }
+
+            isChecking = true;
+            const registerBtn = document.getElementById("registerBtn");
+            const originalText = registerBtn.textContent;
+            registerBtn.textContent = "PROCESSING...";
+            registerBtn.disabled = true;
+
+            try {
+                const user = auth.currentUser;
+                const regId = `${eventId}_${user.uid}`;
+                const regRef = doc(db, "registrations", regId);
+                const regSnap = await getDoc(regRef);
+
+                if (regSnap.exists()) {
+                    showSuccessMessage(currentEvent.title, eventDateStr);
+                    return;
+                }
+
+                const countSnap = await getCountFromServer(query(collection(db, "registrations"), where("eventId", "==", eventId)));
+                if (countSnap.data().count >= (currentEvent.maxParticipants || 50)) {
+                    registerBtn.textContent = "REGISTRATION FULL";
+                    registerBtn.classList.add("opacity-50", "cursor-not-allowed");
+                    return;
+                }
+
+                let userName = user.displayName;
+                if (!userName) {
+                    const memberDoc = await getDoc(doc(db, "members", user.uid));
+                    if (memberDoc.exists()) userName = memberDoc.data().name;
+                }
+                if (!userName) userName = "Member";
+
+                await setDoc(regRef, {
+                    eventId: eventId,
+                    userId: user.uid,
+                    userName: userName,
+                    userEmail: user.email,
+                    registeredAt: serverTimestamp(),
+                    status: "registered"
+                });
+
+                showSuccessMessage(currentEvent.title, eventDateStr);
+
+            } catch (error) {
+                console.error("Registration error:", error);
+                alert("An error occurred during registration. Please try again.");
+                registerBtn.textContent = originalText;
+                registerBtn.disabled = false;
+            } finally {
+                isChecking = false;
+            }
+        }
+
+        function showSuccessMessage(title, dateStr) {
+            const container = document.getElementById("registrationContainer");
+            container.innerHTML = `
+                <h4 class="text-xl font-bold text-indigo-600 mb-2">You're Registered!</h4>
+                <p class="text-sm text-slate-800 font-bold">${title}</p>
+                <p class="text-sm text-slate-500 font-medium mt-1">See you on ${dateStr}!</p>
+                <button disabled class="mt-5 w-full bg-slate-200 text-slate-500 font-bold py-3.5 px-6 rounded-xl cursor-not-allowed">
+                    REGISTERED
+                </button>
+            `;
+        }
+    </script>
+</body>
+</html>

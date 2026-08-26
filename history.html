@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event History — Tinker Times</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#f4f4f0",
+                        ink: "#111111",
+                        pastelYellow: "#FFF73A",
+                        pastelPink: "#FFB5D8",
+                        pastelBlue: "#B5E5F9",
+                        pastelGreen: "#C3FF16",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f4f0;
+            background-image:
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans text-ink">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-ink px-6 py-4 flex items-center justify-between">
+        <a href="main.html#tinkertimes" class="group inline-flex items-center gap-2 font-bold uppercase tracking-wider text-sm hover:text-gray-600 transition-colors duration-200">
+            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to Times
+        </a>
+        <span class="text-xl font-display font-black uppercase tracking-widest bg-pastelYellow px-2 border-2 border-ink shadow-[2px_2px_0px_#111]">Archives</span>
+        <div class="w-24"></div> <!-- visual balance offset -->
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 py-12">
+        <div class="mb-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-display font-black uppercase tracking-tight mb-4">Event History</h1>
+            <p class="font-bold uppercase tracking-widest text-sm bg-pastelBlue inline-block px-2 border-2 border-ink">Every completed event at TinkerHub AWC</p>
+        </div>
+
+        <div id="historyList" class="flex flex-col gap-6 bg-white border-4 border-ink p-8 shadow-[8px_8px_0px_#111]">
+            <p class="text-center font-bold uppercase py-8 animate-pulse">Loading Archives...</p>
+        </div>
+    </main>
+
+    <script type="module">
+        import { db } from "./firebase.js";
+        import { collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        const historyList = document.getElementById("historyList");
+
+        async function loadHistory() {
+            try {
+                // Fetch only completed events, or we fetch all and filter client side
+                const snapshot = await getDocs(collection(db, "events"));
+                const events = [];
+                snapshot.forEach((doc) => {
+                    events.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Filter and sort client-side to avoid needing compound indexes initially
+                const completedEvents = events.filter(e => (e.status || "").toLowerCase() === "completed");
+                completedEvents.sort((a, b) => {
+                    const dateA = a.date ? new Date(a.date).getTime() : 0;
+                    const dateB = b.date ? new Date(b.date).getTime() : 0;
+                    return dateB - dateA; // Descending (newest first)
+                });
+
+                if (completedEvents.length === 0) {
+                    historyList.innerHTML = `
+                        <div class="text-center py-12">
+                            <p class="font-display text-2xl font-bold uppercase">No history available yet.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                historyList.innerHTML = ""; // clear loading
+                
+                completedEvents.forEach(event => {
+                    let dateStr = "TBA";
+                    if (event.date) {
+                        const d = new Date(event.date);
+                        dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+                    }
+
+                    const html = \`
+                        <a href="event-details.html?id=\${event.id}"
+                            class="block group cursor-pointer border-b-2 border-ink border-dashed pb-6 last:border-b-0 last:pb-0 hover:bg-gray-50 transition-colors p-4 -mx-4 rounded-lg">
+                            <h4
+                                class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4 mb-2">
+                                \${event.title}</h4>
+                            <p class="font-sans text-sm text-gray-800 font-medium leading-relaxed mb-4">\${event.description || ""}</p>
+                            <div class="flex justify-between items-center mt-3">
+                                <span class="font-sans text-xs text-ink font-bold uppercase bg-pastelGreen border-2 border-ink px-2 py-1">\${dateStr}</span>
+                                <span
+                                    class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
+                            </div>
+                        </a>
+                    \`;
+                    historyList.insertAdjacentHTML('beforeend', html);
+                });
+
+            } catch (error) {
+                console.error("Error loading history:", error);
+                historyList.innerHTML = \`<div class="text-center text-red-600 font-bold py-8 uppercase">Failed to load history. Please try again later.</div>\`;
+            }
+        }
+
+        loadHistory();
+    </script>
+</body>
+</html>

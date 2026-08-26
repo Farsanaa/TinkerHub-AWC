@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fidha Nawal | Faculty Coordinator | TinkerHub AWC</title>
+  <meta name="description"
+    content="Fidha Nawal is the Faculty Coordinator of TinkerHub AWC at Ansar Women’s College, guiding students, fostering innovation, and supporting a vibrant community of learning, building, and collaboration." />
+  <meta name="author" content="TinkerHub AWC" />
+  <meta name="keywords"
+    content="Fidha Nawal, Faculty Coordinator, TinkerHub AWC, Ansar Women’s College, TinkerHub, student community, technology, innovation, mentorship, workshops, hackathons, learning, maker community" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Fidha Nawal | Faculty Coordinator | TinkerHub AWC" />
+  <meta property="og:description"
+    content="Fidha Nawal is the Faculty Coordinator of TinkerHub AWC at Ansar Women’s College, guiding students, fostering innovation, and supporting a vibrant community of learning, building, and collaboration." />
+  <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700;800;900&family=Angkor&family=Luckiest+Guy&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ===========================
+       DESIGN TOKENS
+    =========================== */
+    :root {
+      --bg-page: #ffffff;
+      --bg-card: #ffffff;
+      --primary: #3c007b;
+      --accent: #de7afb;
+      --white: #ffffff;
+      --card-dark: #f3adf8;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --border-radius-lg: 32px;
+      --border-radius-md: 20px;
+      --border-radius-sm: 12px;
+
+      --shadow-sm: 0 4px 12px rgba(60, 0, 123, 0.04);
+      --shadow-md: 0 8px 24px rgba(60, 0, 123, 0.08);
+      --shadow-lg: 0 16px 40px rgba(60, 0, 123, 0.12);
+      --shadow-xl: 0 24px 64px rgba(60, 0, 123, 0.16);
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #ffffff;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+      background-size: 50px 50px;
+      color: var(--primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    /* ===========================
+       CONTAINER CARD
+    =========================== */
+    .portfolio-container {
+      width: 100%;
+      max-width: 1240px;
+      background: transparent;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===========================
+       NAVBAR
+    =========================== */
+    .navbar {
+      position: sticky;
+      top: 30px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 60px;
+      transition: var(--transition);
+      margin: 2rem 4rem;
+      box-shadow: 0 12px 40px rgba(60, 0, 123, 0.08);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-brand-text {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(60, 0, 123, 0.65);
+      transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      width: 52px;
+      height: 28px;
+      background: var(--primary);
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-thumb {
+      width: 22px;
+      height: 22px;
+      background: var(--white);
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--primary);
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 1.4rem;
+      background: var(--primary);
+      color: var(--white) !important;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 999px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-nav:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(222, 122, 251, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--primary);
+      display: block;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid rgba(60, 0, 123, 0.08);
+      padding: 1.5rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.9rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      border-radius: 12px;
+      background: rgba(60, 0, 123, 0.03);
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* ===========================
+       HERO SECTION — Inspired by reference
+    =========================== */
+    .hero {
+      height: 200vh;
+      background: transparent;
+      position: relative;
+    }
+
+    .hero-sticky-container {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 76px);
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Intro Annotation Layers */
+    .hero-intro-layer {
+      position: absolute;
+      top: 50%;
+      z-index: 4;
+      /* Behind the image which is z-index 10 */
+      display: flex;
+      gap: 15px;
+      will-change: transform, opacity, filter;
+      transform: translateY(-50%);
+    }
+
+    .hero-intro-left {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-intro-right {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-intro-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+
+    .intro-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .intro-role {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.8;
+      background: rgba(222, 122, 251, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .intro-arrow {
+      width: 60px;
+      height: 60px;
+      margin-bottom: -10px;
+    }
+
+    .hero-content-layout {
+      width: 100%;
+      padding: 0 4rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Left content */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      z-index: 5;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Big bold title like reference "VISUAL DESIGNER" */
+    .hero-title {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: clamp(4.5rem, 9vw, 8rem);
+      font-weight: normal;
+      line-height: 0.92;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 0.02em;
+      user-select: none;
+      position: relative;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+      cursor: default;
+      transform-origin: center bottom;
+      will-change: transform;
+      position: relative;
+    }
+
+    .hero-title span:hover {
+      color: var(--accent);
+      text-shadow: 0 0 30px rgba(222, 122, 251, 0.35);
+    }
+
+    /* Decorative star like reference */
+      .hero-star {
+      position: absolute;
+      top: -8px;
+      right: -50px;
+      width: 48px;
+      height: 48px;
+      color: var(--primary);
+      font-size: 2.8rem;
+      animation: starSpin 10s linear infinite;
+      line-height: 1;
+    }
+    @keyframes starSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Accent name — gradient like reference "BalaluDESIGN" */
+    .hero-name-accent {
+      font-family: var(--font-body);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent) 0%, #c44de6 50%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* Social icons row — like reference circle icons */
+    .hero-socials {
+      display: flex;
+      gap: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-social-link {
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: var(--transition);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero-social-link:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(60, 0, 123, 0.2);
+    }
+
+    .hero-social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Download CV bar — like reference dark pill bar */
+    .hero-cv-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 1rem 2.2rem;
+      background: var(--primary);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(60, 0, 123, 0.15);
+    }
+
+    .hero-cv-bar:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 35px rgba(222, 122, 251, 0.3);
+    }
+
+    .hero-cv-bar svg {
+      transition: transform 0.3s ease;
+    }
+
+    .hero-cv-bar:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Right side — Image card like reference rounded square */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      will-change: transform;
+    }
+
+    /* Hero, Placeholder, and Flying Card shared layout to prevent congestion */
+    .hero-image-card,
+    .about-card-placeholder,
+    .flying-card {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-card {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 3 / 4;
+      position: relative;
+      /* top: -px; */
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 24px 60px rgba(60, 0, 123, 0.25));
+    }
+
+    .hero-image-card img,
+    .about-card-placeholder img,
+    .flying-card img {
+      width: 100%;
+      height: 80%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .hero-image-card img {
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      transform-origin: center center;
+    }
+
+    .hero-image-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-image-card:hover {
+      transform: translateY(-8px);
+      filter: drop-shadow(0 35px 80px rgba(60, 0, 123, 0.4));
+    }
+
+    /* ===========================
+       FLYING CARD (scroll-driven clone)
+    =========================== */
+    .flying-card {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99999;
+      pointer-events: none;
+      transform-style: preserve-3d;
+      will-change: transform, left, top, width, height;
+      backface-visibility: hidden;
+      transition: filter 0.25s ease;
+    }
+
+    /* Hide original hero card once flying card is active */
+    .hero-image-card.card-hidden {
+      opacity: 0;
+    }
+
+    /* ===========================
+       TICKER
+    =========================== */
+    .ticker {
+      background: var(--primary);
+      padding: 1.1rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ticker-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0 2rem;
+    }
+
+    .ticker-item .sep {
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===========================
+       SECTIONS - SHARED
+    =========================== */
+    .section {
+      padding: 5.5rem 4rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(60, 0, 123, 0.12);
+    }
+
+    /* ===========================
+       ABOUT SECTION — Simplified
+    =========================== */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+    }
+
+    .about-text-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .about-greeting {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .about-role {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .about-desc {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(60, 0, 123, 0.72);
+    }
+
+    .about-desc strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .about-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--primary);
+      border: 1px solid rgba(60, 0, 123, 0.15);
+      border-radius: 999px;
+      background: rgba(222, 122, 251, 0.06);
+      transition: var(--transition);
+    }
+
+    .about-tag:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* Card landing zone on the right */
+    .about-card-side {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 5rem; /* Land a bit more top */
+    }
+
+    /* Placeholder for where the card lands */
+    .about-card-placeholder {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 3 / 4;
+      /* invisible until card lands */
+      opacity: 0;
+      filter: drop-shadow(0 24px 60px rgba(60, 0, 123, 0.25));
+    }
+
+    .about-card-placeholder.landed {
+      opacity: 1;
+    }
+
+    /* ===========================
+       GLASSMORPHISM FLOATING MESSAGES
+    =========================== */
+    .floating-messages {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 440px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .glass-msg {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 24px;
+      padding: 0.9rem 1.3rem;
+      box-shadow: 0 8px 32px rgba(60, 0, 123, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      max-width: 185px;
+      z-index: 20;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .about-card-side.landed .glass-msg {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .about-card-side.landed .glass-msg-1 {
+      transition-delay: 0.1s;
+    }
+
+    .about-card-side.landed .glass-msg-2 {
+      transition-delay: 0.3s;
+    }
+
+    .about-card-side.landed .glass-msg-3 {
+      transition-delay: 0.5s;
+    }
+
+    .glass-msg:hover {
+      transform: scale(1.05) !important;
+      box-shadow: 0 12px 40px rgba(60, 0, 123, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .glass-msg-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .glass-msg-text {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--primary);
+      line-height: 1.45;
+    }
+
+    .glass-msg-author {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: rgba(60, 0, 123, 0.5);
+      margin-top: 0.35rem;
+    }
+
+    /* Floating animation - perfectly surrounding card inside site container boundaries */
+    .glass-msg-1 {
+      top: 20px;
+      left: 15px;
+      animation: floatMsg1 6s ease-in-out infinite;
+    }
+
+    .glass-msg-2 {
+      top: 45%;
+      right: -15px;
+      animation: floatMsg2 7s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+
+    .glass-msg-3 {
+      bottom: 20px;
+      left: 20px;
+      animation: floatMsg3 5.5s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    @keyframes floatMsg1 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-14px) rotate(2deg);
+      }
+    }
+
+    @keyframes floatMsg2 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-18px) rotate(-2deg);
+      }
+    }
+
+    @keyframes floatMsg3 {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1.5deg);
+      }
+    }
+
+    /* ===========================
+       BACKGROUND SECTION
+    =========================== */
+    .info-section {
+      background: linear-gradient(150deg, var(--primary) 0%, #200047 100%);
+      padding: 5.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(222, 122, 251, 0.12) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .info-section .section-title {
+      color: var(--white);
+    }
+
+    .info-section .section-line {
+      background: rgba(222, 122, 251, 0.2);
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid rgba(60, 0, 123, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(222, 122, 251, 0.2);
+    }
+
+    .info-card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(222, 122, 251, 0.12);
+      color: var(--primary);
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      font-size: 1.4rem;
+    }
+
+    .info-card .card-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .info-card .card-value {
+      font-family: var(--font-body);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    /* ===========================
+       ACTIVITIES SECTION
+    =========================== */
+    .activities-section {
+      padding: 5.5rem 4rem;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .activity-card {
+      background: var(--white);
+      border: 1px solid rgba(60, 0, 123, 0.1);
+      box-shadow: var(--shadow-md);
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(222, 122, 251, 0.4);
+    }
+
+    .activity-card.highlight-card {
+      background: linear-gradient(135deg, rgba(222, 122, 251, 0.06) 0%, rgba(60, 0, 123, 0.02) 100%);
+    }
+
+    .activity-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .activity-card:hover .activity-icon {
+      background: var(--accent);
+      transform: rotate(6deg);
+    }
+
+    .act-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .act-title {
+      font-family: var(--font-body);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .act-body {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(60, 0, 123, 0.75);
+    }
+
+    /* ===========================
+       CONNECT SECTION
+    =========================== */
+    .social-section {
+      background: linear-gradient(135deg, rgba(222, 122, 251, 0.04) 0%, rgba(60, 0, 123, 0.02) 100%);
+      padding: 5.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.9rem 1.8rem;
+      border: 2px solid var(--primary);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      background: var(--primary);
+      color: var(--white) !important;
+      box-shadow: 0 10px 25px rgba(60, 0, 123, 0.15);
+    }
+
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(60, 0, 123, 0.08);
+      color: var(--primary);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover .social-icon {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: var(--primary);
+      padding: 2.5rem 4rem;
+      color: var(--white);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .footer-powered {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .footer-powered span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ===========================
+       SCROLL REVEAL
+    =========================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===========================
+       RESPONSIVE - TABLET
+    =========================== */
+    @media (max-width: 900px) {
+      body {
+        padding: 20px 12px;
+      }
+
+      .portfolio-container {
+        border-radius: var(--border-radius-md);
+      }
+
+      .navbar {
+        padding: 0 1.5rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 2rem;
+        gap: 32px;
+        text-align: center;
+        min-height: auto;
+      }
+
+      .hero-left {
+        align-items: center;
+      }
+
+      .hero-title {
+        font-size: clamp(3.5rem, 10vw, 5.5rem);
+      }
+
+      .hero-name-accent {
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-socials {
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-star {
+        display: none;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-image-card {
+        max-width: 300px;
+        top: -10px;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-card-side {
+        min-height: 380px;
+        order: -1;
+      }
+
+      .about-card-placeholder {
+        max-width: 280px;
+      }
+
+      .glass-msg-1 {
+        right: 0;
+      }
+
+      .glass-msg-2 {
+        right: 0;
+      }
+
+      .glass-msg-3 {
+        left: 0;
+      }
+
+      .info-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3.5rem 2rem;
+      }
+
+      .info-section {
+        padding: 3.5rem 2rem;
+      }
+
+      .activities-section {
+        padding: 3.5rem 2rem;
+      }
+
+      .social-section {
+        padding: 3.5rem 2rem;
+      }
+    }
+
+    /* ===========================
+       RESPONSIVE - MOBILE
+    =========================== */
+    @media (max-width: 640px) {
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .info-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .social-btn {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="portfolio-container">
+
+    <!-- ========================
+         NAVBAR
+    ========================= -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-brand">
+        <img src="images/awc tinkerhub logo-og.png" alt="TinkerHub Logo" style="height:30px;width:auto;">
+        <span class="nav-brand-text">TinkerHub AWC</span>
+      </div>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="main.html" class="btn-nav" style="background: transparent; color: var(--primary) !important; border: 2px solid var(--primary); padding: 0.45rem 1.2rem;">Go Back</a>
+        <a href="#connect" class="btn-nav">Connect</a>
+      </div>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+      <a href="main.html" style="color: var(--accent);">← Go Back</a>
+      <a href="#hero" onclick="closeMobileMenu()">Home</a>
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#background" onclick="closeMobileMenu()">Background</a>
+      <a href="#activities" onclick="closeMobileMenu()">Activities</a>
+      <a href="#connect" onclick="closeMobileMenu()">Connect</a>
+    </div>
+
+    <!-- ========================
+         HERO SECTION
+    ========================= -->
+    <main>
+      <section class="hero" id="hero" aria-labelledby="hero-name">
+        <div class="hero-sticky-container">
+          <!-- Intro Annotation Layers -->
+          <div class="hero-intro-layer hero-intro-left">
+            <svg class="intro-arrow" viewBox="0 0 100 100" fill="none">
+              <path d="M10,90 Q40,10 90,40" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"
+                fill="none" />
+              <path d="M80,25 L90,40 L70,45" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" />
+            </svg>
+            <div class="hero-intro-text">
+              <span class="intro-name">Fidha Nawal</span>
+            </div>
+          </div>
+
+          <div class="hero-intro-layer hero-intro-right">
+            <svg class="intro-arrow" viewBox="0 0 100 100" fill="none">
+              <path d="M90,90 Q60,10 10,40" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"
+                fill="none" />
+              <path d="M20,25 L10,40 L30,45" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" />
+            </svg>
+            <div class="hero-intro-text">
+              <span class="intro-role">Faculty Coordinator</span>
+            </div>
+          </div>
+
+          <div class="hero-content-layout">
+            <!-- Left: Bold text -->
+            <div class="hero-left">
+              <h1 class="hero-title">
+                <span>F</span><span>A</span><span>C</span><span>U</span><span>L</span><span>T</span><span>Y</span>
+                <br>
+                <span>C</span><span>O</span>
+              </h1>
+              <div class="hero-star">✦</div>
+              <div class="hero-name-accent">Fidha Nawal</div>
+
+              <!-- Social icons -->
+              <div class="hero-socials">
+                <a href="https://www.linkedin.com/in/farsaana-fathima/" class="hero-social-link" aria-label="LinkedIn"
+                  target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/farsaena/" class="hero-social-link" aria-label="Instagram"
+                  target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                  </svg>
+                </a>
+                <a href="#" class="hero-social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                </a>
+                <a href="mailto:example@" class="hero-social-link" aria-label="Email">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Download CV / Connect bar -->
+              <a href="#connect" class="hero-cv-bar">
+                Connect with Fidha Nawal
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12h8M12 8l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Right: Image card -->
+            <div class="hero-right">
+              <div class="hero-image-card">
+                <img src="images/CAMPUS_LEAD-removebg-preview.png" alt="Fidha Nawal — Faculty Coordinator at TinkerHub AWC" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================
+           TICKER MARQUEE
+      ========================= -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-inner">
+          <span class="ticker-item">Faculty Coordinator <span class="sep">✦</span></span>
+          <span class="ticker-item">TinkerHub AWC <span class="sep">✦</span></span>
+          <span class="ticker-item">Computer Science <span class="sep">✦</span></span>
+          <span class="ticker-item">Core Team<span class="sep">✦</span></span>
+          <span class="ticker-item">Campus Community <span class="sep">✦</span></span>
+          <span class="ticker-item">Building <span class="sep">✦</span></span>
+          <span class="ticker-item">Fidha Nawal <span class="sep">✦</span></span>
+          <span class="ticker-item">Faculty Coordinator <span class="sep">✦</span></span>
+          <span class="ticker-item">TinkerHub AWC <span class="sep">✦</span></span>
+          <span class="ticker-item">Computer Science <span class="sep">✦</span></span>
+          <span class="ticker-item">Core Team<span class="sep">✦</span></span>
+          <span class="ticker-item">Campus Community <span class="sep">✦</span></span>
+          <span class="ticker-item">Learning<span class="sep">✦</span></span>
+          <span class="ticker-item">Fidha Nawal <span class="sep">✦</span></span>
+        </div>
+      </div>
+
+      <!-- ========================
+           ABOUT SECTION
+      ========================= -->
+      <section id="about" class="section" aria-labelledby="about-title">
+        <div class="section-header">
+          <h2 class="section-title" id="about-title">About</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="about-layout">
+          <!-- Left: Text content -->
+          <div class="about-text-side reveal">
+            <div class="about-greeting">Hello, I'm</div>
+            <div class="about-name">Fidha Nawal</div>
+            <div class="about-role">Faculty Coordinator — TinkerHub AWC</div>
+                        <p class="about-desc">
+              Serving as the <strong>Faculty Coordinator of TinkerHub AWC at Ansar Women’s College</strong>, Fidha Nawal helps guide and nurture a student-driven community built around technology, creativity, curiosity, and collaboration.
+            </p>
+            <p class="about-desc">
+              Her role extends beyond coordination. She mentors students, facilitates learning opportunities, supports workshops, study jams, hackathons, and community initiatives, and encourages students to transform their ideas into real projects. By creating a space where students are encouraged to experiment, ask questions, build together, and learn from one another, she helps strengthen the culture of making and continuous learning on campus.
+            </p>
+            <p class="about-desc">
+              Through TinkerHub AWC, she works alongside students to create opportunities beyond the traditional classroom — connecting learning with experimentation, community, and real-world problem solving.
+            </p>
+                        <div class="about-tags">
+              <span class="about-tag">Faculty Coordinator</span>
+              <span class="about-tag">TinkerHub AWC</span>
+              <span class="about-tag">Ansar Women’s College</span>
+              <span class="about-tag">Mentorship</span>
+              <span class="about-tag">Community Leadership</span>
+              <span class="about-tag">Student Empowerment</span>
+            </div>
+          </div>
+
+          <!-- Right: Card landing zone + floating messages -->
+          <div class="about-card-side" id="aboutCardZone">
+            <div class="about-card-placeholder" id="aboutCardPlaceholder">
+              <img src="images/CAMPUS_LEAD-removebg-preview.png" alt="Fidha Nawal — Faculty Coordinator at TinkerHub AWC, Ansar Women’s College" />
+            </div>
+
+            <!-- Glassmorphism floating messages -->
+            <div class="floating-messages">
+              <div class="glass-msg glass-msg-1">
+                <div class="glass-msg-icon">🚀</div>
+                <div class="glass-msg-text">"Let's build something amazing together!"</div>
+                <div class="glass-msg-author">— Fidha Nawal</div>
+              </div>
+              <div class="glass-msg glass-msg-2">
+                <div class="glass-msg-icon">💡</div>
+                <div class="glass-msg-text">"Curiosity is the engine of innovation."</div>
+                <div class="glass-msg-author">— TinkerHub</div>
+              </div>
+              <div class="glass-msg glass-msg-3">
+                <div class="glass-msg-icon">✨</div>
+                <div class="glass-msg-text">"Every great project starts with a small idea."</div>
+                <div class="glass-msg-author">— Faculty Coordinator</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+
+      
+      <section id="connect" class="social-section" aria-labelledby="connect-title">
+        <div style="max-width:1100px;margin:0 auto;">
+          <div class="section-header">
+            <h2 class="section-title" id="connect-title">Connect</h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="social-grid">
+          <a href="https://www.linkedin.com/in/farsaana-fathima/" class="social-btn reveal"
+            aria-label="Connect on LinkedIn" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon" aria-hidden="true">in</div>
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/farsaena/?utm_source=ig_web_button_share_sheet" class="social-btn reveal"
+            aria-label="Follow on Instagram" style="transition-delay:0.1s;" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon" aria-hidden="true">ig</div>
+            Instagram
+          </a>
+          <a href="#" class="social-btn reveal" aria-label="View GitHub profile" style="transition-delay:0.2s;"
+            target="_blank" rel="noopener noreferrer">
+            <div class="social-icon" aria-hidden="true">&lt;/&gt;</div>
+            GitHub
+          </a>
+          <a href="mailto:example@" class="social-btn reveal" aria-label="Send email"
+            style="transition-delay:0.3s;">
+            <div class="social-icon" aria-hidden="true">✉</div>
+            Email
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================
+         FOOTER
+    ========================= -->
+    <footer>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 TinkerHub AWC. All rights reserved.</span>
+        <span class="footer-powered">Powered by <span>TinkerHub AWC</span></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================
+       JAVASCRIPT
+  ========================= -->
+  <script type="module">
+    /* ---- Hamburger Menu ---- */
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+
+    hamburgerBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('open', menuOpen);
+      hamburgerBtn.setAttribute('aria-expanded', String(menuOpen));
+    });
+
+    function closeMobileMenu() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    /* ---- Smooth wave-ripple letter hover ---- */
+    const letters = document.querySelectorAll('.hero-title span');
+    const lettersArr = Array.from(letters);
+
+    function animateLetters(hoveredIndex) {
+      lettersArr.forEach((l, i) => {
+        const dist = Math.abs(i - hoveredIndex);
+        let scale, color, shadow;
+
+        if (dist === 0) {
+          scale = 1.4;
+          color = '#de7afb';
+          shadow = '0 0 30px rgba(222,122,251,0.35)';
+        } else if (dist === 1) {
+          scale = 1.2;
+          color = '#c060e0';
+          shadow = '0 0 15px rgba(222,122,251,0.15)';
+        } else if (dist === 2) {
+          scale = 1.08;
+          color = 'var(--primary)';
+          shadow = 'none';
+        } else {
+          scale = 1;
+          color = 'var(--primary)';
+          shadow = 'none';
+        }
+
+        l.style.transform = `scale(${scale})`;
+        l.style.color = color;
+        l.style.textShadow = shadow;
+        // Stagger the transition delay for a wave feel
+        l.style.transitionDelay = `${dist * 25}ms`;
+      });
+    }
+
+    function resetLetters() {
+      lettersArr.forEach(l => {
+        l.style.transform = 'scale(1)';
+        l.style.color = 'var(--primary)';
+        l.style.textShadow = 'none';
+        l.style.transitionDelay = '0ms';
+      });
+    }
+
+    lettersArr.forEach((letter, index) => {
+      letter.addEventListener('mouseenter', () => animateLetters(index));
+    });
+
+    document.querySelector('.hero-title').addEventListener('mouseleave', resetLetters);
+
+    /* ---- Scroll Reveal ---- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ---- Navbar shadow on scroll ---- */
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').style.boxShadow =
+        window.scrollY > 20 ? '0 12px 40px rgba(60, 0, 123, 0.08)' : '0 8px 32px rgba(60, 0, 123, 0.05)';
+    }, { passive: true });
+
+    /* ---- Scroll-driven Card Flip & Fall Animation ---- */
+    (function initFlyingCard() {
+      const heroCard = document.querySelector('.hero-image-card');
+      const aboutPlaceholder = document.getElementById('aboutCardPlaceholder');
+      const aboutSection = document.getElementById('about');
+      if (!heroCard || !aboutPlaceholder || !aboutSection) return;
+
+      // Trackers
+      let currentProgress = 0;
+      let lastStableScrollY = window.scrollY;
+      let isScrollingUp = false;
+
+      // Passive scroll/resize listeners as required
+      window.addEventListener('scroll', () => { }, { passive: true });
+      window.addEventListener('resize', () => { }, { passive: true });
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function tick() {
+        const scrollY = window.scrollY;
+
+        // --- 1. HERO SLIDE-OUT ANIMATION ---
+        const vh = window.innerHeight;
+        // The hero animation takes exactly 100vh of scrolling (from 0 to vh)
+        let heroTarget = Math.max(0, Math.min(1, scrollY / vh));
+        const heroEased = easeInOutCubic(heroTarget);
+
+        const heroLeft = document.querySelector('.hero-left');
+        const heroRight = document.querySelector('.hero-right');
+        const heroIntroL = document.querySelector('.hero-intro-left');
+        const heroIntroR = document.querySelector('.hero-intro-right');
+
+        if (heroLeft && heroRight) {
+          // Main text slides out from right to left
+          heroLeft.style.transform = `translateX(${(1 - heroEased) * 100}%)`;
+          heroLeft.style.opacity = heroEased;
+          heroLeft.style.filter = `blur(${(1 - heroEased) * 10}px)`;
+
+          // Image slides from slightly right of center to far right
+          heroRight.style.transform = `translateX(${(1 - heroEased) * -22}vw)`;
+        }
+
+        if (heroIntroL) {
+          heroIntroL.style.left = '50%';
+          heroIntroL.style.transform = `translate(-50%, -50%) translateX(${-25 + (heroEased * 25)}vw)`;
+          heroIntroL.style.opacity = 1 - heroEased;
+          heroIntroL.style.filter = `blur(${heroEased * 10}px)`;
+        }
+        if (heroIntroR) {
+          heroIntroR.style.left = '50%';
+          heroIntroR.style.transform = `translate(-50%, -50%) translateX(${25 - (heroEased * 25)}vw)`;
+          heroIntroR.style.opacity = 1 - heroEased;
+          heroIntroR.style.filter = `blur(${heroEased * 10}px)`;
+        }
+
+        // --- 2. FLYING CARD ANIMATION ---
+        // We only start this after the hero animation is finished
+        const flyingScrollY = Math.max(0, scrollY - vh);
+
+        // Dynamically get positions every frame (no caching)
+        // Note: since flyingScrollY starts at 0 AFTER hero animation finishes,
+        // heroRect is now perfectly stable at its final hero-right position.
+        const heroRect = heroCard.getBoundingClientRect();
+        const placeholderRect = aboutPlaceholder.getBoundingClientRect();
+
+        const absPlaceholderTop = scrollY + placeholderRect.top;
+
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        // Subtract vh from endScroll calculation since we delayed the start by vh
+        const endScroll = Math.min(maxScroll, absPlaceholderTop - window.innerHeight * 0.25) - vh;
+        const scrollRange = Math.max(100, endScroll);
+
+        // Detect scroll direction with a 15px deadzone to prevent jitter/bounce glitches
+        const delta = flyingScrollY - lastStableScrollY;
+        if (Math.abs(delta) > 15) {
+          isScrollingUp = delta < 0;
+          lastStableScrollY = flyingScrollY;
+        }
+
+        // Force reset direction when back in the hero section
+        if (flyingScrollY <= 5) {
+          isScrollingUp = false;
+        }
+
+        const cardZone = aboutPlaceholder.parentElement;
+
+        // Reset logic for flying card
+        if (flyingScrollY <= 5 || (isScrollingUp && flyingScrollY < scrollRange)) {
+          currentProgress = 0;
+
+          aboutPlaceholder.classList.remove('landed');
+          if (cardZone) cardZone.classList.remove('landed');
+          heroCard.classList.remove('card-hidden');
+
+          const flyingCard = document.querySelector('.flying-card');
+          if (flyingCard) {
+            flyingCard.remove();
+          }
+
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        // Target progress calculation for flying card
+        let targetProgress = flyingScrollY / scrollRange;
+        targetProgress = Math.max(0, Math.min(1, targetProgress));
+
+        // Lerp progress for smooth movement (physics-based weight / inertia)
+        if (Math.abs(targetProgress - currentProgress) > 0.0001) {
+          currentProgress = currentProgress + (targetProgress - currentProgress) * 0.08;
+        } else {
+          currentProgress = targetProgress;
+        }
+
+        const p = currentProgress;
+
+        if (p >= 0.999) {
+          // Landing snap state
+          aboutPlaceholder.classList.add('landed');
+          if (cardZone) cardZone.classList.add('landed');
+          heroCard.classList.add('card-hidden');
+
+          const flyingCard = document.querySelector('.flying-card');
+          if (flyingCard) {
+            flyingCard.remove();
+          }
+        } else if (p <= 0.001) {
+          // Takeoff / start snap state
+          aboutPlaceholder.classList.remove('landed');
+          if (cardZone) cardZone.classList.remove('landed');
+          heroCard.classList.remove('card-hidden');
+
+          const flyingCard = document.querySelector('.flying-card');
+          if (flyingCard) {
+            flyingCard.remove();
+          }
+        } else {
+          // Flight state: show flying card, hide others
+          aboutPlaceholder.classList.remove('landed');
+          if (cardZone) cardZone.classList.remove('landed');
+          heroCard.classList.add('card-hidden');
+
+          let flyingCard = document.querySelector('.flying-card');
+          if (!flyingCard) {
+            flyingCard = document.createElement('div');
+            flyingCard.className = 'flying-card';
+            flyingCard.innerHTML = heroCard.innerHTML;
+            document.body.appendChild(flyingCard);
+          }
+
+          const easedP = easeInOutCubic(p);
+
+          // Viewport start and end coordinates
+          const currentX = lerp(heroRect.left, placeholderRect.left, easedP);
+          const currentY = lerp(heroRect.top, placeholderRect.top, easedP);
+
+          const currentWidth = lerp(heroRect.width, placeholderRect.width, easedP);
+          const currentHeight = lerp(heroRect.height, placeholderRect.height, easedP);
+
+          // Takeoff effects
+          const liftP = Math.sin(Math.pow(p, 0.4) * Math.PI);
+          const liftOffset = -25 * liftP;
+
+          // Flight arc (gravity downward drop)
+          const arcOffset = 100 * Math.sin(p * Math.PI);
+
+          const finalY = currentY + liftOffset + arcOffset;
+
+          // 3D rotations & scale
+          const rotateX = easedP * 360;
+          const rotateY = Math.sin(p * Math.PI) * 28;
+          const rotateZ = Math.sin(p * Math.PI) * -10;
+          const scale = 1 + 0.03 * liftP;
+
+          // Update flying card style properties
+          flyingCard.style.left = currentX + 'px';
+          flyingCard.style.top = finalY + 'px';
+          flyingCard.style.width = currentWidth + 'px';
+          flyingCard.style.height = currentHeight + 'px';
+          flyingCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
+
+          // Interpolate shadow values dynamically
+          const shadowY = 24 + 16 * liftP;
+          const shadowBlur = 60 + 30 * liftP;
+          const shadowOpacity = 0.25 + 0.10 * liftP;
+          flyingCard.style.filter = `drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(60, 0, 123, ${shadowOpacity}))`;
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      // Start loop
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Project Details | TinkerHub AWC</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #ffffff !important;
+            background-image: 
+                linear-gradient(rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(17, 17, 17, 0.04) 1px, transparent 1px) !important;
+            background-size: 34px 34px, 34px 34px !important;
+            margin: 1.5rem !important;
+            padding: 1.5rem !important;
+            border-radius: 2.5rem;
+            border: 1px solid rgba(17, 17, 17, 0.06);
+            box-shadow: 0 10px 30px rgba(17, 17, 17, 0.03);
+            min-height: calc(100vh - 3rem);
+        }
+        @media (max-width: 768px) {
+            body {
+                margin: 0.5rem !important;
+                padding: 0.5rem !important;
+                border-radius: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+    <!-- Back Button -->
+    <div class="mb-8">
+        <a href="main.html#spotlight" class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-bold transition-all text-sm group">
+            <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+            Back to Main Page
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto">
+        <!-- Maker Quick Info -->
+        <div class="flex flex-col md:flex-row items-center gap-10 mb-12 border-b border-pink-100 pb-10">
+            <!-- Landscape Rounded Rectangle Image -->
+            <div class="w-full max-w-[400px] aspect-[2000/1414] rounded-[2.5rem] border-8 border-white shadow-lg overflow-hidden bg-gray-50 flex-shrink-0 transform hover:scale-[1.02] transition-all duration-500">
+                <img id="makerAvatar" src="" class="w-full h-full object-cover" alt="Maker portrait">
+            </div>
+            <div class="text-center md:text-left flex-grow">
+                <h1 id="makerName" class="font-display font-black text-5xl md:text-6xl text-gray-800 tracking-tight mb-2">
+                    AYSHA, FARZANA, AMRITHA
+                </h1>
+                <p id="makerSubtitle" class="text-base md:text-lg font-bold text-pink-600 mb-4">
+                    MINEHACK 2026 | HACKATHON
+                </p>
+                <p id="makerBio" class="text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed mb-6">
+                    Students of S5 CS, passionate about building innovative solutions and contributing to the tech community. Built a Project called Loopit, a student-to-student campus marketplace for buying and selling second-hand academic essentials.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-5 text-sm font-semibold text-gray-500">
+                    <span class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-base">mail</span>
+                        <span id="makerEmail">email@example.com</span>
+                    </span>
+                    <a id="makerGithub" href="#" target="_blank" class="flex items-center gap-1.5 text-pink-600 hover:underline">
+                        <span class="material-symbols-outlined text-base">code</span>
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Details Block -->
+        <div class="bg-pink-50/40 border border-pink-100/50 rounded-3xl p-6 md:p-8 mb-12 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <div>
+                    <span id="projSubtitle" class="text-[9px] font-extrabold uppercase tracking-widest text-pink-500 bg-pink-100/50 px-2.5 py-1 rounded-full border border-pink-200 inline-block mb-2">
+                        Loopit - Student-to-Student Marketplace
+                    </span>
+                    <h2 id="projName" class="font-sans font-black text-2xl md:text-3xl text-gray-800 uppercase tracking-tight">
+                       Date: 31st July 2026
+                    </h2>
+                </div>
+                <div class="flex gap-2">
+                    <span id="projEventHeld" class="bg-white border border-pink-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">
+                        Ansar Women's College Hackathon 2026
+                    </span>
+                    <span id="projPrizeWon" class="bg-pink-100 border border-pink-200 text-pink-700 text-xs font-extrabold px-3 py-1 rounded-full">
+                       Won 1st Prize
+                    </span>
+                </div>
+            </div>
+            <p id="projDesc" class="text-gray-700 leading-relaxed text-sm md:text-base">
+                Loopit is a student-to-student campus marketplace designed to make buying and selling second-hand academic essentials simple, affordable, and sustainable.
+
+Many students have items like textbooks, lab coats, calculators, stationery, and other college essentials that they no longer need. At the same time, junior students often have to buy these items at full price. Loopit bridges this gap by providing a dedicated platform where students within the same college can buy and sell items safely.
+
+            </p>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="border-t border-dashed border-pink-200/50 my-10"></div>
+
+        <!-- Reviews & Comments Section -->
+        <div>
+            <h3 class="font-display font-bold text-2xl text-gray-800 mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-pink-600 text-xl font-bold">chat_bubble</span>
+                Reviews & Comments
+            </h3>
+
+            <!-- Existing Comments List -->
+            <div id="commentsList" class="flex flex-col gap-4 mb-8">
+                <!-- Comments injected dynamically -->
+            </div>
+
+            <!-- Leave a Review Form -->
+            <div class="bg-gray-50 border border-gray-100 rounded-3xl p-6 md:p-8">
+                <h4 class="font-sans font-bold text-base text-gray-800 mb-4">Leave a Review & Comment</h4>
+                <form id="commentForm" class="flex flex-col gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1.5" for="reviewerName">Your Name</label>
+                            <input id="reviewerName" type="text" required placeholder="e.g. John Doe" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-300">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1.5" for="reviewerRating">Rating</label>
+                            <select id="reviewerRating" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-300">
+                                <option value="★ 5.0">★ 5.0 (Excellent)</option>
+                                <option value="★ 4.0">★ 4.0 (Good)</option>
+                                <option value="★ 3.0">★ 3.0 (Average)</option>
+                                <option value="★ 2.0">★ 2.0 (Below Average)</option>
+                                <option value="★ 1.0">★ 1.0 (Poor)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1.5" for="reviewerRole">Your Role / Affiliation</label>
+                        <input id="reviewerRole" type="text" required placeholder="e.g. Campus Co-Lead, Student Developer" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-300">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1.5" for="reviewerText">Your Comment</label>
+                        <textarea id="reviewerText" rows="4" required placeholder="Write your review about the project here..." class="w-full bg-white border border-gray-200 rounded-xl p-4 text-sm focus:outline-none focus:border-pink-300"></textarea>
+                    </div>
+                    <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2.5 px-6 rounded-xl transition-all self-end shadow-md hover:scale-105">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data script & binding -->
+    <script>
+        const makersData = {
+            nandana: {
+                name: "Aysha, Amritha, Farzana",
+                subtitle: "MINEHACK 2026 | HACKATHON",
+                image: "images/makers1.png",
+                email: "nandana.awc@gmail.com",
+                bio: "Students of S5 CS, passionate about building innovative solutions and contributing to the tech community. Built a Project called Loopit, a student-to-student campus marketplace for buying and selling second-hand academic essentials.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "Loopit",
+                projectSubtitle: "Student-to-Student Marketplace",
+                projectDesc: "Loopit is a student-to-student campus marketplace designed to make buying and selling second-hand academic essentials simple, affordable, and sustainable.",
+                held: "Ansar Women's College Hackathon 2026",
+                prize: "Winner (1st Prize)"
+            },
+            fidha: {
+                name: "Fidha Nawal",
+                subtitle: "Full Stack Developer",
+                image: "images/fidha-core-Photoroom.png",
+                email: "fidha.nawal.awc@gmail.com",
+                bio: "Full Stack Engineer & TinkerHub AWC Campus Lead. Specialized in Node.js, GraphQL, React, and building highly scalable web dashboards.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "TinkerHub Campus Operations",
+                projectSubtitle: "Community Dashboard Hub",
+                projectDesc: "A complete management portal designed to manage certificates, tracks, and student registration for multiple tech events and bootcamps.",
+                held: "Campus Operations Summit 2026",
+                prize: "Best Innovation Award"
+            },
+            aysha: {
+                name: "Aysha",
+                subtitle: "UI/UX Designer",
+                image: "images/aysha-corre-Photoroom.png",
+                email: "aysha.awc@gmail.com",
+                bio: "Design Lead at TinkerHub AWC. Specializes in wireframing, high-fidelity UI layout, interactive micro-animations, and graphic elements.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "TinkerHub Design System",
+                projectSubtitle: "Neubrutalist Web UI Library",
+                projectDesc: "Curated a shared layout token library for web developers, allowing campus projects to load standard components using neo-grotesque design patterns.",
+                held: "Design Sprint 2026",
+                prize: "Honorable Mention"
+            },
+            farsana: {
+                name: "Farsana",
+                subtitle: "Web Developer Head",
+                image: "images/farsana-core-Photoroom.png",
+                email: "farsana.awc@gmail.com",
+                bio: "Web Developer Head at TinkerHub AWC. Lead coordinator of student frontend developers, managing open-source React templates and hosting pipelines.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "Campus Finder Portal",
+                projectSubtitle: "Geolocated Resource Index",
+                projectDesc: "Created an interactive campus library index that displays book availability and geolocation map slots for books in the main college library.",
+                held: "College Union IT Expo",
+                prize: "Best Project Design"
+            },
+            hiba: {
+                name: "Hiba",
+                subtitle: "Technical Writer Head",
+                image: "images/hina-core-Photoroom.png",
+                email: "hiba.awc@gmail.com",
+                bio: "Lead Technical Writer at TinkerHub AWC. Coordinates visual documentations, newsletters, visual logs, and articles explaining workshop outcomes.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "TinkerHub Writer CMS",
+                projectSubtitle: "Documentation Publisher Framework",
+                projectDesc: "Designed the markdown rendering platform which streamlines publishing technical reports, workshop tutorials, and student project reviews.",
+                held: "Campus Media Launch",
+                prize: "Best Lead Documentation"
+            },
+            anusree: {
+                name: "Anusree",
+                subtitle: "Media Lead",
+                image: "images/anusree-core-Photoroom.png",
+                email: "anusree.awc@gmail.com",
+                bio: "Media Lead at TinkerHub AWC. Manages and coordinates documentation, photography, visual narratives, and handles all public relations content.",
+                github: "https://github.com/tinkerhub-awc",
+                projectName: "Tinker Times Media CMS",
+                projectSubtitle: "Digital Newsletter Platform",
+                projectDesc: "Created the online publishing framework for Tinker Times, integrating an easy markdown manager for student journalists to draft and host articles.",
+                held: "Tinker Times Media Launch",
+                prize: "Best Media & Documentation Lead"
+            }
+        };
+
+        // Get maker from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        let makerId = urlParams.get('maker') || 'nandana';
+        if (!makersData[makerId]) makerId = 'nandana';
+
+        const maker = makersData[makerId];
+
+        // Bind DOM elements
+        document.getElementById('makerAvatar').src = maker.image;
+        document.getElementById('makerName').innerText = maker.name;
+        document.getElementById('makerSubtitle').innerText = maker.subtitle;
+        document.getElementById('makerBio').innerText = maker.bio;
+        document.getElementById('makerEmail').innerText = maker.email;
+        document.getElementById('makerGithub').href = maker.github;
+        document.getElementById('projSubtitle').innerText = maker.projectSubtitle.toUpperCase();
+        document.getElementById('projName').innerText = maker.projectName;
+        document.getElementById('projDesc').innerText = maker.projectDesc;
+        document.getElementById('projEventHeld').innerText = maker.held;
+        document.getElementById('projPrizeWon').innerText = maker.prize;
+
+        // Default comments
+        const defaultComments = {
+            nandana: [
+                { author: "Aysha", role: "Co-Lead", rating: "★ 5.0", text: "Super reliable and creative. Brings a unique visual flair to all our campus media outlets." },
+                { author: "Hiba", role: "Design Lead", rating: "★ 4.8", text: "Excellent photography coverage for all our collaborative hackathons." }
+            ],
+            fidha: [
+                { author: "Fidha Nawal", role: "Campus Lead", rating: "★ 4.9", text: "Her designs and documentation make every event look professional and exciting!" }
+            ],
+            aysha: [
+                { author: "Hiba", role: "Design Lead", rating: "★ 4.8", text: "Excellent photography coverage for all our collaborative hackathons." }
+            ],
+            farsana: [
+                { author: "Aysha", role: "Co-Lead", rating: "★ 5.0", text: "Super reliable and creative. Brings a unique visual flair to all our campus media outlets." }
+            ],
+            hiba: [
+                { author: "Nicol W.", role: "Junior Dev", rating: "★ 4.9", text: "Super helpful in solving backend API bugs during the 48-hour sprint. Amazing developer!" }
+            ],
+            anusree: [
+                { author: "Stephanie N.", role: "Middle Dev", rating: "★ 5.0", text: "I felt like I learned months of React Native in a single week. Highly recommended team lead!" }
+            ]
+        };
+
+        // Load comments from localStorage or defaults
+        const storageKey = `tinkerhub_comments_${makerId}`;
+        let comments = JSON.parse(localStorage.getItem(storageKey));
+        if (!comments) {
+            comments = defaultComments[makerId] || [];
+            localStorage.setItem(storageKey, JSON.stringify(comments));
+        }
+
+        // Render comments function
+        function renderComments() {
+            const listEl = document.getElementById('commentsList');
+            if (comments.length === 0) {
+                listEl.innerHTML = `<div class="text-xs text-gray-400 italic">No comments yet. Be the first to leave a review!</div>`;
+                return;
+            }
+            listEl.innerHTML = comments.map(comment => `
+                <div class="bg-white border border-pink-100/50 p-5 rounded-2xl shadow-sm flex flex-col gap-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="font-sans font-extrabold text-sm text-gray-800">${comment.author}</span>
+                            <span class="text-[10px] font-mono text-gray-400 ml-2">${comment.role}</span>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-pink-500">${comment.rating}</span>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed">"${comment.text}"</p>
+                </div>
+            `).join('');
+        }
+
+        renderComments();
+
+        // Submit comment form handler
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value.trim();
+            const rating = document.getElementById('reviewerRating').value;
+            const role = document.getElementById('reviewerRole').value.trim();
+            const text = document.getElementById('reviewerText').value.trim();
+
+            if (!name || !role || !text) return;
+
+            comments.push({ author: name, role: role, rating: rating, text: text });
+            localStorage.setItem(storageKey, JSON.stringify(comments));
+
+            // Reset form fields
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewerRole').value = '';
+            document.getElementById('reviewerText').value = '';
+
+            renderComments();
+        });
+    </script>
+</body>
+</html>

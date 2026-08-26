@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What's a Maker? — TinkerHub AWC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#f4f4f0",
+                        ink: "#111111",
+                        pastelYellow: "#FFF73A",
+                        pastelPink: "#FFB5D8",
+                        pastelBlue: "#B5E5F9",
+                        pastelGreen: "#C3FF16",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"],
+                        handwriting: ["Caveat", "cursive"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f4f0;
+            background-image:
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .scrap-panel {
+            background: white;
+            border: 4px solid #111;
+            box-shadow: 8px 8px 0px #111;
+            position: relative;
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        .float-animation-alt {
+            animation: float-alt 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(-15px) rotate(var(--rot, 0deg)); }
+        }
+        @keyframes float-alt {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(10px) rotate(calc(var(--rot, 0deg) + 5deg)); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans text-ink relative overflow-x-hidden">
+
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-48px)] max-w-[900px] z-[100] px-7 py-3 bg-white/60 backdrop-blur-[18px] backdrop-saturate-[180%] border border-white/50 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08),_inset_0_1px_0_rgba(255,255,255,0.6)] flex items-center justify-between">
+        <a href="main.html" class="inline-flex items-center gap-2 text-sm font-medium text-ink bg-white/80 border border-black/10 rounded-full px-4 py-2 hover:bg-ink hover:text-white transition-all duration-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Home
+        </a>
+        <span class="text-lg font-display font-extrabold tracking-tight text-ink">What's a Maker?</span>
+        <div class="w-24"></div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 py-24 relative z-10">
+        
+        <!-- Floating Elements -->
+        <img src="images/pointing_character.png" alt="pointing" class="absolute -top-10 -left-10 w-32 float-animation hidden md:block" style="--rot: -10deg;" />
+        <img src="images/ducktive.png" alt="ducktive" class="absolute top-40 -right-16 w-40 float-animation-alt hidden md:block" style="--rot: 15deg;" />
+        <img src="stickers/Cute Heart Stickers _ Support My Art on Redbubble-Photoroom.png" alt="heart" class="absolute top-1/3 -left-16 w-24 float-animation hidden md:block" style="--rot: -5deg;" />
+
+        <div class="mb-10 text-center relative">
+            <h1 class="text-5xl md:text-7xl font-display font-black uppercase tracking-tight mb-4 inline-block relative">
+                WHAT'S A MAKER?
+                <div class="absolute -bottom-4 right-0 font-handwriting text-3xl text-pastelPink transform rotate-12">Just Start</div>
+            </h1>
+        </div>
+
+        <div class="flex flex-col gap-10">
+            <!-- Intro Panel -->
+            <div class="p-4 md:p-8 text-lg md:text-xl font-medium leading-relaxed bg-transparent border-l-4 border-ink pl-6">
+                <p class="mb-6">You don't have to build something huge to be one.</p>
+                <p class="mb-6 font-bold text-3xl font-display">A maker is someone who turns an idea into something real.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base mb-6 font-semibold">
+                    <ul class="space-y-2 list-none text-gray-700">
+                        <li>— A website.</li>
+                        <li>— A poster.</li>
+                        <li>— A piece of art.</li>
+                        <li>— A crochet pattern.</li>
+                        <li>— A video.</li>
+                    </ul>
+                    <ul class="space-y-2 list-none text-gray-700">
+                        <li>— A tiny piece of code.</li>
+                        <li>— A handmade gift.</li>
+                        <li>— A new way of organizing something.</li>
+                        <li>— A solution to a problem nobody else noticed.</li>
+                    </ul>
+                </div>
+                <p class="mb-4">You don't need a lab, a fancy setup, or years of technical knowledge.</p>
+                <p class="font-handwriting text-4xl text-ink mt-6 transform -rotate-2">You just need the curiosity to ask, “What if I tried?”</p>
+            </div>
+
+            <!-- Anyone can be a Maker -->
+            <div class="scrap-panel p-8 md:p-12 bg-white relative">
+                <img src="images/tinker-sticker.png" class="absolute -top-12 -right-8 w-32 float-animation" alt="sticker">
+                <h2 class="text-3xl font-black uppercase mb-6 inline-block bg-pastelBlue px-2 border-2 border-ink">So… who can be a Maker?</h2>
+                <p class="text-4xl font-display font-black mb-6">Anyone.</p>
+                
+                <div class="space-y-4 text-lg">
+                    <p>You don't have to be a programmer.</p>
+                    <p>You don't have to be a designer.</p>
+                    <p>You don't have to be the person who knows everything about technology.</p>
+                    
+                    <div class="py-6 space-y-3 font-semibold text-gray-700">
+                        <p>Maybe you love drawing.</p>
+                        <p>Maybe you make jewellery.</p>
+                        <p>Maybe you crochet.</p>
+                        <p>Maybe you edit videos, design posters, write stories, photograph things, build websites, experiment with electronics, make crafts, create music, or come up with ridiculously simple solutions to everyday problems.</p>
+                    </div>
+
+                    <p class="bg-pastelPink p-4 border-2 border-ink shadow-[4px_4px_0_#111] inline-block font-bold">Maybe you haven't made anything yet — but you have ideas you keep thinking about. That counts too.</p>
+
+                    <p class="mt-6 font-display text-2xl italic">Because being a maker isn't about what you make.</p>
+                    <p class="text-3xl font-black font-display uppercase mt-2">It's about having the courage to make something.</p>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="scrap-panel p-8 md:p-12 bg-[#f4f4f0] border-dashed border-8 border-ink">
+                <h2 class="text-4xl font-black uppercase mb-2">How do you become a maker?</h2>
+                <p class="text-xl mb-10 font-medium">There isn't an application. There isn't a qualification. There isn't a level you have to reach. You become a maker the moment you decide to try.</p>
+
+                <div class="space-y-12">
+                    <div class="relative pl-6 md:pl-10 border-l-4 border-ink">
+                        <div class="absolute -left-6 top-0 bg-pastelYellow border-2 border-ink font-black px-2 py-1 rotate-[-5deg]">01</div>
+                        <h3 class="text-2xl font-black uppercase mb-2">Notice</h3>
+                        <p class="font-medium mb-2">See something that could be better. Ask questions.</p>
+                        <p class="italic text-gray-600 mb-2">“Why does it work this way?”<br>“Could I make this easier?”<br>“What if I tried something different?”</p>
+                        <p class="font-bold">Curiosity is where making begins.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10 border-l-4 border-ink">
+                        <div class="absolute -left-6 top-0 bg-pastelPink border-2 border-ink font-black px-2 py-1 rotate-[3deg]">02</div>
+                        <h3 class="text-2xl font-black uppercase mb-2">Imagine</h3>
+                        <p class="font-medium mb-2">You get an idea. It doesn't have to be perfect. It might even sound silly.</p>
+                        <p class="bg-white border-2 border-ink p-3 inline-block font-handwriting text-2xl my-2 shadow-[4px_4px_0_#111]">Write it down. Sketch it. Talk about it.</p>
+                        <p class="font-bold mt-2">Ideas become possible when you give them somewhere to exist.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10 border-l-4 border-ink">
+                        <div class="absolute -left-6 top-0 bg-pastelGreen border-2 border-ink font-black px-2 py-1 rotate-[-2deg]">03</div>
+                        <h3 class="text-2xl font-black uppercase mb-2">Make</h3>
+                        <p class="font-medium mb-2">Start with whatever you have. Your laptop. A pencil. Some fabric. Cardboard. A camera. A piece of code. A crochet hook.</p>
+                        <p class="text-xl font-bold uppercase mt-4 mb-2">Start small.</p>
+                        <p class="font-bold">Your first version doesn't need to be impressive. It just needs to exist.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10 border-l-4 border-ink">
+                        <div class="absolute -left-6 top-0 bg-pastelBlue border-2 border-ink font-black px-2 py-1 rotate-[5deg]">04</div>
+                        <h3 class="text-2xl font-black uppercase mb-2">Break It</h3>
+                        <p class="font-medium mb-2">Something will go wrong.</p>
+                        <p class="text-2xl font-black mb-2">Good.</p>
+                        <p class="font-medium">That's part of making. Try again. Change it. Break it differently.</p>
+                        <p class="font-bold mt-2 bg-ink text-white p-2 inline-block">Every mistake teaches you something your first attempt couldn't.</p>
+                    </div>
+
+                    <div class="relative pl-6 md:pl-10 border-l-4 border-ink">
+                        <div class="absolute -left-6 top-0 bg-pastelYellow border-2 border-ink font-black px-2 py-1 rotate-[-4deg]">05</div>
+                        <h3 class="text-2xl font-black uppercase mb-2">Share It</h3>
+                        <p class="font-medium mb-2">Show someone what you made. Ask for feedback. Let someone use it.</p>
+                        <div class="bg-white p-4 border-2 border-ink shadow-[4px_4px_0_#111] mt-4">
+                            <p class="italic text-gray-700">Maybe someone else sees your work and thinks:</p>
+                            <p class="font-handwriting text-3xl font-bold mt-2">“I want to try that too.”</p>
+                            <p class="font-bold mt-2">And suddenly, your little idea has inspired another maker.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- You don't have to build the next big thing -->
+            <div class="scrap-panel p-8 md:p-12 bg-white">
+                <h2 class="text-3xl md:text-4xl font-black uppercase mb-8">You don't have to build the next big thing.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg font-medium">
+                    <div class="border-2 border-ink p-4 hover:bg-pastelYellow transition-colors">Maybe your first project is just a poster.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelPink transition-colors">Maybe you crochet something you've never made before.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelBlue transition-colors">Maybe you redesign your college notice board.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelGreen transition-colors">Maybe you create a tiny website for your friend.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelYellow transition-colors">Maybe you make a three-minute video.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelPink transition-colors">Maybe you automate one annoying task.</div>
+                    <div class="border-2 border-ink p-4 hover:bg-pastelBlue md:col-span-2 transition-colors">Maybe you sketch an idea that doesn't exist yet.</div>
+                </div>
+                <p class="text-2xl font-black uppercase mt-8 text-center">That's making.</p>
+                <p class="text-xl font-bold text-center mt-2 bg-ink text-white p-4">The size of the project doesn't decide whether you're a maker. The act of creating does.</p>
+            </div>
+
+            <!-- Makers are everywhere -->
+            <div class="scrap-panel p-8 md:p-12 bg-white text-ink text-left relative overflow-hidden">
+                <h2 class="text-4xl font-black uppercase mb-8 text-ink border-b-4 border-ink inline-block">Makers are everywhere.</h2>
+                <div class="text-lg md:text-xl space-y-3 font-medium relative z-10 text-gray-800">
+                    <p>They're in the art room.</p>
+                    <p>They're in the computer lab.</p>
+                    <p>They're behind the camera.</p>
+                    <p>They're designing posters at 2 AM.</p>
+                    <p>They're crocheting something while watching a movie.</p>
+                    <p>They're writing ideas in the margins of their notebooks.</p>
+                    <p>They're fixing things.</p>
+                    <p>They're experimenting.</p>
+                    <p>They're asking questions.</p>
+                    <p>They're helping someone else build.</p>
+                    <p class="mt-8 italic text-gray-500">And sometimes…</p>
+                    <p class="font-handwriting text-4xl text-ink mt-4 transform -rotate-1 font-bold">they're just sitting there thinking about what they could make next.</p>
+                </div>
+            </div>
+
+            <!-- No maker type -->
+            <div class="scrap-panel p-8 md:p-12 bg-white relative">
+                <img src="images/maker-sticker.png" class="absolute bottom-10 right-4 w-32 float-animation-alt hidden md:block" alt="sticker">
+                <h2 class="text-4xl font-black uppercase mb-6 bg-pastelYellow inline-block px-2 border-2 border-ink">There's no "Maker Type."</h2>
+                <p class="text-xl font-medium mb-8">You don't have to fit into a box.</p>
+                
+                <div class="flex flex-wrap gap-4 mb-8 font-black uppercase text-sm">
+                    <span class="bg-pastelPink px-4 py-2 border-2 border-ink shadow-[2px_2px_0_#111]">Tech + Art</span>
+                    <span class="bg-pastelBlue px-4 py-2 border-2 border-ink shadow-[2px_2px_0_#111]">Design + Code</span>
+                    <span class="bg-pastelGreen px-4 py-2 border-2 border-ink shadow-[2px_2px_0_#111]">Craft + Creativity</span>
+                    <span class="bg-pastelYellow px-4 py-2 border-2 border-ink shadow-[2px_2px_0_#111]">Ideas + Experimentation</span>
+                    <span class="bg-white px-4 py-2 border-2 border-ink shadow-[2px_2px_0_#111]">Curiosity + Community</span>
+                </div>
+
+                <p class="text-xl font-bold mb-8">Mix whatever interests you. <span class="text-pastelPink">That's the fun part.</span></p>
+
+                <p class="text-lg font-medium text-gray-700 mb-2">A maker isn't someone who knows everything.</p>
+                <p class="text-2xl font-black bg-ink text-white p-4">A maker is someone who is willing to learn something new, try something, and make it real.</p>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="text-center py-12 relative">
+                <h2 class="text-5xl md:text-6xl font-display font-black uppercase mb-6">So, are you a maker?</h2>
+                <p class="text-xl font-medium mb-4">If you've ever thought...</p>
+                <p class="font-handwriting text-4xl font-bold text-ink mb-6 transform -rotate-3">“I wonder if I could make this…”</p>
+                <p class="text-6xl font-black uppercase text-pastelPink mb-4 float-animation" style="text-shadow: 4px 4px 0px #111;">Yes.</p>
+                <p class="text-2xl font-bold uppercase mb-8">You already started.</p>
+                <a href="join.html" class="inline-block bg-pastelYellow text-ink px-10 py-4 border-4 border-ink font-black text-2xl uppercase hover:bg-pastelGreen transition-colors shadow-[8px_8px_0_#111] hover:translate-y-1 hover:translate-x-1 hover:shadow-[0px_0px_0_#111] duration-200">
+                    Now make it. ✦
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-white py-8 border-t-4 border-ink mt-auto">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-sm font-medium">
+            <p>Made with ♡ by TinkerHub AWC</p>
+            <div class="mt-4 md:mt-0 opacity-70">
+                <span>© 2025</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

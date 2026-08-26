@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Us | TinkerHub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Permanent+Marker&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#FFFFFF",
+                        ink: "#111111",
+                        inkLighter: "#333333",
+                        pastelYellow: "#FFF73A",
+                        pastelPink: "#FFB5D8",
+                        pastelBlue: "#B5E5F9",
+                        pastelGreen: "#C3FF16",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image:
+                linear-gradient(#e5e7eb 1px, transparent 1px),
+                linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Utilities tailored for light background */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-panel:hover {
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            color: #111111;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), inset 0 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .glass-input:hover {
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255,255,255,0.6);
+            transform: translateY(-1px);
+        }
+
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(17, 17, 17, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(17, 17, 17, 0.05);
+            outline: none;
+            transform: translateY(-2px);
+        }
+        
+        select.glass-input {
+            cursor: pointer;
+        }
+        
+        select.glass-input option {
+            background: #ffffff;
+            color: #111111;
+            font-weight: 500;
+            padding: 10px;
+        }
+
+        /* Button Fill Effect */
+        .btn-fill-ink {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: transparent;
+            color: #111111;
+            border: 2px solid #111111;
+            transition: color 0.4s ease;
+        }
+        .btn-fill-ink::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #111111;
+            z-index: -1;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-fill-ink:hover {
+            color: #ffffff;
+        }
+        .btn-fill-ink:hover::before {
+            width: 100%;
+        }
+
+        .btn-fill-green {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: transparent;
+            color: #111111;
+            border: 2px solid #aee613;
+            transition: color 0.4s ease;
+        }
+        .btn-fill-green::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #aee613;
+            z-index: -1;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-fill-green:hover::before {
+            width: 100%;
+        }
+
+        /* Glass Button */
+        .btn-glass {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 200%;
+            background-color: #ffffff;
+            z-index: -1;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .btn-glass:hover {
+            transform: scale(0.9);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+        .btn-glass:hover::before {
+            width: 100%;
+        }
+
+        .glass-input::placeholder {
+            color: rgba(17, 17, 17, 0.4);
+        }
+
+        /* Tab Transitions */
+        .form-section {
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .form-enter {
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+        }
+        .form-enter-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .form-exit {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .form-exit-active {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.98);
+        }
+        
+        /* Float animations for background shapes to accentuate the glass */
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        .float-anim-alt { animation: float-alt 7s ease-in-out infinite reverse; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float-alt {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(-10deg); }
+        }
+
+        /* Custom Scrollbar for Form */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(17, 17, 17, 0.2);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(17, 17, 17, 0.4);
+        }
+    </style>
+</head>
+<body class="relative flex items-center justify-center p-4 sm:p-8">
+
+    <!-- Back to Main Button (Neo-Brutalist text link style) -->
+    <a href="main.html" class="absolute top-6 left-6 z-50 inline-flex items-center gap-2 font-sans font-bold text-ink hover:text-inkLighter transition-colors group px-4 py-2">
+        <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+        Back to Campus
+    </a>
+
+    <!-- Animated Background Shapes to accentuate the glassmorphism -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[15%] left-[25%] w-64 h-64 bg-pastelPink rounded-full opacity-60 mix-blend-multiply filter blur-3xl float-anim"></div>
+        <div class="absolute bottom-[10%] right-[20%] w-80 h-80 bg-pastelBlue rounded-full opacity-60 mix-blend-multiply filter blur-3xl float-anim-alt" style="animation-delay: 2s;"></div>
+        <div class="absolute top-[40%] right-[30%] w-56 h-56 bg-pastelYellow rounded-full opacity-60 mix-blend-multiply filter blur-2xl float-anim" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative w-full max-w-[1100px] flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 z-10">
+        
+        <!-- Left Side: Neo-Brutalist Branding/Welcome -->
+        <div class="w-full lg:w-5/12 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-2 border-ink bg-pastelYellow mb-6 shadow-[2px_2px_0px_#111]">
+                <span class="material-symbols-outlined text-[16px] text-ink">campaign</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-ink">TinkerHub Platform</span>
+            </div>
+            
+            <h1 class="font-display font-black text-6xl sm:text-7xl lg:text-[5.5rem] tracking-tight text-ink mb-6 leading-[0.9] drop-shadow-sm">
+                JOIN <br />
+                <span class="font-display font-black text-6xl sm:text-7xl lg:text-[5.5rem] tracking-tight text-ink mb-6 leading-[0.9] drop-shadow-sm">THE CLUB</span>
+            </h1>
+            
+            <p class="font-sans font-medium text-inkLighter text-lg leading-relaxed max-w-md">
+                Step into a community of creators, coders, and tinkerers. Build your skills, share your projects, and meet awesome people.
+            </p>
+            
+            <div class="relative inline-block mt-8">
+                <img src="images/ducktive.png" alt="Ducktive Mascot" class="w-40 transform rotate-6 float-anim filter drop-shadow-[4px_4px_0_#111]" />
+                <div class="absolute -top-6 -right-12 text-xl text-ink bg-white border-2 border-ink p-2 shadow-[4px_4px_0_#111] transform -rotate-12" style="font-family: 'Permanent Marker', cursive;">
+                    Let's go!
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Glassmorphism Auth Card -->
+        <div class="w-full lg:w-6/12 max-w-[480px]">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-10 relative">
+                
+                <!-- Tab Controls (Glassy) -->
+                <div class="relative flex mb-8 bg-white/40 border border-white/60 rounded-xl p-1.5 shadow-sm">
+                    <div id="tabIndicator" class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-lg shadow-sm transition-all duration-300 ease-out z-0"></div>
+                    <button id="btn-login" class="flex-1 py-2.5 text-xs sm:text-sm font-bold text-ink relative z-10 transition-colors uppercase tracking-wider" onclick="switchTab('login')">I'm Maker</button>
+                    <button id="btn-signup" class="flex-1 py-2.5 text-xs sm:text-sm font-bold text-ink/40 hover:text-ink relative z-10 transition-colors uppercase tracking-wider" onclick="switchTab('signup')">I want to be a Maker</button>
+                </div>
+
+                <!-- Container for forms -->
+                <div class="grid relative min-h-[350px]">
+                    
+                    <!-- Login Form -->
+                    <form id="form-login" class="col-start-1 row-start-1 w-full form-section form-enter-active">
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Email Address</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">mail</span>
+                                    <input id="login-email" type="email" placeholder="you@tinkerhub.org" class="glass-input w-full rounded-xl pl-12 pr-4 py-3.5 text-sm" required />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="block text-xs font-bold text-ink uppercase tracking-wider">Password</label>
+                                    <a href="#" class="text-xs font-bold text-inkLighter hover:underline underline-offset-2">Forgot?</a>
+                                </div>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">lock</span>
+                                    <input id="login-password" type="password" placeholder="••••••••" class="glass-input w-full rounded-xl pl-12 pr-4 py-3.5 text-sm" required />
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="w-fit mx-auto px-10 btn-fill-ink font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-sm mt-4 flex items-center justify-center gap-2">
+                                Enter the Hub
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </button>
+                            
+                            <div class="relative flex items-center py-2 mt-2">
+                                <div class="flex-grow border-t border-ink/10"></div>
+                                <span class="flex-shrink-0 mx-4 text-xs font-bold text-ink/40 uppercase">OR</span>
+                                <div class="flex-grow border-t border-ink/10"></div>
+                            </div>
+                            
+                            <button type="button" class="w-fit mx-auto px-8 bg-white/70 hover:bg-white border border-white/80 text-ink text-sm font-bold py-3.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-3">
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5" />
+                                Continue with Google
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Signup Form -->
+                   <form
+                     id="form-signup"
+                     class="col-start-1 row-start-1 w-full form-section opacity-0 pointer-events-none translate-x-[10px]"
+                    >
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Full Name</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">person</span>
+                                   <input
+                                     id="signup-name"
+                                     type="text"
+                                     placeholder="Awesome Maker"
+                                     class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm"
+                                    required
+                                />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Email Address</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">mail</span>
+                                    <input
+                                        id="signup-email"
+                                        type="email"
+                                        placeholder="you@tinkerhub.org"
+                                        class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Password</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">lock</span>
+                                    <input
+                                        id="signup-password"
+                                        type="password"
+                                        placeholder="Create a strong password"
+                                        class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm"
+                                        required
+                                    />
+                                </div>
+                            </div>      
+                            
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Department</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">domain</span>
+                                    <select id="department" onchange="updateCourses()" class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm appearance-none" required>
+                                        <option value="" disabled selected>Select your department</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Commerce">Commerce</option>
+                                        <option value="Psychology">Psychology</option>
+                                        <option value="Arabic">Arabic</option>
+                                        <option value="English">English</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div id="course-container" class="hidden">
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Course</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">menu_book</span>
+                                    <select id="course" onchange="updateSpecializations()" class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm appearance-none" required>
+                                        <option value="" disabled selected>Select your course</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+
+                            <div id="specialization-container" class="hidden">
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Specialization</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">school</span>
+                                    <select id="specialization" class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm appearance-none">
+                                        <option value="" disabled selected>Select specialization</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-bold text-ink uppercase tracking-wider mb-2">Year</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-ink/40 text-[20px]">calendar_today</span>
+                                    <select id="year" class="glass-input w-full rounded-xl pl-12 pr-4 py-3 text-sm appearance-none" required>
+                                        <option value="" disabled selected>Select your year</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year">3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                    </select>
+                                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none">expand_more</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3 mt-4">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" id="terms" class="w-4 h-4 rounded border-ink/20 text-ink focus:ring-ink focus:ring-offset-0 bg-white/50" required />
+                                </div>
+                                <label for="terms" class="text-xs font-medium text-inkLighter leading-tight mt-0.5">
+                                    I agree to the terms and conditions of storing my data.
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-fit mx-auto px-10 btn-glass font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-sm mt-6 flex items-center justify-center gap-2">
+                                Create Account
+                                <span class="material-symbols-outlined text-[18px]">bolt</span>
+                            </button>
+                            
+                        </div>
+                        <p class="text-center text-xs font-medium text-inkLighter mt-6">
+                By joining, you agree to our <a href="#" class="font-bold underline underline-offset-1">Terms of Service</a>.
+            </p>
+                    </form>
+                </div>
+                
+                <!-- Custom Success Message (Hidden by default) -->
+                <div id="success-overlay" class="absolute inset-0 z-50 hidden flex-col items-center justify-center bg-white/90 backdrop-blur-md rounded-[2rem] text-center p-8 transition-opacity duration-500 opacity-0">
+                    <span class="material-symbols-outlined text-[80px] text-ink mb-6">check_circle</span>
+                    <h2 class="font-display font-black text-3xl text-ink mb-3 leading-tight">🎉 Welcome to<br/>TinkerHub AWC!</h2>
+                    <p class="font-sans font-medium text-inkLighter text-base">Your account has been created successfully.</p>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script>
+        const courseData = {
+            "Computer Science": {
+                courses: ["BCA", "BSc CS", "BSc AI"],
+                specializations: {}
+            },
+            "Commerce": {
+                courses: ["BCom", "BBA"],
+                specializations: {
+                    "BCom": ["BCom Tax", "BCom Co-operation", "BCom CA"]
+                }
+            },
+            "Psychology": {
+                courses: ["BSc Psychology Honours"],
+                specializations: {}
+            },
+            "Arabic": {
+                courses: ["BA Arabic Language and Literature Honours"],
+                specializations: {}
+            },
+            "English": {
+                courses: ["BA English Language and Literature Honours"],
+                specializations: {}
+            },
+            "Mathematics": {
+                courses: ["BSc Mathematics Honours"],
+                specializations: {}
+            },
+            "Chemistry": {
+                courses: ["BSc Chemistry Honours"],
+                specializations: {}
+            }
+        };
+
+        function updateCourses() {
+            const department = document.getElementById("department").value;
+            const courseSelect = document.getElementById("course");
+            const courseContainer = document.getElementById("course-container");
+            const specContainer = document.getElementById("specialization-container");
+            const specSelect = document.getElementById("specialization");
+            
+            // Reset course and specialization
+            courseSelect.innerHTML = '<option value="" disabled selected>Select your course</option>';
+            specSelect.innerHTML = '<option value="" disabled selected>Select specialization</option>';
+            specSelect.required = false;
+            
+            if (department && courseData[department]) {
+                const courses = courseData[department].courses;
+                courses.forEach(c => {
+                    const option = document.createElement("option");
+                    option.value = c;
+                    option.text = c;
+                    courseSelect.appendChild(option);
+                });
+                courseContainer.classList.remove("hidden");
+            } else {
+                courseContainer.classList.add("hidden");
+            }
+            specContainer.classList.add("hidden");
+        }
+
+        function updateSpecializations() {
+            const department = document.getElementById("department").value;
+            const course = document.getElementById("course").value;
+            const specContainer = document.getElementById("specialization-container");
+            const specSelect = document.getElementById("specialization");
+            
+            specSelect.innerHTML = '<option value="" disabled selected>Select specialization</option>';
+            specSelect.required = false;
+
+            if (department && course && courseData[department].specializations[course]) {
+                const specializations = courseData[department].specializations[course];
+                specializations.forEach(s => {
+                    const option = document.createElement("option");
+                    option.value = s;
+                    option.text = s;
+                    specSelect.appendChild(option);
+                });
+                specContainer.classList.remove("hidden");
+                specSelect.required = true;
+            } else {
+                specContainer.classList.add("hidden");
+            }
+        }
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById('form-login');
+            const signupForm = document.getElementById('form-signup');
+            const btnLogin = document.getElementById('btn-login');
+            const btnSignup = document.getElementById('btn-signup');
+            const indicator = document.getElementById('tabIndicator');
+
+            if (tab === 'login') {
+                // Animate Forms
+                signupForm.style.opacity = '0';
+                signupForm.style.transform = 'translateX(-10px)';
+                signupForm.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    loginForm.style.opacity = '1';
+                    loginForm.style.transform = 'translateX(0)';
+                    loginForm.style.pointerEvents = 'auto';
+                }, 100);
+
+                // Animate Indicator
+                indicator.style.transform = 'translateX(0)';
+                
+                // Update Button Styles
+                btnLogin.classList.add('text-ink');
+                btnLogin.classList.remove('text-ink/40');
+                btnSignup.classList.remove('text-ink');
+                btnSignup.classList.add('text-ink/40');
+
+            } else {
+                // Animate Forms
+                loginForm.style.opacity = '0';
+                loginForm.style.transform = 'translateX(10px)';
+                loginForm.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    signupForm.style.opacity = '1';
+                    signupForm.style.transform = 'translateX(0)';
+                    signupForm.style.pointerEvents = 'auto';
+                }, 100);
+
+                // Animate Indicator
+                indicator.style.transform = 'translateX(100%)';
+                
+                // Update Button Styles
+                btnSignup.classList.add('text-ink');
+                btnSignup.classList.remove('text-ink/40');
+                btnLogin.classList.remove('text-ink');
+                btnLogin.classList.add('text-ink/40');
+            }
+        }
+    </script>
+    <script type="module">
+
+    import { auth, db } from "./firebase.js";
+
+    import {
+        createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    import {
+        doc,
+        setDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+    const signupForm = document.getElementById("form-signup");
+
+    const nameInput = document.getElementById("signup-name");
+    const emailInput = document.getElementById("signup-email");
+    const passwordInput = document.getElementById("signup-password");
+    const departmentInput = document.getElementById("department");
+    const courseInput = document.getElementById("course");
+    const specializationInput = document.getElementById("specialization");
+    const yearInput = document.getElementById("year");
+    signupForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const department = departmentInput.value;
+        const course = courseInput.value;
+        const specialization = specializationInput.value;
+        const year = yearInput.value;
+        const terms = document.getElementById("terms").checked;
+
+        if (!name || !email || !password || !department || !course || !year) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+        
+        if (!terms) {
+            alert("Please agree to the terms and conditions.");
+            return;
+        }
+
+         // Check specialization if required
+        if (
+            courseData[department]?.specializations?.[course] &&
+            !specialization
+        ) {
+            alert("Please select your specialization.");
+            return;
+        }
+
+        try {
+
+            // Create Firebase account
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user = userCredential.user;
+
+
+            try {
+                // Create member document in Firestore
+                await setDoc(
+                    doc(db, "members", user.uid),
+                    {
+                        uid: user.uid,
+                        name: name,
+                        email: email,
+                        department: department,
+                        course: course,
+                        specialization: specialization || "",
+                        year: year,
+                        role: "member",
+                        createdAt: serverTimestamp()
+                    }
+                );
+            } catch (fsError) {
+                console.error("Firestore error while saving member data:", fsError);
+                alert("Your account was created, but your profile information could not be saved.");
+                return;
+            }
+
+            console.log("User signed up and member document created:", user.uid);
+            
+            // Show custom success message
+            const successOverlay = document.getElementById("success-overlay");
+            if (successOverlay) {
+                successOverlay.classList.remove("hidden");
+                successOverlay.style.display = "flex";
+                // Trigger reflow to apply opacity transition
+                void successOverlay.offsetWidth;
+                successOverlay.classList.remove("opacity-0");
+                successOverlay.classList.add("opacity-100");
+            } else {
+                alert("Welcome to TinkerHub AWC! 🎉\nYour account has been created successfully.");
+            }
+
+            signupForm.reset();
+            
+            // Redirect after showing message
+            setTimeout(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect') || 'main.html';
+                window.location.href = redirectUrl;
+            }, 2500);
+
+        } catch (error) {
+
+            console.error("Firebase signup error:", error);
+
+
+            if (error.code === "auth/email-already-in-use") {
+
+                alert("This email is already registered.");
+
+            } else if (error.code === "auth/weak-password") {
+
+                alert("Password must be at least 6 characters.");
+
+            } else if (error.code === "auth/invalid-email") {
+
+                alert("Please enter a valid email address.");
+
+            } else {
+
+                alert("Something went wrong with authentication. Please try again.");
+
+            }
+
+        }
+
+    });
+
+    const loginForm = document.getElementById("form-login");
+    const loginEmailInput = document.getElementById("login-email");
+    const loginPasswordInput = document.getElementById("login-password");
+    
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            
+            const email = loginEmailInput.value.trim();
+            const password = loginPasswordInput.value;
+            
+            if (!email || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect') || 'main.html';
+                window.location.href = redirectUrl;
+            } catch (error) {
+                console.error("Firebase login error:", error);
+                if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+                    alert("Invalid email or password.");
+                } else {
+                    alert("Something went wrong with login. Please try again.");
+                }
+            }
+        });
+    }
+
+</script>   
+</body>
+</html>
