@@ -1,6 +1,6 @@
 import re
 
-with open('main.html', 'r', encoding='utf-8') as f:
+with open('index.html', 'r', encoding='utf-8') as f:
     content = f.read()
 
 # Restore the JS function
@@ -47,6 +47,6 @@ content = re.sub(
     content
 )
 
-with open('main.html', 'w', encoding='utf-8') as f:
+with open('index.html', 'w', encoding='utf-8') as f:
     f.write(content)
-print('Undid changes to main.html.')
+print('Undid changes to index.html.')

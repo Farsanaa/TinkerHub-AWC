@@ -55,7 +55,7 @@ for filename in files:
     text = re.sub(r'(\.navbar\s*\{\s*padding:\s*0\s*1\.5rem;)(\s*\})', r'\1\n        margin: 1rem;\2', text)
 
     # 3. Add Go Back button to HTML
-    go_back_btn = '<a href="main.html" class="btn-nav" style="background: transparent; color: var(--primary) !important; border: 1px solid var(--primary); margin-right: 10px;">Go Back</a>'
+    go_back_btn = '<a href="index.html" class="btn-nav" style="background: transparent; color: var(--primary) !important; border: 1px solid var(--primary); margin-right: 10px;">Go Back</a>'
     
     # Only add if not already present
     if 'Go Back' not in text:

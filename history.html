@@ -42,7 +42,7 @@
 
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-ink px-6 py-4 flex items-center justify-between">
-        <a href="main.html#tinkertimes" class="group inline-flex items-center gap-2 font-bold uppercase tracking-wider text-sm hover:text-gray-600 transition-colors duration-200">
+        <a href="index.html#tinkertimes" class="group inline-flex items-center gap-2 font-bold uppercase tracking-wider text-sm hover:text-gray-600 transition-colors duration-200">
             <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
@@ -68,67 +68,125 @@
         import { db } from "./firebase.js";
         import { collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-        const historyList = document.getElementById("historyList");
+       const historyList = document.getElementById("historyList");
 
-        async function loadHistory() {
-            try {
-                // Fetch only completed events, or we fetch all and filter client side
-                const snapshot = await getDocs(collection(db, "events"));
-                const events = [];
-                snapshot.forEach((doc) => {
-                    events.push({ id: doc.id, ...doc.data() });
-                });
+    async function loadHistory() {
+        try {
+            // Fetch all events
+            const snapshot = await getDocs(collection(db, "events"));
 
-                // Filter and sort client-side to avoid needing compound indexes initially
-                const completedEvents = events.filter(e => (e.status || "").toLowerCase() === "completed");
-                completedEvents.sort((a, b) => {
-                    const dateA = a.date ? new Date(a.date).getTime() : 0;
-                    const dateB = b.date ? new Date(b.date).getTime() : 0;
-                    return dateB - dateA; // Descending (newest first)
-                });
+            const events = [];
 
-                if (completedEvents.length === 0) {
-                    historyList.innerHTML = `
-                        <div class="text-center py-12">
-                            <p class="font-display text-2xl font-bold uppercase">No history available yet.</p>
-                        </div>
-                    `;
-                    return;
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+
+                // Convert Firestore Timestamp to ISO string
+                if (data.date && typeof data.date.toDate === "function") {
+                    data.date = data.date.toDate().toISOString();
                 }
 
-                historyList.innerHTML = ""; // clear loading
-                
-                completedEvents.forEach(event => {
-                    let dateStr = "TBA";
-                    if (event.date) {
-                        const d = new Date(event.date);
-                        dateStr = d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-                    }
-
-                    const html = \`
-                        <a href="event-details.html?id=\${event.id}"
-                            class="block group cursor-pointer border-b-2 border-ink border-dashed pb-6 last:border-b-0 last:pb-0 hover:bg-gray-50 transition-colors p-4 -mx-4 rounded-lg">
-                            <h4
-                                class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4 mb-2">
-                                \${event.title}</h4>
-                            <p class="font-sans text-sm text-gray-800 font-medium leading-relaxed mb-4">\${event.description || ""}</p>
-                            <div class="flex justify-between items-center mt-3">
-                                <span class="font-sans text-xs text-ink font-bold uppercase bg-pastelGreen border-2 border-ink px-2 py-1">\${dateStr}</span>
-                                <span
-                                    class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">Completed</span>
-                            </div>
-                        </a>
-                    \`;
-                    historyList.insertAdjacentHTML('beforeend', html);
+                events.push({
+                    id: doc.id,
+                    ...data
                 });
+            });
 
-            } catch (error) {
-                console.error("Error loading history:", error);
-                historyList.innerHTML = \`<div class="text-center text-red-600 font-bold py-8 uppercase">Failed to load history. Please try again later.</div>\`;
+            // Keep only completed events
+            const completedEvents = events.filter(
+                (event) =>
+                    (event.status || "").toLowerCase() === "completed"
+            );
+
+            // Sort newest first
+            completedEvents.sort((a, b) => {
+                const dateA =
+                    a.date && !isNaN(new Date(a.date).getTime())
+                        ? new Date(a.date).getTime()
+                        : 0;
+
+                const dateB =
+                    b.date && !isNaN(new Date(b.date).getTime())
+                        ? new Date(b.date).getTime()
+                        : 0;
+
+                return dateB - dateA;
+            });
+
+            // No completed events
+            if (completedEvents.length === 0) {
+                historyList.innerHTML = `
+                    <div class="text-center py-12">
+                        <p class="font-display text-2xl font-bold uppercase">
+                            No history available yet.
+                        </p>
+                    </div>
+                `;
+                return;
             }
-        }
 
-        loadHistory();
-    </script>
+            // Clear loading message
+            historyList.innerHTML = "";
+
+            // Display completed events
+            completedEvents.forEach((event) => {
+                let dateStr = "TBA";
+
+                if (event.date) {
+                    const d = new Date(event.date);
+
+                    if (!isNaN(d.getTime())) {
+                        dateStr = d.toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "2-digit",
+                            year: "numeric"
+                        });
+                    }
+                }
+
+                const html = `
+                    <a href="event-details.html?id=${event.id}"
+                        class="block group cursor-pointer border-b-2 border-ink border-dashed pb-6 last:border-b-0 last:pb-0 hover:bg-gray-50 transition-colors p-4 -mx-4 rounded-lg">
+
+                        <h4
+                            class="font-display text-3xl font-black leading-tight group-hover:underline decoration-4 underline-offset-4 mb-2">
+                            ${event.title || "Untitled Event"}
+                        </h4>
+
+                        <p class="font-sans text-sm text-gray-800 font-medium leading-relaxed mb-4">
+                            ${event.description || ""}
+                        </p>
+
+                        <div class="flex justify-between items-center mt-3">
+
+                            <span
+                                class="font-sans text-xs text-ink font-bold uppercase bg-pastelGreen border-2 border-ink px-2 py-1">
+                                ${dateStr}
+                            </span>
+
+                            <span
+                                class="text-[10px] font-black uppercase border-2 border-ink px-1 bg-gray-200">
+                                Completed
+                            </span>
+
+                        </div>
+                    </a>
+                `;
+
+                historyList.insertAdjacentHTML("beforeend", html);
+            });
+
+        } catch (error) {
+            console.error("Error loading history:", error);
+
+            historyList.innerHTML = `
+                <div class="text-center text-red-600 font-bold py-8 uppercase">
+                    Failed to load history. Please try again later.
+                </div>
+            `;
+        }
+    }
+
+    loadHistory();
+</script>
 </body>
 </html>

@@ -33,7 +33,7 @@
 
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/80 px-6 py-4 flex items-center justify-between">
-        <a href="main.html#tinkertimes" class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors duration-200">
+        <a href="index.html#tinkertimes" class="group inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors duration-200">
             <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
@@ -170,10 +170,15 @@
         let eventDateStr = "TBA";
         let isChecking = false;
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-        });
+    const authReady = new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        resolve(user);
+    });
+});
         async function loadEventDetails() {
+            await authReady;
+
             const params = new URLSearchParams(window.location.search);
             const eventId = params.get("id");
 
@@ -237,11 +242,20 @@
                     const countText = document.getElementById("registrationCountText");
                     
                     const maxParticipants = event.maxParticipants || 50;
+                    console.log("AUTH USER:", auth.currentUser);
+                    console.log("MAX PARTICIPANTS:", maxParticipants);
+
+                    let isFull = false;
+
+                    if (auth.currentUser) {
+                        const countSnap = await getCountFromServer(query(collection(db, "registrations"), where("eventId", "==", eventId)));
+                        const currentCount = countSnap.data().count;
+                        isFull = currentCount >= maxParticipants;
+                        countText.textContent = `${currentCount} / ${maxParticipants} Spots Filled`;
+                    } else {
+                        countText.textContent = `Login to see spots`;
+                    }
                     
-                    const countSnap = await getCountFromServer(query(collection(db, "registrations"), where("eventId", "==", eventId)));
-                    const currentCount = countSnap.data().count;
-                    
-                    countText.textContent = `${currentCount} / ${maxParticipants} Spots Filled`;
                     countText.classList.remove("hidden");
 
                     if (status === "completed") {
@@ -260,7 +274,7 @@
                         registerBtn.textContent = "REGISTRATION CLOSED";
                         registerBtn.classList.add("opacity-50", "cursor-not-allowed");
                         registerBtn.disabled = true;
-                    } else if (currentCount >= maxParticipants) {
+                    } else if (isFull) {
                         registerBtn.textContent = "EVENT FULL";
                         registerBtn.classList.add("opacity-50", "cursor-not-allowed");
                         registerBtn.disabled = true;

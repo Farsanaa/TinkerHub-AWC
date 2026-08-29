@@ -1042,25 +1042,7 @@
             opacity: 0.7;
         }
 
-        @keyframes slideDownIntro {
-            0% {
-                transform: translateY(-100%);
-            }
 
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUpIntro {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-100%);
-            }
-        }
 
         .torn-edges-x {
             -webkit-mask:
@@ -1232,7 +1214,7 @@
             right: 0;
             top: 38%;
             transform: translateY(-50%);
-            z-index: 50;
+            z-index: 40;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1314,6 +1296,94 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* Absolute to left edge of viewport, top-left area */
+        .featured-event-hung-wrap {
+            position: absolute;
+            left: 0;
+            top: 45%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: auto;
+            animation: polaroid-float 6.5s ease-in-out infinite;
+        }
+
+        /* Polaroid card — partially hanging off left edge */
+        .featured-event-photo-card {
+            display: block;
+            width: 220px;
+            background: white;
+            border: 2.5px solid #111;
+            padding: 10px 10px 50px 10px;
+            box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.18), -4px 4px 0 #111;
+            /* Angle: top leans left, body hangs right = clip at top-left */
+            transform: rotate(-8deg) translateX(-40px);
+            transform-origin: top center;
+            cursor: pointer;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .featured-event-photo-card:hover {
+            transform: rotate(-3deg) translateX(-20px) scale(1.06);
+            box-shadow: 8px 12px 28px rgba(0, 0, 0, 0.22), -6px 6px 0 #111;
+        }
+
+        .featured-event-photo-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(15%) brightness(1.02);
+            transition: filter 0.35s;
+        }
+
+        .featured-event-photo-card:hover img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Handwriting caption */
+        .featured-event-photo-card .caption {
+            position: absolute;
+            bottom: 12px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #444;
+        }
+
+        /* View label hover badge */
+        .featured-event-photo-card .view-label {
+            position: absolute;
+            bottom: -44px;
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: #111;
+            color: #FFF73A;
+            padding: 5px 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            pointer-events: none;
+        }
+
+        .featured-event-photo-card:hover .view-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         @media (max-width: 768px) {
             .gallery-hung-wrap {
                 top: 42%;
@@ -1322,6 +1392,15 @@
             .gallery-photo-card {
                 width: 160px;
                 transform: rotate(8deg) translateX(30px);
+            }
+            
+            .featured-event-hung-wrap {
+                top: 48%;
+            }
+
+            .featured-event-photo-card {
+                width: 160px;
+                transform: rotate(-8deg) translateX(-30px);
             }
         }
 
@@ -1345,63 +1424,10 @@
     </style>
 </head>
 
-<body class="antialiased selection:bg-accent selection:text-white overflow-hidden" id="body">
+<body class="antialiased selection:bg-accent selection:text-white" id="body">
 
     <!-- Custom Cursor -->
     <div class="custom-cursor hidden md:block" id="customCursor"></div>
-
-    <!-- Intro Paper Overlay -->
-    <div id="introOverlay"
-        class="fixed inset-0 z-[9999] bg-white border-b-[16px] border-ink shadow-[0_30px_60px_rgba(0,0,0,0.6)] flex items-center justify-center cursor-pointer bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgNDBoNDBWMHgtNDB2NDB6IiBmaWxsPSIjRkZGRkZGIi8+PHBhdGggZD0iTTAgMzlWMzhoNDB2MmgtNDB6IiBmaWxsPSIjRTVEQ0MyIi8+PC9zdmc+')] animate-[slideDownIntro_1s_ease-out_forwards] torn-edges-x">
-
-        <!-- Tape Scraps -->
-        <div class="absolute top-10 -left-4 w-32 h-10 bg-white opacity-80 transform rotate-[15deg] border border-ink shadow-sm pointer-events-none"
-            style="backdrop-filter: blur(2px);"></div>
-        <div class="absolute bottom-32 -right-6 w-40 h-12 bg-pastelYellow opacity-70 transform -rotate-12 border border-ink shadow-sm pointer-events-none"
-            style="backdrop-filter: blur(2px);"></div>
-
-        <!-- Pencil Doodles -->
-        <svg class="absolute top-[20%] left-[15%] w-24 h-24 text-pastelPink float-animation opacity-80 pointer-events-none hidden md:block"
-            viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M 50 10 L 60 40 L 90 40 L 65 60 L 75 90 L 50 70 L 25 90 L 35 60 L 10 40 L 40 40 Z"
-                stroke-dasharray="300" stroke-dashoffset="0" />
-            <path d="M 50 5 L 62 42 L 95 42 L 67 62 L 78 95 L 50 73 L 22 95 L 33 62 L 5 42 L 38 42 Z"
-                stroke="rgba(255,181,216,0.5)" stroke-width="2" />
-        </svg>
-
-        <svg class="absolute bottom-[25%] left-[20%] w-32 h-12 text-pastelBlue float-animation-alt opacity-70 transform rotate-12 pointer-events-none hidden md:block"
-            viewBox="0 0 100 30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-            <path d="M 0 15 Q 10 0 20 15 T 40 15 T 60 15 T 80 15 T 100 15" />
-            <path d="M 2 17 Q 12 2 22 17 T 42 17 T 62 17 T 82 17 T 102 17" stroke="rgba(181,216,255,0.5)"
-                stroke-width="2" />
-        </svg>
-
-        <svg class="absolute top-[30%] right-[15%] w-24 h-24 text-pastelGreen float-animation transform rotate-12 pointer-events-none hidden md:block"
-            viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
-            stroke-linejoin="round">
-            <!-- Retro Sparkle -->
-            <path d="M 50 10 Q 50 50 90 50 Q 50 50 50 90 Q 50 50 10 50 Q 50 50 50 10" />
-            <circle cx="50" cy="50" r="5" fill="currentColor" />
-        </svg>
-
-        <!-- Text -->
-        <div
-            class="absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none transform -rotate-2">
-            <h1
-                class="font-display italic font-black text-6xl md:text-[8rem] text-ink leading-[0.9] text-center tracking-tighter drop-shadow-sm">
-                your<br />tinkerhub<br />campus<br />community
-            </h1>
-        </div>
-
-        <!-- <div id="introHint"
-            class="absolute bottom-16 font-handwriting text-3xl font-bold text-ink animate-bounce transition-opacity duration-300 transform rotate-3 bg-pastelYellow px-6 py-2 border-2 border-ink shadow-sticker">
-            Click to unroll!
-        </div> -->
-
-        <!-- Binder holes or tape for paper effect -->
-        <div class="absolute top-0 left-0 w-full h-12 border-b-4 border-ink border-dashed opacity-30"></div>
-    </div>
     <!-- Navbar -->
     <div class="sticky top-6 z-50 px-4 w-full flex justify-center">
         <nav
@@ -1579,6 +1605,19 @@
         <div class="donut-walker">
             <video src="images/donut-dance.webm" autoplay loop muted playsinline></video>
         </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         FEATURED EVENT HUNG PHOTO — fixed to left
+         Clips over viewport edge like a pinned photo
+    ═══════════════════════════════════════════════════ -->
+    <div class="featured-event-hung-wrap">
+        <!-- Polaroid that hangs off left edge, tilted, link to upcoming -->
+        <a href="#upcomingEvents" class="featured-event-photo-card" aria-label="View Useless Project event" id="featuredEventHungPhoto">
+            <img src="events/uselessproject.jpeg" alt="Useless Project event" />
+            <span class="caption">Useless Project</span>
+            <span class="view-label">Upcoming →</span>
+        </a>
     </div>
 
     <!-- ═══════════════════════════════════════════════════
@@ -2718,8 +2757,7 @@
                 }
             </style>
             <span class="inline-block px-4" style="animation: scrollX 20s linear infinite;">
-                🚀 Currently building: EcoTrack ➔ 💻 Next Hackathon: Oct 15 ➔ ✨ New Member Orientation: Friday ➔ 🚀
-                Currently building: EcoTrack ➔ 💻 Next Hackathon: Oct 15 ➔ ✨ New Member Orientation: Friday ➔
+               Something USELESS is Coming! Build Your Useless Project with Us! Something USELESS is Coming! Build Your Useless Project with Us!
             </span>
         </div>
     </div>
@@ -2837,33 +2875,10 @@
                 }
             }
 
-            // Intro Paper Logic
-            const introOverlay = document.getElementById('introOverlay');
-            const introHint = document.getElementById('introHint');
-
-            if (introOverlay) {
-                introOverlay.addEventListener('click', () => {
-                    // Hide hint immediately
-                    if (introHint) introHint.style.opacity = '0';
-
-                    // Reset animation and force reflow
-                    introOverlay.style.animation = 'none';
-                    void introOverlay.offsetWidth;
-                    // Slide up the paper overlay
-                    introOverlay.style.animation = 'slideUpIntro 1s cubic-bezier(0.4, 0, 0.2, 1) forwards';
-
-                    // Add is-open class to start hero animations as the paper slides up
-                    setTimeout(() => {
-                        document.body.classList.add('is-open');
-                    }, 500);
-
-                    // Enable scrolling after animation completes
-                    setTimeout(() => {
-                        document.body.classList.remove('overflow-hidden');
-                        introOverlay.style.display = 'none'; // Hide completely
-                    }, 1000);
-                });
-            }
+            // Trigger hero animations immediately since intro overlay is removed
+            setTimeout(() => {
+                document.body.classList.add('is-open');
+            }, 100);
 
             setupDeck('.paper-deck', '.paper-sheet', 'swipe-off');
 
@@ -3514,7 +3529,14 @@ window.selectMaker = function (makerId) {
         let completedEvents = [];
         let liveEvents = [];
 
+
+        console.log("ALL EVENTS FROM FIREBASE:", events);
         events.forEach((event) => {
+            // Normalize Firestore Timestamp to a standard ISO string for safe Date parsing everywhere
+            if (event.date && typeof event.date.toDate === 'function') {
+                event.date = event.date.toDate().toISOString();
+            }
+            
             let eventDate = new Date();
             if (event.date) {
                 const parsed = new Date(event.date);
@@ -3522,10 +3544,11 @@ window.selectMaker = function (makerId) {
                     eventDate = parsed;
                 }
             }
+            
             eventDate.setHours(0, 0, 0, 0);
             
             // Explicit check: only show an event if the admin set it to one of the active statuses
-            const status = (event.status || "").toLowerCase();
+           const status = (event.status || "").trim().toLowerCase();
 
             if (status === "live") {
                 liveEvents.push(event);
@@ -3556,8 +3579,8 @@ window.selectMaker = function (makerId) {
         // UPCOMING EVENT (Max 3, nearest first -> date ASCENDING)
         // -------------------------
         upcomingEvents.sort((a, b) => {
-            const dateA = a.date ? new Date(a.date).getTime() : 0;
-            const dateB = b.date ? new Date(b.date).getTime() : 0;
+            const dateA = a.date && !isNaN(new Date(a.date).getTime()) ? new Date(a.date).getTime() : 0;
+            const dateB = b.date && !isNaN(new Date(b.date).getTime()) ? new Date(b.date).getTime() : 0;
             return dateA - dateB;
         });
         
@@ -3569,8 +3592,8 @@ window.selectMaker = function (makerId) {
         // PAST/COMPLETED EVENT (Max 3, newest first -> date DESCENDING)
         // -------------------------
         completedEvents.sort((a, b) => {
-            const dateA = a.date ? new Date(a.date).getTime() : 0;
-            const dateB = b.date ? new Date(b.date).getTime() : 0;
+            const dateA = a.date && !isNaN(new Date(a.date).getTime()) ? new Date(a.date).getTime() : 0;
+            const dateB = b.date && !isNaN(new Date(b.date).getTime()) ? new Date(b.date).getTime() : 0;
             return dateB - dateA; // Descending
         });
 

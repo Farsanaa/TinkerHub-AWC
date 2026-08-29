@@ -1,6 +1,6 @@
 import re
 
-with open('main.html', 'r', encoding='utf-8') as f:
+with open('index.html', 'r', encoding='utf-8') as f:
     content = f.read()
 
 # Remove the anchor tags wrapping the images in the core team section
@@ -64,6 +64,6 @@ js_replacement = '''            window.selectMakerFromBoard = function (makerId)
 
 content = re.sub(r'window\.selectMakerFromBoard = function \(makerId\) \{.*?\};\s*', js_replacement + '\n\n', content, flags=re.DOTALL)
 
-with open('main.html', 'w', encoding='utf-8') as f:
+with open('index.html', 'w', encoding='utf-8') as f:
     f.write(content)
-print('Updated main.html with loading overlay.')
+print('Updated index.html with loading overlay.')
