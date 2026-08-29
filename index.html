@@ -1387,21 +1387,11 @@
 
         @media (max-width: 768px) {
             .gallery-hung-wrap {
-                top: 42%;
+                display: none;
             }
 
-            .gallery-photo-card {
-                width: 160px;
-                transform: rotate(8deg) translateX(30px);
-            }
-            
             .featured-event-hung-wrap {
-                top: 48%;
-            }
-
-            .featured-event-photo-card {
-                width: 160px;
-                transform: rotate(-8deg) translateX(-30px);
+                display: none;
             }
         }
 
@@ -1458,12 +1448,35 @@
                 
             </div>
             <div class="flex items-center gap-4 drop-in" style="animation-delay: 0.3s;">
-                <a href="join.html" id="navbar-join-btn" class="bg-ink hover:bg-inkLighter text-white font-bold rounded-full flex items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]">Join Us <span
+                <a href="join.html" id="navbar-join-btn" class="hidden md:flex bg-ink hover:bg-inkLighter text-white font-bold rounded-full items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]">Join Us <span
                         class="material-symbols-outlined text-sm ml-1">add</span></a>
-                <a href="profile.html" id="navbar-profile-btn" style="display: none;" class="bg-ink hover:bg-inkLighter text-white font-bold rounded-full flex items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]"><span id="navbar-profile-name">Profile</span> <span
+                <a href="profile.html" id="navbar-profile-btn" style="display: none;" class="hidden md:flex bg-ink hover:bg-inkLighter text-white font-bold rounded-full items-center justify-center transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 !py-2 !px-5 !text-[13px]"><span id="navbar-profile-name">Profile</span> <span
                         class="material-symbols-outlined text-sm ml-1">person</span></a>
+                
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center p-2 rounded-full border border-ink text-ink hover:bg-gray-100 transition-colors">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
         </nav>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-[60] flex flex-col pt-24 px-6 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <button id="closeMobileMenuBtn" class="absolute top-6 right-6 p-2 rounded-full border border-ink text-ink hover:bg-gray-100 transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div class="flex flex-col gap-6 font-display text-3xl font-bold uppercase overflow-y-auto pb-10">
+            <a href="#hero-section" class="mobile-menu-link hover:text-gray-500">Home</a>
+            <a href="#theme-section" class="mobile-menu-link hover:text-gray-500">2026 Theme</a>
+            <a href="#community" class="mobile-menu-link hover:text-gray-500">Community</a>
+            <a href="#core" class="mobile-menu-link hover:text-gray-500">Meet the Core</a>
+            <a href="#tinkertimes" class="mobile-menu-link hover:text-gray-500">Tinker Times</a>
+            <a href="#spotlight" class="mobile-menu-link hover:text-gray-500">Maker Spotlight</a>
+            <hr class="border-ink border-t-2 my-4">
+            <a href="join.html" id="mobile-join-btn" class="bg-ink text-white py-3 px-6 rounded-full text-center text-xl hover:bg-inkLighter transition-colors">Join Us</a>
+            <a href="profile.html" id="mobile-profile-btn" style="display: none;" class="bg-ink text-white py-3 px-6 rounded-full text-center text-xl hover:bg-inkLighter transition-colors">Profile</a>
+        </div>
     </div>
 
 
@@ -2052,7 +2065,7 @@ Our community brings together students who are curious about technology, design,
 
             <!-- Newspaper Header -->
             <div class="text-center mb-12 border-b-8 border-ink pb-8 relative" data-aos="zoom-in">
-                <h2 class="font-display text-6xl md:text-8xl text-ink font-black uppercase tracking-tighter">Tinker
+                <h2 class="font-display text-5xl md:text-8xl text-ink font-black uppercase tracking-tighter">Tinker
                     Times</h2>
                 <div
                     class="flex justify-between items-center border-t-2 border-b-2 border-ink py-2 mt-6 text-xs md:text-sm font-bold uppercase tracking-widest font-sans">
@@ -2115,7 +2128,7 @@ Our community brings together students who are curious about technology, design,
                     <!-- <a href="event-details.html" class="block group cursor-pointer">
                         <div class="text-center mb-8">
                             <span class="bg-pastelGreen border-2 border-ink text-ink text-sm font-bold px-3 py-1 uppercase mb-6 inline-block shadow-sticker transform rotate-2">Current Headline</span>
-                            <h3 class="font-display text-6xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
+                            <h3 class="font-display text-4xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
                                 Everybody Hates Marketing.</h3>
                             <p class="font-display text-2xl md:text-3xl italic text-gray-800 mb-6 font-medium">A day for tech makers who are done pretending everything is fine.</p>
                         </div>
@@ -2455,7 +2468,7 @@ Our community brings together students who are curious about technology, design,
     </div> <!-- Close spotlight-modal -->
 
     <!-- Why Join Us Deck Section -->
-    <section class="py-24 px-8 max-w-[1240px] mx-auto relative z-10" id="join">
+    <section class="py-16 md:py-24 px-4 md:px-8 max-w-[1240px] mx-auto relative z-10" id="join">
         <!-- Floating Build Sticker on the left side of the section -->
         <img src="images/build-Photoroom.png" class="hidden md:block absolute left-4 lg:left-12 top-[20%] w-52 h-52 md:w-60 md:h-60 lg:w-68 lg:h-68 z-20 float-animation pointer-events-none transform -rotate-12" alt="Build Sticker">
 
@@ -2479,7 +2492,7 @@ Our community brings together students who are curious about technology, design,
                         <path
                             d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
                     </svg>
-                    <h3 class="font-display text-6xl font-black text-ink mb-6">If yes...</h3>
+                    <h3 class="font-display text-4xl md:text-6xl font-black text-ink mb-6">If yes...</h3>
                     <p class="font-handwriting text-4xl mb-12 leading-relaxed text-inkLighter">What are you waiting
                         for,<br />come in ladies! ✨</p>
                     <button class="btn-primary !py-4 !px-10 !text-xl transform hover:scale-105 pointer-events-auto"
@@ -2552,7 +2565,7 @@ Our community brings together students who are curious about technology, design,
                     </svg>
                     <h3 class="font-handwriting text-3xl font-bold mb-6 text-gray-500">Question 1</h3>
                     <p
-                        class="font-display text-6xl font-black leading-tight bg-pastelPink px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform rotate-2">
+                        class="font-display text-4xl md:text-6xl font-black leading-tight bg-pastelPink px-4 py-2 border-2 border-ink shadow-[4px_4px_0px_#111] transform rotate-2">
                         Are you<br />curious?</p>
                 </div>
 
@@ -3690,7 +3703,7 @@ window.selectMaker = function (makerId) {
                     <span
                         class="bg-pastelGreen border-2 border-ink text-ink text-sm font-bold px-3 py-1 uppercase mb-6 inline-block shadow-sticker transform rotate-2">Live Now</span>
                     <h3
-                        class="font-display text-6xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
+                        class="font-display text-4xl md:text-8xl font-black leading-none uppercase mb-6 group-hover:text-gray-700 transition-colors">
                         ${event.title}</h3>
                     <p class="font-display text-2xl md:text-3xl italic text-gray-800 mb-6 font-medium">${event.location || ""} • ${event.time || ""}</p>
                 </div>
@@ -3707,6 +3720,29 @@ window.selectMaker = function (makerId) {
         liveContent.insertAdjacentHTML('beforeend', html);
     }
 
+
+    // Mobile Menu Logic
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    if (mobileMenuBtn && closeMobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        // Close menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+    }
 
     loadEvents();
 

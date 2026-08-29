@@ -41,15 +41,16 @@
 <body class="min-h-screen flex flex-col font-sans text-ink">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-ink px-6 py-4 flex items-center justify-between">
-        <a href="index.html#tinkertimes" class="group inline-flex items-center gap-2 font-bold uppercase tracking-wider text-sm hover:text-gray-600 transition-colors duration-200">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-ink px-4 md:px-6 py-4 flex items-center justify-between">
+        <a href="index.html#tinkertimes" class="group inline-flex items-center gap-1 md:gap-2 font-bold uppercase tracking-wider text-sm hover:text-gray-600 transition-colors duration-200">
             <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Back to Times
+            <span class="hidden sm:inline">Back to Times</span>
+            <span class="sm:hidden">Back</span>
         </a>
-        <span class="text-xl font-display font-black uppercase tracking-widest bg-pastelYellow px-2 border-2 border-ink shadow-[2px_2px_0px_#111]">Archives</span>
-        <div class="w-24"></div> <!-- visual balance offset -->
+        <span class="text-lg md:text-xl font-display font-black uppercase tracking-widest bg-pastelYellow px-2 border-2 border-ink shadow-[2px_2px_0px_#111]">Archives</span>
+        <div class="w-16 sm:w-24"></div> <!-- visual balance offset -->
     </header>
 
     <!-- Main Container -->
