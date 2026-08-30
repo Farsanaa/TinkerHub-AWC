@@ -1387,11 +1387,21 @@
 
         @media (max-width: 768px) {
             .gallery-hung-wrap {
-                display: none;
+                top: 42%;
             }
 
+            .gallery-photo-card {
+                width: 160px;
+                transform: rotate(8deg) translateX(30px);
+            }
+            
             .featured-event-hung-wrap {
-                display: none;
+                top: 48%;
+            }
+
+            .featured-event-photo-card {
+                width: 160px;
+                transform: rotate(-8deg) translateX(-30px);
             }
         }
 
@@ -1568,7 +1578,7 @@
                 Learn. Build. Share.
             </div>
             <!-- Ducktive Sticker -->
-            <div class="absolute top-[16%] -left-14 md:-left-10 z-50 scrap-in opacity-0 float-animation-alt"
+            <div class="absolute top-[15%] -left-20 md:-left-20 z-70 scrap-in opacity-0 float-animation-alt"
                 style="animation-delay: 1.5s;">
                 <div class="hover:scale-110 transition-transform duration-200 transform -rotate-6 cursor-pointer">
                     <img src="images/ducktive.png" alt="Be proDUCKtive Sticker"
@@ -1615,7 +1625,7 @@
     </section>
 
     <!-- 🍩 Donut Walk-in Animation (left edge, below hero) -->
-    <div class="donut-walker-wrap">
+    <div class="donut-walker-wrap hidden md:block">
         <div class="donut-walker">
             <video src="images/donut-dance.webm" autoplay loop muted playsinline></video>
         </div>
@@ -2468,7 +2478,7 @@ Our community brings together students who are curious about technology, design,
     </div> <!-- Close spotlight-modal -->
 
     <!-- Why Join Us Deck Section -->
-    <section class="py-16 md:py-24 px-4 md:px-8 max-w-[1240px] mx-auto relative z-10" id="join">
+    <section class="py-24 px-8 max-w-[1240px] mx-auto relative z-10" id="join">
         <!-- Floating Build Sticker on the left side of the section -->
         <img src="images/build-Photoroom.png" class="hidden md:block absolute left-4 lg:left-12 top-[20%] w-52 h-52 md:w-60 md:h-60 lg:w-68 lg:h-68 z-20 float-animation pointer-events-none transform -rotate-12" alt="Build Sticker">
 
